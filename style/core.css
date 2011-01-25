@@ -1,0 +1,73 @@
+html{background-color:[[setting:backgroundcolor]];}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,input,textarea{font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+h1,h2,h3,h4,h5,h6,p{text-shadow:0 1px 0 #FFF;}
+body input{font-family:Arial,Helvetica,sans-serif;}
+select,input,button,textarea{font-size:0.9em;}
+/* Header 
+------------------------- */
+#page-header-wrapper{margin:0 50px;}
+#page-header{float:none;background:#E1E1E1 url([[pix:theme|bg-header]]) repeat-x scroll center bottom;margin-right:0;position:relative;min-height:100px;}
+#page-header .sitelogo {float:left;margin:0.75em 0;}
+#page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.75em 20px;position:absoulte;left:0.5em;top:50px;}
+#page-header .headermenu a:hover{color:#C30;}
+#page-site-index .headermain{font-size:2.5em;margin:0.85em 0;}
+/* Header Profile
+-------------------------- */
+#header-profileoptions ul{margin-right:4px;}
+#header-profileoptions ul li{display:inline;padding-left:5px;font-size:1.3em;}
+.headermenu{font-size:1em;margin:0 -40px 0 0;}
+.loginform_row{padding:0 0 5px;}
+/* Menu Navigation 
+-------------------------- */
+#page-navigation{font-size:1.1em;background-image:url();height:36px;margin:0;padding:0 40px;}
+#page-navigation li{list-style:none;float:left;}
+#page-navigation a{display:block;padding:5px 10px;}
+.navbutton{padding-top:6px;}
+
+/* Breadcrumb 
+--------------------------- */
+.navbar{font-size:1em;background-color:#F0F0F0;border-bottom:1px solid #DDD;margin:0;padding:0 10px;}
+.navbar .breadcrumb{font-size:1em;font-weight:700;padding:6px;}
+.breadcrumb a,a:link,a:active{color:#1D8AC3;}
+.sep{background:url([[pix:theme|breadcrumb_arrow]]) no-repeat scroll 100% 50%;margin-right:5px;padding:0.98em 7px;}
+/* Content 
+--------------------------- */
+#page-content-wrapper{margin:10px 50px;}
+/* Calendar
+--------------------------- */
+.minicalendar td,.minicalendar th{border-color:#EEE;border-width:0;}
+.calendartab th,.calendartable td{border-width:0;}
+/* Tabs 
+--------------------------- */
+.tabtree .tabrow0 li.here a{background:#fff url([[pix:theme|gradient-sb]]) repeat-x 0 0;}
+.tabtree .tabrow0 .tabrow1 li a{background:none !important;}
+/* User
+--------------------------- */
+.userinfobox .content{background:url([[pix:theme|gradient-sb]]) repeat-x 0 0;border-width:2px;}
+/* Content
+--------------------------- */
+.headingblock,h2.headingblock{border-width:1px;margin:0;padding:5px;}
+/* Forms
+------------------------ */
+.mform fieldset{border-color:#ddd;}
+.mform legend{border:1px solid #ddd;background:url([[pix:theme|gradient-sb]]) repeat-x 0 -25%;padding:2px 7px;}
+.mform .fitem .felement { margin-left: 0px; margin-right: 0px; width: 100%;}
+.mform .fitem fieldset.felement{float:left;}
+.mform .fitem .fitemtitle{width:30%;}
+/* Footer
+-------------------------- */
+#page-footer{width:100%;margin:25px 0;}
+#page-footer .logininfo{margin:1em 0;}
+/* PerformanceInfo
+-------------------------- */
+#page-footer .performanceinfo{-moz-border-radius-topleft:15px;-moz-border-radius-topright:15px;-webkit-border-top-left-radius:15px 15px;-webkit-border-top-right-radius:15px 15px;bottom:0;left:-290px !important;position:fixed;background-color:#222;width:580px !important;border-width:12px 12px medium;margin:0 50% !important;}
+#page-footer .performanceinfo ul {text-align: center; margin: 0 auto;}
+#page-footer .performanceinfo li{display:block;list-style-type:none;float:left;padding:5px 0;width:25%;}
+#page-footer .performanceinfo li var{font-size:1.3em;font-weight:700;}
+#page-footer .performanceinfo .green{color:#588E13 !important;}
+#page-footer .performanceinfo .blue{color:#3769A0 !important;}
+#page-footer .performanceinfo .purple{color:#953FA1 !important;}
+#page-footer .performanceinfo .orange{color:#D28C00 !important;}
+#page-footer .performanceinfo .red{color:#B72F09 !important;}
+#page-footer .performanceinfo .white{color:#FFF !important;}
+#page-footer .performanceinfo span{color:#fff;}

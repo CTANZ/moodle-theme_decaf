@@ -1,0 +1,70 @@
+/**
+ * Customized Horizontal CSS Drop-Down Menu for Moodle settings
+ *
+ * @file		awesomebar.css
+ * @version		1.0
+ * @stacks		597-599
+ * @browsers	Windows: IE7+, Opera7+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @author		http://www.lwis.net/
+ * @modified by         Lei Zhang
+ * @Copyright           GNU GENERAL PUBLIC LICENSE Version 3.0
+ */
+#awesomebar{height:25px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;}
+#awesomebar #home, #awesomebar #awesomeNavMenu{float:left;border-color: #404040 #1A1A1A #1A1A1A #505050;border-style: solid; border-width: 1px; padding:2px 8px 1px;width:auto;height:20px;}
+#awesomebar ul.dropdown > li span{height:17px;}
+#awesomebar ul.dropdown ul {left:0px; right:auto;}
+#awesomebar ul.dropdown ul ul {left:100%;}
+#awesomebar ul.dropdown li span {width:auto; padding-left:8px; padding-right:8px;}
+#awesomebar ul.dropdown ul span {width:145px; padding-left:20px; padding-right:6px;}
+#awesomebar #awesomeHomeMenu ul span {width:125px; padding-left:20px; padding-top:4px;}
+#awesomebar #awesomeHomeMenu ul a {width:146px; padding-top:4px;}
+#awesomebar #awesomeHomeMenu ul li.clickable-with-children > a {width:125px; padding-top:4px;}
+.topadminsearchform{float:right;}
+input#topadminsearchquery{-moz-border-radius:10px;-webkit-border-radius:10px;background:#fff url([[pix:theme|search_icon]]) no-repeat 1px 2px;width:200px;margin:1px 10px 2px 0;padding:2px 0 0 17px;}
+ul.dropdown,ul.dropdown li,ul.dropdown ul{list-style:none;margin:0;padding:0;}
+ul.dropdown{position:relative;z-index:597;float:left;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
+ul.dropdown li{float:left;line-height:1.3em;vertical-align:middle;background-color:#333;color:#fff;zoom:1 !important;}
+ul.dropdown li.hover,ul.dropdown li:hover{position:relative;z-index:599;cursor:default;}
+ul.dropdown ul{visibility:hidden;position:absolute;top:100%;z-index:598;left:auto;right:0;margin-top:-1px;border-top:1px solid #1a1a1a;border-left:solid 1px #4c4c4c;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
+ul.dropdown ul li{float:none;background-color:#3a3a3a;padding:0;}
+ul.dropdown ul ul{top:0;right:auto;left:100%;margin-top:0;border-top:none;border-left:none;font-weight:400;}
+ul.dropdown li:hover > ul{visibility:visible;}
+ul.dropdown span,ul.dropdown span a,ul.dropdown li.clickable-with-children > a{background-image:none;background-position:100% 50%;background-repeat:no-repeat;width:145px;padding:2px 6px 4px 20px;}
+ul.dropdown ul span, ul.dropdown ul span a, ul.dropdown ul li.clickable-with-children > a{background-image:url([[pix:theme|nav-arrow-right]]);background-position:100% 50%;background-repeat:no-repeat;}
+ul.dropdown ul ul span, ul.dropdown ul ul span a, ul.dropdown ul ul li.clickable-with-children > a{background-image:url([[pix:theme|nav-arrow-right2]]);}
+ul.dropdown a:link,ul.dropdown a:visited{color:#fff;text-decoration:none;}
+ul.dropdown a:hover{border-top-color:#76B900 !important;border-left-color:#5db1e0;background-color:#76b900;color:#fff;}
+ul.dropdown li.clickable-with-children > a:hover {border-top-color:#595959 !important;}
+ul.dropdown ul a.dir:hover{background-color:#4698ca;background-image:url([[pix:theme|ab-arrowon]]);color:#fff;}
+ul.dropdown ul ul li{background-color:#4c4c4c;}
+ul.dropdown ul ul ul li{background-color:#595959;}
+ul.dropdown li a,ul.dropdown span,ul.dropdown span a{border-color:#404040 #1a1a1a #1a1a1a #505050;border-style:solid;border-width:1px;}
+ul.dropdown ul li a,ul.dropdown ul span,ul.dropdown ul span a{border-left:none;border-color:#4a4a4a #242424 #242424;}
+ul.dropdown ul ul li a,ul.dropdown ul ul span, ul.dropdown ul ul span a{border-color:#595959 #333 #333;}
+ul.dropdown ul ul ul li a,ul.dropdown ul ul ul span, ul.dropdown ul ul ul span a{border-color:#767676 #404040 #404040;}
+ul.dropdown a,ul.dropdown span{display:block;}
+ul.dropdown ul a{width:166px;padding:2px 0 4px 5px;}
+ul.dropdown ul a.dir{width:111px;}
+ul.dropdown ul *.open{background-color:#4c4c4c;background-image:url([[pix:theme|ab-arrowover]]);color:#fff;}
+ul.dropdown ul a.open:hover{background-image:url([[pix:theme|ab-arrowon]]);color:#fff;}
+ul.dropdown ul li:hover > span, ul.dropdown ul li:hover > span a{background-color:#4c4c4c;background-image:url([[pix:theme|ab-arrowover]]);}
+ul.dropdown li.clickable-with-children:hover > a{background-image:url([[pix:theme|ab-arrowover]]);}
+ul.dropdown *.open,ul.dropdown li:hover > span, ul.dropdown li:hover > span a{background-color:#3d3d3d;}
+ul.dropdown ul ul *.open,ul.dropdown ul ul li:hover > span, ul.dropdown ul ul li:hover > span a{background-color:#595959;background-image:url([[pix:theme|ab-arrowover2]]);color:#fff;}
+ul.dropdown a.open:hover,ul.dropdown li:hover > a.dir:hover{background-color:#4698ca;color:#fff;}
+ul.dropdown a:active,ul.dropdown ul li:hover > a.dir:hover{color:#fff;}
+
+/* Custom Menu
+-------------------------- */
+#custommenu{height:30px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;}
+#awesomebar ul.dropdown {z-index: 697; }
+#awesomebar ul.dropdown ul {z-index: 698;}
+#awesomebar ul.dropdown li {z-index: 699;}
+ul.dropdown span.customitem {padding:0;border:0; width: auto;}
+ul.dropdown span.customitem a {padding:6px 20px 6px 20px;}
+ul.dropdown span.customitem a:hover {border-left-color: #505050;border-top-color: #404040 !important;}
+#custommenu ul.dropdown ul {padding:0;width:185px;}
+#custommenu ul.dropdown ul a {padding:4px 0px 4px 18px;}
+#custommenu ul.dropdown > li span a {height:16px;}

@@ -1,0 +1,17 @@
+a:link { color: #0000FF; }
+a:visited { color: #B72F09;}
+
+a:hover,
+a:active { color:#CC3300; }
+
+#page-header  { background:#333 url([[pix:theme|header]]) 0 0; }
+
+.path-course-view .course-content .section.main.current,
+#page-navigation { background:#fff }
+
+#page-navigation a:link,
+#page-navigation a:visited,
+.path-course-view .course-content .current .left  { color:#fff; }
+
+#page-navigation a:hover,
+#page-navigation  a:active { background:#922803; }

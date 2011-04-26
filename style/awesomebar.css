@@ -27,10 +27,10 @@ ul.dropdown,ul.dropdown li,ul.dropdown ul{list-style:none;margin:0;padding:0;}
 ul.dropdown{position:relative;z-index:597;float:left;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
 ul.dropdown li{float:left;line-height:1.3em;vertical-align:middle;background-color:#333;color:#fff;zoom:1 !important;}
 ul.dropdown li.hover,ul.dropdown li:hover{position:relative;z-index:599;cursor:default;}
-ul.dropdown ul{visibility:hidden;position:absolute;top:100%;z-index:598;left:auto;right:0;margin-top:-1px;border-top:1px solid #1a1a1a;border-left:solid 1px #4c4c4c;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
+ul.dropdown ul{display:none;position:absolute;top:100%;z-index:598;left:auto;right:0;margin-top:-1px;border-top:1px solid #1a1a1a;border-left:solid 1px #4c4c4c;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
 ul.dropdown ul li{float:none;background-color:#3a3a3a;padding:0;}
 ul.dropdown ul ul{top:0;right:auto;left:100%;margin-top:0;border-top:none;border-left:none;font-weight:400;}
-ul.dropdown li:hover > ul{visibility:visible;}
+ul.dropdown li:hover > ul{display:block;}
 ul.dropdown span,ul.dropdown span a,ul.dropdown li.clickable-with-children > a{background-image:none;background-position:100% 50%;background-repeat:no-repeat;width:145px;padding:2px 6px 4px 20px;}
 ul.dropdown ul span, ul.dropdown ul span a, ul.dropdown ul li.clickable-with-children > a{background-image:url([[pix:theme|nav-arrow-right]]);background-position:100% 50%;background-repeat:no-repeat;}
 ul.dropdown ul ul span, ul.dropdown ul ul span a, ul.dropdown ul ul li.clickable-with-children > a{background-image:url([[pix:theme|nav-arrow-right2]]);}

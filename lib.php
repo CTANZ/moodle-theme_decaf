@@ -40,6 +40,8 @@ class decaf_topsettings_renderer extends plugin_renderer_base {
 
         // array of nested li elements
         $lis = array();
+        $dummypage = new decaf_dummy_page();
+        $dummypage->set_context(get_context_instance(CONTEXT_SYSTEM));
         foreach ($items as $item) {
             if (!$item->display) {
                 continue;
@@ -55,8 +57,6 @@ class decaf_topsettings_renderer extends plugin_renderer_base {
             $content = $this->output->render($item);
             if(substr($item->id, 0, 17)=='expandable_branch' && $item->children->count()==0) {
                 // Navigation block does this via AJAX - we'll merge it in directly instead
-                $dummypage = new decaf_dummy_page();
-                $dummypage->set_context(get_context_instance(CONTEXT_SYSTEM));
                 $subnav = new decaf_expand_navigation($dummypage, $item->type, $item->key);
                 if (!isloggedin() || isguestuser()) {
                     $subnav->set_expansion_limit(navigation_node::TYPE_COURSE);

@@ -30,9 +30,6 @@ select,input,button,textarea{font-size:0.9em;}
 .navbar .breadcrumb{font-size:1em;font-weight:700;padding:6px;}
 .breadcrumb a,a:link,a:active{color:#1D8AC3;}
 .sep{background:url([[pix:theme|breadcrumb_arrow]]) no-repeat scroll 100% 50%;margin-right:5px;padding:0.98em 7px;}
-/* Content 
---------------------------- */
-#page-content-wrapper{margin:10px 50px;}
 /* Calendar
 --------------------------- */
 .minicalendar td,.minicalendar th{border-color:#EEE;border-width:0;}
@@ -46,7 +43,16 @@ select,input,button,textarea{font-size:0.9em;}
 .userinfobox .content{background:url([[pix:theme|gradient-sb]]) repeat-x 0 0;border-width:2px;}
 /* Content
 --------------------------- */
-.headingblock,h2.headingblock{border-width:1px;margin:0;padding:5px;}
+#page-content-wrapper { margin:10px 50px; }
+.headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
+img.iconsmall {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
+.commands {float: right; clear:right; margin-top:0px; display:block;}
+ul.section li {clear:right;}
+ul.section li div {height:23px;}
+ul.section li.label div {height: auto;}
+ul.section li.label .commands {margin-bottom:2px;}
+ul.section li.label {padding-bottom:5px !important;}
+body.editing ul.section li {border-bottom: 1px grey dashed;}
 /* Forms
 ------------------------ */
 .mform fieldset{border-color:#ddd;}

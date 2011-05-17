@@ -11,7 +11,7 @@
  * @modified by         Lei Zhang
  * @Copyright           GNU GENERAL PUBLIC LICENSE Version 3.0
  */
-#awesomebar{height:25px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;}
+#awesomebar{height:25px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;position:fixed;width:100%;z-index:100;margin:0;top:0;}
 #awesomebar #home, #awesomebar #awesomeNavMenu{float:left;border-color: #404040 #1A1A1A #1A1A1A #505050;border-style: solid; border-width: 1px; padding:2px 8px 1px;width:auto;height:20px;}
 #awesomebar ul.dropdown > li span{height:17px;}
 #awesomebar ul.dropdown ul {left:0px; right:auto;}

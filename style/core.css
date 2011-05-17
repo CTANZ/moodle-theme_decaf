@@ -43,6 +43,7 @@ select,input,button,textarea{font-size:0.9em;}
 .userinfobox .content{background:url([[pix:theme|gradient-sb]]) repeat-x 0 0;border-width:2px;}
 /* Content
 --------------------------- */
+#page {top:25px;}
 #page-content-wrapper { margin:10px 50px; }
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
 img.iconsmall {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }

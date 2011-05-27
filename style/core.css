@@ -22,7 +22,7 @@ select,input,button,textarea{font-size:0.9em;}
 #page-navigation{font-size:1.1em;background-image:url();height:36px;margin:0;padding:0 40px;}
 #page-navigation li{list-style:none;float:left;}
 #page-navigation a{display:block;padding:5px 10px;}
-.navbutton{padding-top:6px;}
+.navbutton { height:18px; margin-top:4px;}
 /* Custom menu 
 -------------------------- */
 ul.dropdown {z-index:0;}
@@ -56,6 +56,8 @@ ul.section li.label div {height: auto;}
 ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}
 body.editing ul.section li {border-bottom: 1px grey dashed;}
+input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 3px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+
 /* Forms
 ------------------------ */
 .mform fieldset{border-color:#ddd;}

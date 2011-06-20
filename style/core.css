@@ -17,6 +17,10 @@ select,input,button,textarea{font-size:0.9em;}
 #header-profileoptions ul li{display:inline;padding-left:5px;font-size:1.3em;}
 .headermenu{font-size:1em;margin:0 -40px 0 0;}
 .loginform_row{padding:0 0 5px;}
+/* Profileblock
+-----------------------*/
+.headermenu div.logininfo{width:120px;height:43px;float:right;border-right:none;margin-top:17px;text-align:center;padding:10px;}
+.headermenu img.userpicture{width:48px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;padding:8px 8px;}
 /* Menu Navigation 
 -------------------------- */
 #page-navigation{font-size:1.1em;background-image:url();height:36px;margin:0;padding:0 40px;}

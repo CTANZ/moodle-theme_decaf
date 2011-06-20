@@ -49,3 +49,5 @@ $string['hidesettingsblock'] = 'Hide Settings block';
 $string['hidesettingsblockdesc'] = 'This setting removes the standard Settings block from all pages.';
 $string['hidenavigationblock'] = 'Hide Navigation block';
 $string['hidenavigationblockdesc'] = 'This setting removes the standard Navigation block from all pages.';
+$string['showuserpicture'] = 'Show user picture';
+$string['showuserpicturedesc'] = 'This setting add user picture in the page heading';

@@ -69,11 +69,20 @@ echo $OUTPUT->doctype() ?>
 		    	<h1 class="headermain"><?php echo $PAGE->heading ?></h1>
     		    <div class="headermenu">
         			<?php
-            			echo $OUTPUT->login_info();
-		           		if (!empty($PAGE->layout_options['langmenu'])) {
-		        	       	echo $OUTPUT->lang_menu();
-			    	    }
-    			       	echo $PAGE->headingmenu
+        			if (!empty($PAGE->theme->settings->showuserpicture)) {
+        				if (isloggedin())
+        				{
+        					echo ''.$OUTPUT->user_picture($USER, array('size'=>55)).'';
+        				}
+        				else {
+        					?>
+						<img class="userpicture" src="<?php echo $CFG->wwwroot .'/theme/'. current_theme().'/pix/image.png' ?>" />
+						<?php
+        				}
+        			}
+        		echo $OUTPUT->login_info();
+    	        echo $OUTPUT->lang_menu();
+	        	echo $PAGE->headingmenu;
         			?>
 	        	</div>
 	        <?php } ?>        

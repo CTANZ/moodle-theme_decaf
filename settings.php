@@ -48,4 +48,15 @@ if ($ADMIN->fulltree) {
     $choices = array(1=>'Yes', 0=>'No');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
+    
+    // Show user profile picture
+    $name = 'theme_decaf/showuserpicture';
+    $title = get_string('showuserpicture','theme_decaf');
+    $description = get_string('showuserpicturedesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(1=>'Yes', 0=>'No');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
+   
+
 }

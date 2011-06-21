@@ -1,8 +1,13 @@
 html{background-color:[[setting:backgroundcolor]];}
 body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,input,textarea{font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+.wrapper {margin: 0 25px;}
 h1,h2,h3,h4,h5,h6,p{text-shadow:0 1px 0 #FFF;}
 body input{font-family:Arial,Helvetica,sans-serif;}
 select,input,button,textarea{font-size:0.9em;}
+a:link,a:visited {color: #C22323;}
+a:hover,a:active {color: #251c17;}
+a img {border: none;}
+a:active {outline: none;}
 /* Header 
 ------------------------- */
 #page-header-wrapper{margin:0 50px;}
@@ -27,6 +32,32 @@ select,input,button,textarea{font-size:0.9em;}
 #page-navigation li{list-style:none;float:left;}
 #page-navigation a{display:block;padding:5px 10px;}
 .navbutton { height:18px; margin-top:4px;}
+/* Dock
+---------------------------*/
+#dock{background-color:#f7f5f1;border-right-color:#433b30;}
+#dock .dockeditem_container{margin-top:10px;}
+#dock .dockeditem{background-color:#fff;}
+#dock .firstdockitem{margin-top:1em;}
+#dock .dockeditem .dockedtitle{border-color:#fff #ddd #ddd;}
+#dock .dockeditem .dockedtitle.activeitem{background:#f7f5f1;border-top-color:#f7f5f1;}
+#dock .firstdockitem .dockedtitle{border-top-color:#ddd;}
+#dock .dockeditem .dockedtitle h2{margin:12px 0 12px 7px;}
+#dockeditempanel .dockeditempanel_content{border-color:#433b30;}
+#dockeditempanel .dockeditempanel_hd{border-bottom:none;background:#eee;text-align:left;padding:3px 5px;}
+#dockeditempanel .dockeditempanel_hd h2{color:#333;text-align:left;font-weight:400;font-size:1.25em;padding:0 2px;}
+#dockeditempanel .dockeditempanel_hd .commands{float:right;}
+/* block expansion code */
+.block_js_expansion .block_tree{overflow-x:scroll;}
+.block_js_expansion.mouseover .content{width:200%;z-index:1000;position:relative;}
+.block_js_expansion.mouseover .content .block_tree{width:100%;background-color:#FAFAFA;padding-bottom:0;}
+/** IE stylings */
+.ie6 .block .block_tree{width:160px;overflow-x:scroll;}
+.ie6 #dock{position:absolute;}
+.ie6 #dock hr{display:none;height:0;margin:0;padding:0;}
+.ie6 #dock li p{background-color:inherit;}
+.ie6 #dock .bd.oversized_content .content,.ie7 #dock .bd.oversized_content .content{padding-bottom:0;}
+.ie6 .block_js_expansion.mouseover .content,.ie7 .block_js_expansion.mouseover .content{padding-bottom:2px;}
+.ie6 .block_tree .tree_item,.ie6 #dock .bd.oversized_content{width:100%;}
 /* Custom menu 
 -------------------------- */
 ul.dropdown {z-index:0;}
@@ -50,7 +81,10 @@ ul.dropdown {z-index:0;}
 /* Content
 --------------------------- */
 #page {top:25px;}
-#page-content-wrapper { margin:10px 50px; }
+#page-content-wrapper {float: none;margin:10px 50px; }
+#region-pre {background:transparent url([[pix:theme|main-divider]]) repeat-y scroll right center;}
+#region-post{background:transparent url([[pix:theme|main-divider]]) repeat-y scroll left center;}
+
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
 img.iconsmall {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
 .commands {float: right; clear:right; margin-top:0px; display:block;}
@@ -60,7 +94,35 @@ ul.section li.label div {height: auto;}
 ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}
 body.editing ul.section li {border-bottom: 1px grey dashed;}
-input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 3px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+/* Blocks
+--------------------------- */
+.block {border-style:none;}
+.block .calendar-controls .current {width: 74%;}
+.block .calendar-controls .previous {background:transparent url([[pix:theme|previous]]) no-repeat left top; height:19px;}
+.block .calendar-controls .next {background:transparent url([[pix:theme|next]]) no-repeat right top;}
+.block .header{border-color:#EEE;border-width:0 1px;}
+.block .header h2{background:#EEE url([[pix:theme|bg-header]]) repeat-x scroll bottom center;color:#555;font-family:"Droid Sans",Helvetica,Arial,sans-serif;font-size:16px;letter-spacing:-0.5px;line-height:30px;text-shadow:0 1px 0 #DDD;text-transform:uppercase;}
+.block .header .block_action{margin:4px 5px;}
+.block .commands{clear:both;height:16px;padding:4px;}
+.block .content{padding:5px 10px;}
+.block_login label{font-size:0.85em;display:block;}
+.block_login .fld input{width:95%;margin:1px 0 5px;padding:2px;}
+.block_login .btn{padding:4px 0;}
+.block_login .footer{font-size:0.9em;padding:5px 0 3px;}
+.block_calendar_month .content{padding:5px;}
+.block_course_summary .content{padding:10px;}
+
+/*YUI Reset */
+.yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}
+.yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label-menuvisible .yui3-menu-toggle{background-position:0 50%;}
+.yui3-skin-sam #page .yui3-menu-label,.yui3-skin-sam #page .yui3-menuitem-content{color:#35251B;font-weight:400;}
+.custom_menu_submenu .yui3-menu-label,.custom_menu_submenu .yui3-menuitem-content{color:#35251B !important;}
+.yui3-skin-sam #page .yui3-menu-label.yui3-menu-label-active,.yui3-skin-sam #page .yui3-menuitem-active .yui3-menuitem-content{color:#DA5013;}
+.yui3-skin-sam #page .yui3-menu-content,.yui3-skin-sam #page .yui3-menu-content,.yui3-skin-sam #page .yui3-menu .yui3-menu .yui3-menu-content,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menuitem-content{border:none;}
+.yui3-skin-sam .yui3-menu-horizontal .yui3-menu-label,.yui3-skin-sam .yui3-menu-horizontal .yui3-menuitem-content{border-color:gray;border-style:solid;border-width:0;}
+.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-content,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label-active,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menuitem-active .yui3-menuitem-content,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label-menuvisible{background-position:-10000px -10000px;}
+.yui3-skin-sam #page .yui3-menu-label,.yui3-skin-sam #page .yui3-menu .yui3-menu .yui3-menu-label,.yui3-skin-sam #page .yui3-menubuttonnav .yui3-menu-label em{background-position:right center;}
 
 /* Forms
 ------------------------ */
@@ -91,3 +153,31 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 #page-footer .performanceinfo .red{color:#B72F09 !important;}
 #page-footer .performanceinfo .white{color:#FFF !important;}
 #page-footer .performanceinfo span{color:#fff;}
+
+/* Course
+---------------------------*/
+.course-content ul.topics li.section .left{font-size:2em;}
+.course-content ul.topics li.section{background:transparent url([[pix:theme|topic-bg-bottom]]) repeat-x scroll bottom center;margin:0 0 30px;padding:0 0 30px;}
+.course-content ul.weeks li.section{background:transparent url([[pix:theme|topic-bg-bottom]]) repeat-x scroll bottom center;margin:0;padding:0 0 30px;}
+
+#intro, #pageintro { background:#f7f7f7; }
+
+/* Forum
+---------------------------*/
+.path-mod-forum .forumheaderlist th {background: url([[pix:theme|gradient-sb]]) repeat-x 0 0}
+.path-mod-forum .forumheaderlist .r1 td { background:#f5f5f5; }
+.forumpost .topic { background:#eee;border-color:#aaa;border-width:0 0 2px 0;padding-left:7px; }
+.forumpost .topic .subject { font-size:1.25em; }
+.forumpost .topic .author { font-style:italic;color:#444;font-size:0.95em; }
+.forumpost .content { border-bottom:5px solid #aaa;padding:5px 7px 10px 7px; }
+
+/* Assignments 
+--------------------------*/
+.path-mod-assignment #dates table .c0 { background:#f5f5f5; }
+
+/* Folder
+--------------------------*/
+#page-mod-folder-edit .foldertree { width: 95% }
+
+/** Custom CSS **/
+[[setting:customcss]]

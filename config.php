@@ -21,7 +21,7 @@ $THEME->parents = array('canvas','base');
 ////////////////////////////////////////////////////
 
 
-$THEME->sheets = array('awesomebar', 'selected', 'core', 'course', 'mods', 'blocks', 'pagelayout');
+$THEME->sheets = array('awesomebar', 'core');
 
 ////////////////////////////////////////////////////
 // Name of the stylesheet(s) you've including in 
@@ -115,7 +115,17 @@ $THEME->layouts = array(
         'regions' => array(),
         'options' => array('nofooter'=>true, 'nonavbar'=>true),
     ),
-    
+    // Should display the content and basic headers only.
+    'print' => array(
+        'file' => 'general.php',
+        'regions' => array(),
+        'options' => array('nofooter'=>true, 'nonavbar'=>false, 'noblocks'=>true),
+    ),
+    'report' => array(
+        'file' => 'general.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+    ),  
 );
 
 ///////////////////////////////////////////////////////////////

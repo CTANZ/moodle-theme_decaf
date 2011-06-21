@@ -62,7 +62,7 @@ echo $OUTPUT->doctype() ?>
 
 <?php if ($hasheading || $hasnavbar) { ?>
 
-    <div id="page-header" class="clearfix">
+    <div id="page-header">
 		<div id="page-header-wrapper">
 	        
 	        <?php if ($hasheading) { ?>
@@ -99,7 +99,7 @@ echo $OUTPUT->doctype() ?>
 
 <?php } ?>
 <!-- END OF HEADER -->
-<div id="page-content-wrapper">
+<div id="page-content-wrapper" class="clearfix">
     <div id="page-content">
         <div id="region-main-box">
             <div id="region-post-box">
@@ -113,7 +113,7 @@ echo $OUTPUT->doctype() ?>
                 </div>
                 
                 <?php if ($hassidepre) { ?>
-                <div id="region-pre">
+                <div id="region-pre" class="block-region">
                     <div class="region-content">
                         <?php echo $OUTPUT->blocks_for_region('side-pre') ?>
                     </div>
@@ -121,7 +121,7 @@ echo $OUTPUT->doctype() ?>
                 <?php } ?>
                 
                 <?php if ($hassidepost) { ?>
-                <div id="region-post">
+                <div id="region-post" class="block-region">
                     <div class="region-content">
                         <?php echo $OUTPUT->blocks_for_region('side-post') ?>
                     </div>

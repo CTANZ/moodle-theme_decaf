@@ -50,7 +50,7 @@ class theme_decaf_core_renderer extends core_renderer {
         // but some of the content won't be known until later, so we return a placeholder
         // for now. This will be replaced with the real content in {@link footer()}.
         $output = self::PERFORMANCE_INFO_TOKEN;
-        if ($this->page->legacythemeinuse) {
+        if ($this->page->devicetypeinuse=='legacy') {
             // The legacy theme is in use print the notification
             $output .= html_writer::tag('div', get_string('legacythemeinuse'), array('class'=>'legacythemeinuse'));
         }
@@ -210,6 +210,111 @@ class theme_decaf_core_renderer extends core_renderer {
             }
         }
         return $output;
+    }
+
+}
+
+class theme_decaf_topsettings_renderer extends plugin_renderer_base {
+
+    public function settings_tree(settings_navigation $navigation) {
+        global $CFG;
+        $content = $this->navigation_node($navigation, array('class' => 'dropdown  dropdown-horizontal'));
+        if (has_capability('moodle/site:config', get_context_instance(CONTEXT_SYSTEM))) {
+            $content .= $this->search_form(new moodle_url("$CFG->wwwroot/$CFG->admin/search.php"), optional_param('query', '', PARAM_RAW));
+        }
+        $content .= html_writer::empty_tag('br', array('clear' => 'all'));
+        return $content;
+    }
+
+    public function navigation_tree(global_navigation $navigation) {
+        global $CFG;
+        $content = html_writer::start_tag('ul', array('id' => 'awesomeHomeMenu', 'class' => 'dropdown  dropdown-horizontal'));
+        $content .= html_writer::start_tag('li');
+        $content .= html_writer::start_tag('a', array('href' => "$CFG->wwwroot", 'id' =>'home'));
+        $content .= html_writer::empty_tag('img', array('alt' => '', 'src' =>$this->pix_url('home_icon', 'theme')));
+        $content .= html_writer::end_tag('a');
+        $content .= html_writer::end_tag('li');
+        $content .= html_writer::start_tag('li');
+        $content .= html_writer::start_tag('span', array('id' =>'awesomeNavMenu'));
+        $content .= html_writer::empty_tag('img', array('alt' => '', 'src' =>$this->pix_url('user_silhouette', 'theme')));
+        $content .= html_writer::end_tag('span');
+        $content .= $this->navigation_node($navigation, array());
+        $content .= html_writer::end_tag('li');
+        $content .= html_writer::end_tag('ul');
+        return $content;
+    }
+
+    protected function navigation_node(navigation_node $node, $attrs=array()) {
+        $items = $node->children;
+
+        // exit if empty, we don't want an empty ul element
+        if ($items->count() == 0) {
+            return '';
+        }
+
+        // array of nested li elements
+        $lis = array();
+        $dummypage = new decaf_dummy_page();
+        $dummypage->set_context(get_context_instance(CONTEXT_SYSTEM));
+        foreach ($items as $item) {
+            if (!$item->display) {
+                continue;
+            }
+
+            $isbranch = ($item->children->count() > 0 || $item->nodetype == navigation_node::NODETYPE_BRANCH);
+            $hasicon = (!$isbranch && $item->icon instanceof renderable);
+
+            if ($isbranch) {
+                $item->hideicon = true;
+            }
+
+            $content = $this->output->render($item);
+            if(substr($item->id, 0, 17)=='expandable_branch' && $item->children->count()==0) {
+                // Navigation block does this via AJAX - we'll merge it in directly instead
+                $subnav = new decaf_expand_navigation($dummypage, $item->type, $item->key);
+                if (!isloggedin() || isguestuser()) {
+                    $subnav->set_expansion_limit(navigation_node::TYPE_COURSE);
+                }
+                $branch = $subnav->find($item->key, $item->type);
+                $content .= $this->navigation_node($branch);
+            } else {
+                $content .= $this->navigation_node($item);
+            }
+
+
+            if($isbranch && !(is_string($item->action) || empty($item->action))) {
+                $content = html_writer::tag('li', $content, array('class' => 'clickable-with-children'));
+            } else {
+                $content = html_writer::tag('li', $content);
+            }
+            $lis[] = $content;
+        }
+
+        if (count($lis)) {
+            return html_writer::nonempty_tag('ul', implode("\n", $lis), $attrs);
+        } else {
+            return '';
+        }
+    }
+
+    public function search_form(moodle_url $formtarget, $searchvalue) {
+        global $CFG;
+
+        if (empty($searchvalue)) {
+            $searchvalue = 'Search Settings..';
+        }
+
+        $content = html_writer::start_tag('form', array('class' => 'topadminsearchform', 'method' => 'get', 'action' => $formtarget));
+        $content .= html_writer::start_tag('div', array('class' => 'search-box'));
+        $content .= html_writer::tag('label', s(get_string('searchinsettings', 'admin')), array('for' => 'adminsearchquery', 'class' => 'accesshide'));
+        $content .= html_writer::empty_tag('input', array('id' => 'topadminsearchquery', 'type' => 'text', 'name' => 'query', 'value' => s($searchvalue),
+                    'onfocus' => "if(this.value == 'Search Settings..') {this.value = '';}",
+                    'onblur' => "if (this.value == '') {this.value = 'Search Settings..';}"));
+        //$content .= html_writer::empty_tag('input', array('class'=>'search-go','type'=>'submit', 'value'=>''));
+        $content .= html_writer::end_tag('div');
+        $content .= html_writer::end_tag('form');
+
+        return $content;
     }
 
 }

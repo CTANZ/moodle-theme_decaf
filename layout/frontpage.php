@@ -46,15 +46,17 @@ echo $OUTPUT->doctype() ?>
     </script>
 </head>
 <body id="<?php echo $PAGE->bodyid ?>" class="<?php echo $PAGE->bodyclasses.' '.join(' ', $bodyclasses) ?>">
-<?php echo $OUTPUT->standard_top_of_body_html() ?>
-
-    <div id="awesomebar">
-        <?php
-            $topsettings = new decaf_topsettings_renderer($this->page, null);
-            echo $topsettings->navigation_tree($this->page->navigation);
-            echo $topsettings->settings_tree($this->page->settingsnav);
-        ?>
-    </div>
+<?php echo $OUTPUT->standard_top_of_body_html();
+    // Don't show awesomebar if site is being upgraded
+    if($this->page->pagelayout != 'maintenance') { ?>
+        <div id="awesomebar">
+            <?php
+                    $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
+                    echo $topsettings->navigation_tree($this->page->navigation);
+                    echo $topsettings->settings_tree($this->page->settingsnav);
+            ?>
+        </div>
+    <?php } ?>
 
 <div id="page">
 

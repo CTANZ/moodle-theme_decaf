@@ -50,7 +50,10 @@ class theme_decaf_core_renderer extends core_renderer {
         // but some of the content won't be known until later, so we return a placeholder
         // for now. This will be replaced with the real content in {@link footer()}.
         $output = self::PERFORMANCE_INFO_TOKEN;
-        if ($this->page->devicetypeinuse=='legacy') {
+        // Moodle 2.1 uses a magic accessor for $this->page->devicetypeinuse so we need to
+        // check for the existence of the function that uses as
+        // isset($this->page->devicetypeinuse) returns false
+        if (function_exists('get_user_device_type')?($this->page->devicetypeinuse=='legacy'):$this->page->legacythemeinuse) {
             // The legacy theme is in use print the notification
             $output .= html_writer::tag('div', get_string('legacythemeinuse'), array('class'=>'legacythemeinuse'));
         }

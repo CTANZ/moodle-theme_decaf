@@ -56,6 +56,9 @@ echo $OUTPUT->doctype() ?>
             <?php
                     $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
                     echo $topsettings->navigation_tree($this->page->navigation);
+                    if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar)) {
+                        echo $custommenu;
+                    }
                     echo $topsettings->settings_tree($this->page->settingsnav);
             ?>
         </div>
@@ -92,6 +95,9 @@ echo $OUTPUT->doctype() ?>
         	
 	    </div>
     </div>
+    <?php if ($hascustommenu && empty($PAGE->theme->settings->custommenuinawesomebar)) { ?>
+      <div id="custommenu"><?php echo $custommenu; ?></div>
+ 	<?php } ?>
     
     <?php if ($hasnavbar) { ?>
 	    <div class="navbar clearfix">

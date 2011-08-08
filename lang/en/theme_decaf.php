@@ -51,3 +51,5 @@ $string['hidenavigationblock'] = 'Hide Navigation block';
 $string['hidenavigationblockdesc'] = 'This setting removes the standard Navigation block from all pages.';
 $string['showuserpicture'] = 'Show user picture';
 $string['showuserpicturedesc'] = 'This setting add user picture in the page heading';
+$string['custommenuinawesomebar'] = 'Add custom menu to Awesomebar';
+$string['custommenuinawesomebardesc'] = 'Moves the custom menu into the Awesomebar.  Otherwise, it will appear below the header.';

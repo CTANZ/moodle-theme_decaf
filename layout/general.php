@@ -49,20 +49,21 @@ echo $OUTPUT->doctype() ?>
 </head>
 
 <body id="<?php p($PAGE->bodyid) ?>" class="<?php p($PAGE->bodyclasses.' '.join(' ', $bodyclasses)) ?>">
-<?php echo $OUTPUT->standard_top_of_body_html();
-    // Don't show awesomebar if site is being upgraded
-    if($this->page->pagelayout != 'maintenance') { ?>
-        <div id="awesomebar">
-            <?php
-                    $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
-                    echo $topsettings->navigation_tree($this->page->navigation);
-                    if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar)) {
-                        echo $custommenu;
-                    }
-                    echo $topsettings->settings_tree($this->page->settingsnav);
-            ?>
-        </div>
-    <?php } ?>
+<?php echo $OUTPUT->standard_top_of_body_html(); ?>
+<div id="awesomebar">
+    <?php
+        if( $this->page->pagelayout != 'maintenance' // Don't show awesomebar if site is being upgraded
+            && !(get_user_preferences('auth_forcepasswordchange') && !session_is_loggedinas()) // Don't show it when forcibly changing password either
+          ) {
+            $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
+            echo $topsettings->navigation_tree($this->page->navigation);
+            if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar)) {
+                echo $custommenu;
+            }
+            echo $topsettings->settings_tree($this->page->settingsnav);
+        }
+    ?>
+</div>
 
 <div id="page">
 

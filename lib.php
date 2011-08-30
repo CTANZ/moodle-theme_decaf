@@ -525,7 +525,12 @@ class decaf_expand_navigation extends global_navigation {
                         }
                     }
                     if ($course->id == SITEID) {
-                        $modulenode = $this->load_activity($cm, $course, $coursenode->find($cm->id, self::TYPE_ACTIVITY));
+                        if(method_exists($this,'generate_sections_and_activities')) {
+                            // >= 2.1 doesn't seem to have generated the course sections yet,
+                            // so we'll do it here to make sure we get the activity node
+                            $this->load_course_sections($course, $coursenode);
+                        }
+                        $modulenode = $this->load_activity($cm, $course, $this->rootnodes['site']->find($cm->id, null));
                     } else {
                         if(method_exists($this,'generate_sections_and_activities')) {
                             $sections   = $this->load_course_sections($course, $coursenode);

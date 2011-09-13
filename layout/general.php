@@ -117,7 +117,7 @@ echo $OUTPUT->doctype() ?>
                 <div id="region-main-wrap">
                     <div id="region-main">
                         <div class="region-content">
-                            <?php echo core_renderer::MAIN_CONTENT_TOKEN ?>
+                            <?php echo method_exists($OUTPUT, "main_content")?$OUTPUT->main_content():core_renderer::MAIN_CONTENT_TOKEN ?>
                         </div>
                     </div>
                 </div>

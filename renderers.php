@@ -28,9 +28,13 @@ class theme_decaf_core_renderer extends core_renderer {
                 $performanceinfo = decaf_performance_output($perf);
             }
         }
-        $footer = str_replace(self::PERFORMANCE_INFO_TOKEN, $performanceinfo, $footer);
 
-        $footer = str_replace(self::END_HTML_TOKEN, $this->page->requires->get_end_code(), $footer);
+        $perftoken = (property_exists($this, "unique_performance_info_token"))?$this->unique_performance_info_token:self::PERFORMANCE_INFO_TOKEN;
+        $endhtmltoken = (property_exists($this, "unique_end_html_token"))?$this->unique_end_html_token:self::END_HTML_TOKEN;
+
+        $footer = str_replace($perftoken, $performanceinfo, $footer);
+
+        $footer = str_replace($endhtmltoken, $this->page->requires->get_end_code(), $footer);
 
         $this->page->set_state(moodle_page::STATE_DONE);
 
@@ -49,7 +53,7 @@ class theme_decaf_core_renderer extends core_renderer {
         // This function is normally called from a layout.php file in {@link header()}
         // but some of the content won't be known until later, so we return a placeholder
         // for now. This will be replaced with the real content in {@link footer()}.
-        $output = self::PERFORMANCE_INFO_TOKEN;
+        $output = (property_exists($this, "unique_performance_info_token"))?$this->unique_performance_info_token:self::PERFORMANCE_INFO_TOKEN;
         // Moodle 2.1 uses a magic accessor for $this->page->devicetypeinuse so we need to
         // check for the existence of the function that uses as
         // isset($this->page->devicetypeinuse) returns false
@@ -248,6 +252,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
     }
 
     protected function navigation_node(navigation_node $node, $attrs=array()) {
+        global $PAGE;
         $items = $node->children;
 
         // exit if empty, we don't want an empty ul element
@@ -259,6 +264,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
         $lis = array();
         $dummypage = new decaf_dummy_page();
         $dummypage->set_context(get_context_instance(CONTEXT_SYSTEM));
+        $dummypage->set_url($PAGE->url);
         foreach ($items as $item) {
             if (!$item->display) {
                 continue;

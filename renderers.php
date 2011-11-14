@@ -285,7 +285,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                     $subnav->set_expansion_limit(navigation_node::TYPE_COURSE);
                 }
                 $branch = $subnav->find($item->key, $item->type);
-                $content .= $this->navigation_node($branch);
+                if($branch!==false) $content .= $this->navigation_node($branch);
             } else {
                 $content .= $this->navigation_node($item);
             }

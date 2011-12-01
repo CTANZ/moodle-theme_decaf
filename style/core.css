@@ -10,7 +10,7 @@ a img {border: none;}
 a:active {outline: none;}
 /* Header 
 ------------------------- */
-#page-header-wrapper{margin:0 50px;}
+#page-header-wrapper{margin:0 0 0 50px;}
 #page-header{float:none;background:#E1E1E1 url([[pix:theme|bg-header]]) repeat-x scroll center bottom;margin-right:0;position:relative;min-height:100px;}
 #page-header .sitelogo {float:left;margin:0.75em 0;}
 #page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.75em 20px;position:absoulte;left:0.5em;top:50px;}
@@ -20,11 +20,11 @@ a:active {outline: none;}
 -------------------------- */
 #header-profileoptions ul{margin-right:4px;}
 #header-profileoptions ul li{display:inline;padding-left:5px;font-size:1.3em;}
-.headermenu{font-size:1em;margin:0 -40px 0 0;}
+.headermenu{font-size:1em;margin:0 10px 0 0;}
 .loginform_row{padding:0 0 5px;}
 /* Profileblock
 -----------------------*/
-.headermenu div.logininfo{width:120px;height:43px;float:right;border-right:none;margin-top:17px;text-align:center;padding:10px;}
+.headermenu div.logininfo{width:130px;height:43px;float:right;border-right:none;margin-top:17px;text-align:center;padding:10px;}
 .headermenu img.userpicture{width:48px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;padding:8px 8px;}
 /* Menu Navigation 
 -------------------------- */
@@ -87,14 +87,15 @@ div#custommenu ul.dropdown {z-index:auto;}
 #region-post{background:transparent url([[pix:theme|main-divider]]) repeat-y scroll left center;}
 
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
-img.iconsmall {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
-.commands {float: right; clear:right; margin-top:0px; display:block;}
+/* YUI messes with IE unless we go overboard here */
+img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
+.commands {position:absolute; top:0px; right:0px;}
 ul.section li {clear:right;}
 ul.section li div {height:23px;}
 ul.section li.label div {height: auto;}
 ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}
-body.editing ul.section li {border-bottom: 1px grey dashed;}
+body.editing ul.section>li {border-bottom: 1px grey dashed; position:relative;}
 input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 /* Blocks
 --------------------------- */
@@ -105,7 +106,8 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 .block .header{border-color:#EEE;border-width:0 1px;}
 .block .header h2{background:#EEE url([[pix:theme|bg-header]]) repeat-x scroll bottom center;color:#555;font-family:"Droid Sans",Helvetica,Arial,sans-serif;font-size:16px;letter-spacing:-0.5px;line-height:30px;text-shadow:0 1px 0 #DDD;text-transform:uppercase;}
 .block .header .block_action{margin:4px 5px;}
-.block .commands{clear:both;height:16px;padding:4px;}
+.block_with_controls .header .title {position:relative;padding-bottom:20px;}
+.block .commands{clear:both;height:16px;padding:4px;top:auto;bottom:0px;}
 .block .content{padding:5px 10px;}
 .block_login label{font-size:0.85em;display:block;}
 .block_login .fld input{width:95%;margin:1px 0 5px;padding:2px;}

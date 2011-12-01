@@ -66,6 +66,15 @@ if ($ADMIN->fulltree) {
     $choices = array(1=>'Yes', 0=>'No');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
+
+    // Place custom menu after Awesomebar
+    $name = 'theme_decaf/custommenuafterawesomebar';
+    $title = get_string('custommenuafterawesomebar','theme_decaf');
+    $description = get_string('custommenuafterawesomebardesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'No', 1=>'Yes');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
    
 
 }

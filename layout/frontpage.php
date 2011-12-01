@@ -53,10 +53,14 @@ echo $OUTPUT->doctype() ?>
             <?php
                     $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
                     echo $topsettings->navigation_tree($this->page->navigation);
-                    if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar)) {
+                    if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && empty($PAGE->theme->settings->custommenuafterawesomebar)) {
                         echo $custommenu;
                     }
                     echo $topsettings->settings_tree($this->page->settingsnav);
+                    if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && !empty($PAGE->theme->settings->custommenuafterawesomebar)) {
+                        echo $custommenu;
+                    }
+                    echo $topsettings->settings_search_box();
             ?>
         </div>
     <?php } ?>

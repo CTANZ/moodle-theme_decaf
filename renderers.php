@@ -226,6 +226,11 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
     public function settings_tree(settings_navigation $navigation) {
         global $CFG;
         $content = $this->navigation_node($navigation, array('class' => 'dropdown  dropdown-horizontal'));
+        return $content;
+    }
+    public function settings_search_box() {
+        global $CFG;
+        $content = "";
         if (has_capability('moodle/site:config', get_context_instance(CONTEXT_SYSTEM))) {
             $content .= $this->search_form(new moodle_url("$CFG->wwwroot/$CFG->admin/search.php"), optional_param('query', '', PARAM_RAW));
         }

@@ -61,6 +61,10 @@ class theme_decaf_core_renderer extends core_renderer {
             // The legacy theme is in use print the notification
             $output .= html_writer::tag('div', get_string('legacythemeinuse'), array('class'=>'legacythemeinuse'));
         }
+
+        // Get links to switch device types (only shown for users not on a default device)
+        $output .= $this->theme_switch_links();
+        
        // if (!empty($CFG->debugpageinfo)) {
        //     $output .= '<div class="performanceinfo">This page is: ' . $this->page->debug_summary() . '</div>';
        // }
@@ -73,6 +77,9 @@ class theme_decaf_core_renderer extends core_renderer {
               <li><a href="http://www.contentquality.com/mynewtester/cynthia.exe?rptmode=-1&amp;url1=' . urlencode(qualified_me()) . '">Section 508 Check</a></li>
               <li><a href="http://www.contentquality.com/mynewtester/cynthia.exe?rptmode=0&amp;warnp2n3e=1&amp;url1=' . urlencode(qualified_me()) . '">WCAG 1 (2,3) Check</a></li>
             </ul></div>';
+        }
+        if (!empty($CFG->additionalhtmlfooter)) {
+            $output .= "\n".$CFG->additionalhtmlfooter;
         }
         return $output;
     }

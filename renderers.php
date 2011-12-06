@@ -63,7 +63,9 @@ class theme_decaf_core_renderer extends core_renderer {
         }
 
         // Get links to switch device types (only shown for users not on a default device)
-        $output .= $this->theme_switch_links();
+        if(method_exists($this, 'theme_switch_links')) {
+            $output .= $this->theme_switch_links();
+        }
         
        // if (!empty($CFG->debugpageinfo)) {
        //     $output .= '<div class="performanceinfo">This page is: ' . $this->page->debug_summary() . '</div>';

@@ -173,6 +173,7 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 .forumpost .topic .subject { font-size:1.25em; }
 .forumpost .topic .author { font-style:italic;color:#444;font-size:0.95em; }
 .forumpost .content { border-bottom:5px solid #aaa;padding:5px 7px 10px 7px; }
+.forumpost .options .commands {position:relative; }
 
 /* Assignments 
 --------------------------*/

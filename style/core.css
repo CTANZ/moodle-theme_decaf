@@ -91,7 +91,7 @@ div#custommenu ul.dropdown {z-index:auto;}
 img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
 .commands {position:absolute; top:0px; right:0px;}
 ul.section li {clear:right;}
-ul.section li div {height:23px;}
+ul.section li div {min-height:23px;}
 ul.section li.label div {height: auto;}
 ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}

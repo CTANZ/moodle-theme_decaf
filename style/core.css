@@ -1,3 +1,5 @@
+/* W3C CSS Validated - 20 January 2012
+-------------------------------------*/
 html{background-color:[[setting:backgroundcolor]];}
 body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,input,textarea{font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .wrapper {margin: 0 25px;}
@@ -8,12 +10,12 @@ a:link,a:visited {color: #C22323;}
 a:hover,a:active {color: #251c17;}
 a img {border: none;}
 a:active {outline: none;}
-/* Header 
+/* Header
 ------------------------- */
 #page-header-wrapper{margin:0 0 0 50px;}
 #page-header{float:none;background:#E1E1E1 url([[pix:theme|bg-header]]) repeat-x scroll center bottom;margin-right:0;position:relative;min-height:100px;}
 #page-header .sitelogo {float:left;margin:0.75em 0;}
-#page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.75em 20px;position:absoulte;left:0.5em;top:50px;}
+#page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.9em 20px 0.9em 0px;}
 #page-header .headermenu a:hover{color:#C30;}
 #page-site-index .headermain{font-size:2.5em;margin:0.85em 0;}
 /* Header Profile
@@ -26,7 +28,7 @@ a:active {outline: none;}
 -----------------------*/
 .headermenu div.logininfo{width:130px;height:43px;float:right;border-right:none;margin-top:17px;text-align:center;padding:10px;}
 .headermenu img.userpicture{width:48px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;padding:8px 8px;}
-/* Menu Navigation 
+/* Menu Navigation
 -------------------------- */
 #page-navigation{font-size:1.1em;background-image:url();height:36px;margin:0;padding:0 40px;}
 #page-navigation li{list-style:none;float:left;}
@@ -58,11 +60,11 @@ a:active {outline: none;}
 .ie6 #dock .bd.oversized_content .content,.ie7 #dock .bd.oversized_content .content{padding-bottom:0;}
 .ie6 .block_js_expansion.mouseover .content,.ie7 .block_js_expansion.mouseover .content{padding-bottom:2px;}
 .ie6 .block_tree .tree_item,.ie6 #dock .bd.oversized_content{width:100%;}
-/* Custom menu 
+/* Custom menu
 -------------------------- */
 div#custommenu {z-index:99;}
 div#custommenu ul.dropdown {z-index:auto;}
-/* Breadcrumb 
+/* Breadcrumb
 --------------------------- */
 .navbar{font-size:1em;background-color:#F0F0F0;border-bottom:1px solid #DDD;margin:0;padding:0 10px;}
 .navbar .breadcrumb{font-size:1em;font-weight:700;padding:6px;}
@@ -72,7 +74,7 @@ div#custommenu ul.dropdown {z-index:auto;}
 --------------------------- */
 .minicalendar td,.minicalendar th{border-color:#EEE;border-width:0;}
 .calendartab th,.calendartable td{border-width:0;}
-/* Tabs 
+/* Tabs
 --------------------------- */
 .tabtree .tabrow0 li.here a{background:#fff url([[pix:theme|gradient-sb]]) repeat-x 0 0;}
 .tabtree .tabrow0 .tabrow1 li a{background:none !important;}
@@ -88,15 +90,15 @@ div#custommenu ul.dropdown {z-index:auto;}
 
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
 /* YUI messes with IE unless we go overboard here */
-img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px grey solid; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
+img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px solid #808080; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
 .commands {position:absolute; top:0px; right:0px;}
 ul.section li {clear:right;}
 ul.section li div {min-height:23px;}
 ul.section li.label div {height: auto;}
 ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}
-body.editing ul.section>li {border-bottom: 1px grey dashed; position:relative;}
-input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative;}
+input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 /* Blocks
 --------------------------- */
 .block {border-style:none;}
@@ -175,13 +177,17 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 .forumpost .content { border-bottom:5px solid #aaa;padding:5px 7px 10px 7px; }
 .forumpost .options .commands {position:relative; }
 
-/* Assignments 
+/* Assignments
 --------------------------*/
 .path-mod-assignment #dates table .c0 { background:#f5f5f5; }
 
 /* Folder
 --------------------------*/
 #page-mod-folder-edit .foldertree { width: 95% }
+
+/* Event list
+--------------------------*/
+div.eventlist table.event div.commands {position:relative; float:right; top:auto; right:auto;}
 
 /** Custom CSS **/
 [[setting:customcss]]

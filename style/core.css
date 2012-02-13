@@ -91,7 +91,8 @@ div#custommenu ul.dropdown {z-index:auto;}
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
 /* YUI messes with IE unless we go overboard here */
 img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px solid #808080; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
-.commands {position:absolute; top:0px; right:0px;}
+ul.section .commands,
+.block_with_controls .commands {position:absolute; top:0px; right:0px;}
 ul.section li {clear:right;}
 ul.section li div {min-height:23px;}
 ul.section li.label div {height: auto;}
@@ -188,6 +189,12 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 /* Event list
 --------------------------*/
 div.eventlist table.event div.commands {position:relative; float:right; top:auto; right:auto;}
+
+/* Glossaries
+--------------------------*/
+table.glossarypost {
+	border-bottom: 1px solid #DDD;
+}
 
 /** Custom CSS **/
 [[setting:customcss]]

@@ -119,6 +119,29 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 .block_calendar_month .content{padding:5px;}
 .block_course_summary .content{padding:10px;}
 
+/* "Edit" buttons to replace groups of icons with menus
+------------------------ */
+.jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+.jsenabled .decaf-editbutton:hover,
+.jsenabled .decaf-editbutton.active {opacity:1;}
+.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
+.jsenabled ul.section .commands,
+.jsenabled .block_with_controls .commands {display:none; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:999;}
+.jsenabled .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
+.jsenabled .commands a img {clear:left; float:left; margin:1px 4px;}
+.jsenabled .commands a span {float:left; padding-top:5px; width:122px;}
+.jsenabled .commands {-moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
+.jsenabled .block_with_controls .decaf-editbutton {margin-left:4px;}
+.jsenabled .block_with_controls .commands {top:36px; height:auto; bottom:auto;}
+.jsenabled .block_with_controls .commands a span {padding-top:3px;}
+.jsenabled .block .header .commands .icon img {margin-left:0px; margin-right:4px;}
+.jsenabled .block {min-height:125px;}
+.jsenabled .block .commands {display:none;}
+.jsenabled #page-content #region-main,
+.jsenabled #page-content .region-content {overflow:visible;}
+.jsenabled.editing ul.section>li {border-bottom:none;}
+.jsenabled .block_with_controls .header .title {padding-bottom:4px;}
+
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label-menuvisible .yui3-menu-toggle{background-position:0 50%;}

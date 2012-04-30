@@ -10,6 +10,8 @@ $hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
+decaf_initialise_editbuttons($PAGE);
+
 $bodyclasses = array();
 if ($hassidepre && !$hassidepost) {
     $bodyclasses[] = 'side-pre-only';

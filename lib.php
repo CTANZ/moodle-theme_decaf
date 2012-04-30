@@ -79,6 +79,18 @@ function decaf_set_customcss($css, $customcss) {
     return $css;
 }
 
+/**
+ * Adds the JavaScript for the edit buttons to the page.
+ *
+ * The edit buttoniser is a YUI moodle module that is located in
+ *     theme/decaf/yui/editbuttons/editbuttons.js
+ *
+ * @param moodle_page $page 
+ */
+function decaf_initialise_editbuttons(moodle_page $page) {
+    $page->requires->yui_module('moodle-theme_decaf-editbuttons', 'M.theme_decaf.initEditButtons');
+}
+
 function decaf_require_course_login($courseorid, $autologinguest = true, $cm = NULL, $setwantsurltome = true, $preventredirect = true) {
     global $CFG, $SITE;
     $issite = (is_object($courseorid) and $courseorid->id == SITEID)

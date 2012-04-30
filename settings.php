@@ -31,6 +31,15 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configtextarea($name, $title, $description, '');
     $settings->add($setting);
 
+    // Enable "persistent editing mode" (no need to turn on/off edit mode)
+    $name = 'theme_decaf/persistentedit';
+    $title = get_string('persistentedit','theme_decaf');
+    $description = get_string('persistenteditdesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'No', 1=>'Yes');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
+
     // Hide Settings block
     $name = 'theme_decaf/hidesettingsblock';
     $title = get_string('hidesettingsblock','theme_decaf');

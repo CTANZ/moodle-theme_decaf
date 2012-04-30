@@ -18,6 +18,11 @@ if ($hassidepre && !$hassidepost) {
     $bodyclasses[] = 'content-only';
 }
 
+if(!empty($PAGE->theme->settings->persistentedit) && $PAGE->user_allowed_editing()) {
+    $USER->editing = 1;
+    $bodyclasses[] = 'decaf_persistent_edit';
+}
+
 if (!empty($PAGE->theme->settings->footnote)) {
     $footnote = $PAGE->theme->settings->footnote;
 } else {

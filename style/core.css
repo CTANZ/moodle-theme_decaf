@@ -121,6 +121,7 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 
 /* "Edit" buttons to replace groups of icons with menus
 ------------------------ */
+.decaf_persistent_edit .navbar .navbutton {display:none;}
 .jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 .jsenabled .decaf-editbutton:hover,
 .jsenabled .decaf-editbutton.active {opacity:1;}

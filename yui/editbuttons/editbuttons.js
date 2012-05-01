@@ -14,7 +14,7 @@ EditButtons.prototype = {
         editbutton.addClass('decaf-editbutton');
         // Find all sets of icons and convert them to edit buttons
         Y.all('.commands').each(function(icons) {
-            if(icons.all('a').getDOMNodes().length && icons.ancestor('.path-mod-forum #region-main')==null) {
+            if(icons.getComputedStyle('display')=='none' && (icons.all('a').getDOMNodes().length && icons.ancestor('.path-mod-forum #region-main')==null)) {
                 var thisbutton = editbutton.cloneNode(true);
                 thisbutton.on('click', function(e, params) {
                     e.preventDefault();

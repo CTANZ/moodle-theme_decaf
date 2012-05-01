@@ -25,9 +25,10 @@ EditButtons.prototype = {
                     button.toggleClass('active');
                 }, this, [thisbutton, icons]);
                 icons.all('a').each(function(tag) {
-                    tag.append('<span>' + tag.get('title') + '</span>');
+                    var caption = tag.get('title') || tag.one('img').get('title') || tag.one('img').get('alt');
+                    tag.append('<span>' + caption + '</span>');
                 });
-                icons.ancestor().insert(thisbutton, icons);
+                icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
             }
         });
     }

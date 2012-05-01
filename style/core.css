@@ -211,6 +211,7 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 /* Assignments
 --------------------------*/
 .path-mod-assignment #dates table .c0 { background:#f5f5f5; }
+#page-mod-assignment-submissions #region-main .header .commands a img {height:11px; width:11px; border:0px none; padding:0;}
 
 /* Folder
 --------------------------*/

@@ -32,6 +32,9 @@ if (!empty($PAGE->theme->settings->footnote)) {
     $footnote = '<!-- There was no custom footnote set -->';
 }
 
+if (check_browser_version("MSIE", "0")) {
+    header('X-UA-Compatible: IE=edge');
+}
 echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes() ?>>
 <head>

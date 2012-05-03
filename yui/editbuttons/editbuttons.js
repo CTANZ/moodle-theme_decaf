@@ -16,16 +16,14 @@ EditButtons.prototype = {
         Y.all('.commands').each(function(icons) {
             if(icons.getComputedStyle('display')=='none' && (icons.all('a').getDOMNodes().length && icons.ancestor('.path-mod-forum #region-main')==null)) {
                 var thisbutton = editbutton.cloneNode(true);
-                thisbutton.on('click', function(e, params) {
+                thisbutton.on('click', function(e, button) {
                     e.preventDefault();
-                    var button = params[0];
-                    var icons = params[1];
-                    icons.setStyle('left', button.get('offsetLeft')+button.get('offsetWidth')+'px');
-                    icons.setStyle('display', icons.getComputedStyle('display')=='none'?'block':'none');
-                    button.toggleClass('active');
-                }, this, [thisbutton, icons]);
+                    button.ancestor().toggleClass('active');
+                    button.ancestor('li').toggleClass('decaf-editbutton-active-module');
+                }, this, thisbutton);
                 icons.all('a').each(function(tag) {
                     var caption = tag.get('title') || tag.one('img').get('title') || tag.one('img').get('alt');
+                    tag.one('img').removeAttribute('hspace');
                     tag.append('<span>' + caption + '</span>');
                 });
                 icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);

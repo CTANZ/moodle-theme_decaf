@@ -122,17 +122,20 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 /* "Edit" buttons to replace groups of icons with menus
 ------------------------ */
 .decaf_persistent_edit.path-course .navbar .navbutton {display:none;}
-.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;}
+.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:100;}
+.jsenabled.editing ul.section>li {z-index:100;}
+.jsenabled.editing ul.section>li.decaf-editbutton-active-module {z-index:101;}
 .jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 .jsenabled .decaf-editbutton:hover,
-.jsenabled .decaf-editbutton.active {opacity:1;}
+.jsenabled .active .decaf-editbutton {opacity:1;}
 .jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
-.jsenabled .decaf-editbutton-wrap .commands {float:none !important;}
+.jsenabled .decaf-editbutton-wrap.active {z-index:475;}
 .jsenabled .commands {display:none;}
 .jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
 .jsenabled .decaf-editbutton-wrap .commands a img {clear:left; float:left; margin:1px 4px;}
 .jsenabled .decaf-editbutton-wrap .commands a span {float:left; padding-top:5px; max-width:122px;}
-.jsenabled .decaf-editbutton-wrap .commands {position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:999; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
+.jsenabled .decaf-editbutton-wrap .commands {float:none !important; left:100%; position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:600; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
+.jsenabled .decaf-editbutton-wrap.active .commands {display:block;}
 .jsenabled .block_with_controls .decaf-editbutton {margin-left:4px;}
 .jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
 .jsenabled .block_with_controls .commands a span {padding-top:3px;}

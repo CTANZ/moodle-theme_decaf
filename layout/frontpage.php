@@ -11,9 +11,13 @@ $hassidepost = strlen($blocks_side_post);
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
-decaf_initialise_editbuttons($PAGE);
-
 $bodyclasses = array();
+
+if(!empty($PAGE->theme->settings->useeditbuttons) && $PAGE->user_allowed_editing()) {
+    decaf_initialise_editbuttons($PAGE);
+    $bodyclasses[] = 'decaf_with_edit_buttons';
+}
+
 if ($hassidepre && !$hassidepost) {
     $bodyclasses[] = 'side-pre-only';
 } else if ($hassidepost && !$hassidepre) {

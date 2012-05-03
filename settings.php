@@ -31,6 +31,15 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configtextarea($name, $title, $description, '');
     $settings->add($setting);
 
+    // Enable edit buttons (replace rows of icons)
+    $name = 'theme_decaf/useeditbuttons';
+    $title = get_string('useeditbuttons','theme_decaf');
+    $description = get_string('useeditbuttonsdesc', 'theme_decaf');
+    $default = 1;
+    $choices = array(1=>'Yes', 0=>'No');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
+
     // Enable "persistent editing mode" (no need to turn on/off edit mode)
     $name = 'theme_decaf/persistentedit';
     $title = get_string('persistentedit','theme_decaf');

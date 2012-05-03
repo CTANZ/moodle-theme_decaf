@@ -122,39 +122,39 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 /* "Edit" buttons to replace groups of icons with menus
 ------------------------ */
 .decaf_persistent_edit.path-course .navbar .navbutton {display:none;}
-.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:100;}
-.jsenabled.editing ul.section>li {z-index:100;}
-.jsenabled.editing ul.section>li.decaf-editbutton-active-module {z-index:101;}
-.jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
-.jsenabled .decaf-editbutton:hover,
-.jsenabled .active .decaf-editbutton {opacity:1;}
-.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
-.jsenabled .decaf-editbutton-wrap.active {z-index:475;}
-.jsenabled .commands {display:none;}
-.jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
-.jsenabled .decaf-editbutton-wrap .commands a img {clear:left; float:left; margin:1px 4px;}
-.jsenabled .decaf-editbutton-wrap .commands a span {float:left; padding-top:5px; max-width:122px;}
-.jsenabled .decaf-editbutton-wrap .commands {float:none !important; left:100%; position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:600; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
-.jsenabled .decaf-editbutton-wrap.active .commands {display:block;}
-.jsenabled .block_with_controls .decaf-editbutton {margin-left:4px;}
-.jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
-.jsenabled .block_with_controls .commands a span {padding-top:3px;}
-.jsenabled .block .header .commands .icon img {margin-left:0px; margin-right:4px;}
-.jsenabled .block {min-height:125px;}
-.jsenabled .block .commands {display:none;}
-.jsenabled #page-content #region-main,
-.jsenabled #page-content .region-content {overflow:visible;}
-.jsenabled.editing ul.section>li {border-bottom:none;}
-.jsenabled .block_with_controls .header .title {padding-bottom:4px;}
-.jsenabled .forumpost .commands {display:block;}
-.jsenabled div.eventlist table.event div.commands {position:absolute; float:none; top:0;}
-.jsenabled.path-mod-glossary .glossarypost .entrylowersection .icons {text-align:left;} /* Put the edit button back on the left for glossary items */
-#page-mod-assignment-submissions.jsenabled .header .commands,
-#page-mod-lti-submissions.jsenabled .header .commands,
-#page-mod-quiz-report.jsenabled .header .commands {display:none;}
-#page-mod-assignment-submissions.jsenabled th.header .commands,
-#page-mod-lti-submissions.jsenabled th.header .commands,
-#page-mod-quiz-report.jsenabled th.header .commands {display:inline;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:100;}
+.decaf_with_edit_buttons.jsenabled.editing ul.section>li {z-index:100;}
+.decaf_with_edit_buttons.jsenabled.editing ul.section>li.decaf-editbutton-active-module {z-index:101;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton:hover,
+.decaf_with_edit_buttons.jsenabled .active .decaf-editbutton {opacity:1;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active {z-index:475;}
+.decaf_with_edit_buttons.jsenabled .commands {display:none;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a img {clear:left; float:left; margin:1px 4px;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a span {float:left; padding-top:5px; max-width:122px;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands {float:none !important; left:100%; position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:600; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active .commands {display:block;}
+.decaf_with_edit_buttons.jsenabled .block_with_controls .decaf-editbutton {margin-left:4px;}
+.decaf_with_edit_buttons.jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
+.decaf_with_edit_buttons.jsenabled .block_with_controls .commands a span {padding-top:3px;}
+.decaf_with_edit_buttons.jsenabled .block .header .commands .icon img {margin-left:0px; margin-right:4px;}
+.decaf_with_edit_buttons.jsenabled .block {min-height:125px;}
+.decaf_with_edit_buttons.jsenabled .block .commands {display:none;}
+.decaf_with_edit_buttons.jsenabled #page-content #region-main,
+.decaf_with_edit_buttons.jsenabled #page-content .region-content {overflow:visible;}
+.decaf_with_edit_buttons.jsenabled.editing ul.section>li {border-bottom:none;}
+.decaf_with_edit_buttons.jsenabled .block_with_controls .header .title {padding-bottom:4px;}
+.decaf_with_edit_buttons.jsenabled .forumpost .commands {display:block;}
+.decaf_with_edit_buttons.jsenabled div.eventlist table.event div.commands {position:absolute; float:none; top:0;}
+.decaf_with_edit_buttons.jsenabled.path-mod-glossary .glossarypost .entrylowersection .icons {text-align:left;} /* Put the edit button back on the left for glossary items */
+#page-mod-assignment-submissions.decaf_with_edit_buttons.jsenabled .header .commands,
+#page-mod-lti-submissions.decaf_with_edit_buttons.jsenabled .header .commands,
+#page-mod-quiz-report.decaf_with_edit_buttons.jsenabled .header .commands {display:none;}
+#page-mod-assignment-submissions.decaf_with_edit_buttons.jsenabled th.header .commands,
+#page-mod-lti-submissions.decaf_with_edit_buttons.jsenabled th.header .commands,
+#page-mod-quiz-report.decaf_with_edit_buttons.jsenabled th.header .commands {display:inline;}
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}

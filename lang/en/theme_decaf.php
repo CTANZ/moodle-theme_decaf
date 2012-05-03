@@ -55,3 +55,5 @@ $string['custommenuinawesomebar'] = 'Add custom menu to Awesomebar';
 $string['custommenuinawesomebardesc'] = 'Moves the custom menu into the Awesomebar.  Otherwise, it will appear below the header.';
 $string['custommenuafterawesomebar'] = 'Place custom menu after Awesomebar';
 $string['custommenuafterawesomebardesc'] = 'Places custom menu after Awesomebar content.  Otherwise, it will appear before the Settings menus.  (Only applicable if previous option is enabled.)';
+$string['persistentedit'] = 'Enable Persistent Editing Mode';
+$string['persistenteditdesc'] = 'Persistent Editing Mode keeps editing mode turned on permanently for users with editing privileges.';

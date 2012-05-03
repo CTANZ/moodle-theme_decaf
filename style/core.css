@@ -90,7 +90,7 @@ div#custommenu ul.dropdown {z-index:auto;}
 
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
 /* YUI messes with IE unless we go overboard here */
-img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px solid #808080; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px; }
+img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px solid #808080; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px;border-radius:5px; }
 ul.section .commands,
 .block_with_controls .commands {position:absolute; top:0px; right:0px;}
 ul.section li {clear:right;}
@@ -185,7 +185,7 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 #back-to-top a {text-decoration: none;border: 0;outline: none;}
 /* PerformanceInfo
 -------------------------- */
-#page-footer .performanceinfo{-moz-border-radius-topleft:15px;-moz-border-radius-topright:15px;-webkit-border-top-left-radius:15px 15px;-webkit-border-top-right-radius:15px 15px;bottom:0;left:-290px !important;position:fixed;background-color:#222;width:580px !important;border-width:12px 12px medium;margin:0 50% !important;}
+#page-footer .performanceinfo{-moz-border-radius-topleft:15px;-moz-border-radius-topright:15px;-webkit-border-top-left-radius:15px 15px;-webkit-border-top-right-radius:15px 15px;border-radius:15px 15px 0 0;bottom:0;left:-290px !important;position:fixed;background-color:#222;width:580px !important;border-width:12px 12px medium;margin:0 50% !important;}
 #page-footer .performanceinfo ul {text-align: center; margin: 0 auto;}
 #page-footer .performanceinfo li{display:block;list-style-type:none;float:left;padding:5px 0;width:25%;}
 #page-footer .performanceinfo li var{font-size:1.3em;font-weight:700;}

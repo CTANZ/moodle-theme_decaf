@@ -1,8 +1,12 @@
 <?php
 require_once ($CFG->dirroot."/theme/decaf/lib.php");
 
-$hassidepre = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
-$hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
+// $PAGE->blocks->region_has_content('region_name') doesn't work as we do some sneaky stuff 
+// to hide nav and/or settings blocks if requested
+$blocks_side_pre = trim($OUTPUT->blocks_for_region('side-pre'));
+$hassidepre = strlen($blocks_side_pre);
+$blocks_side_post = trim($OUTPUT->blocks_for_region('side-post'));
+$hassidepost = strlen($blocks_side_post);
 
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
@@ -127,7 +131,7 @@ echo $OUTPUT->doctype() ?>
                 <?php if ($hassidepre) { ?>
                 <div id="region-pre" class="block-region">
                     <div class="region-content">
-                        <?php echo $OUTPUT->blocks_for_region('side-pre') ?>
+                        <?php echo $blocks_side_pre ?>
                     </div>
                 </div>
                 <?php } ?>
@@ -135,7 +139,7 @@ echo $OUTPUT->doctype() ?>
                 <?php if ($hassidepost) { ?>
                 <div id="region-post" class="block-region">
                     <div class="region-content">
-                        <?php echo $OUTPUT->blocks_for_region('side-post') ?>
+                        <?php echo $blocks_side_post ?>
                     </div>
                 </div>
                 <?php } ?>

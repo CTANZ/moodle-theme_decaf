@@ -211,6 +211,9 @@ class theme_decaf_core_renderer extends core_renderer {
      * @return string
      */
     public function blocks_for_region($region) {
+        if (!$this->page->blocks->is_known_region($region)) {
+            return '';
+        }
         $blockcontents = $this->page->blocks->get_content_for_region($region, $this);
         $output = '';
         foreach ($blockcontents as $bc) {

@@ -238,5 +238,14 @@ table.glossarypost {
 	border-bottom: 1px solid #DDD;
 }
 
+/* Reports
+--------------------------*/
+body.pagelayout-report #page-content {
+	overflow:hidden;
+}
+body.pagelayout-report #page-content #region-main .region-content {
+	overflow-x:auto;
+}
+
 /** Custom CSS **/
 [[setting:customcss]]

@@ -29,6 +29,29 @@ EditButtons.prototype = {
                 icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
             }
         });
+        try {
+            M.core_dock.getPanel().on('dockpanel:beforeshow', function(e) {
+                var thisbutton = editbutton.cloneNode(true);
+                var icons = this.one('.dockeditempanel_hd .commands');
+                var closeicon = icons.one('.hidepanelicon');
+                thisbutton.on('click', function(e, button) {
+                    e.preventDefault();
+                    button.ancestor().toggleClass('active');
+                    button.ancestor('li').toggleClass('decaf-editbutton-active-module');
+                }, this, thisbutton);
+                icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
+                if(closeicon) {
+                    thisbutton.ancestor().insertBefore(icons.removeChild(closeicon), thisbutton);
+                }
+            }, M.core_dock.getPanel())
+            M.core_dock.getPanel().on('dockpanel:beforehide', function(e) {
+                var icons = this.one('.dockeditempanel_hd .commands');
+                var closeicon = this.one('.decaf-editbutton-wrap .hidepanelicon');
+                if(closeicon) {
+                    icons.appendChild(closeicon.ancestor().removeChild(closeicon));
+                }
+            }, M.core_dock.getPanel())
+        } catch(x) {}
     }
 };
 // Make the colour switcher a fully fledged YUI module

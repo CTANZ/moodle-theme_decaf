@@ -88,6 +88,7 @@ function decaf_set_customcss($css, $customcss) {
  * @param moodle_page $page 
  */
 function decaf_initialise_editbuttons(moodle_page $page) {
+    $page->requires->string_for_js('edit', 'moodle');
     $page->requires->yui_module('moodle-theme_decaf-editbuttons', 'M.theme_decaf.initEditButtons');
 }
 

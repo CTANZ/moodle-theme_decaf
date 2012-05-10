@@ -10,7 +10,7 @@ var EditButtons = function() {
 EditButtons.prototype = {
     initializer : function(config) {
         var editbutton = Y.Node.create('<a></a>');
-        editbutton.set('innerHTML', 'Edit');
+        editbutton.set('innerHTML', M.util.get_string('edit', 'moodle'));
         editbutton.addClass('decaf-editbutton');
         // Find all sets of icons and convert them to edit buttons
         Y.all('.commands').each(function(icons) {

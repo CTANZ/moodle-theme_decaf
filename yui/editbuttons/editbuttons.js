@@ -22,9 +22,18 @@ EditButtons.prototype = {
                     button.ancestor('li').toggleClass('decaf-editbutton-active-module');
                 }, this, thisbutton);
                 icons.all('a').each(function(tag) {
-                    var caption = tag.get('title') || tag.one('img').get('title') || tag.one('img').get('alt');
-                    tag.one('img').removeAttribute('hspace');
+                    var icon = tag.one('img');
+                    var caption = tag.get('title') || icon.get('title') || icon.get('alt');
+                    icon.removeAttribute('hspace');
                     tag.append('<span>' + caption + '</span>');
+                    if(icon.get('src').match(/hide$/) || icon.get('src').match(/show$/) || icon.get('src').match(/group[nvs]$/)) {
+                        tag.on('click', function(e, tag) {
+                            var icon = tag.one('img');
+                            var caption = tag.get('title') || icon.get('title') || icon.get('alt');
+                            icon.removeAttribute('hspace');
+                            tag.one('span').set('innerHTML', caption);
+                        }, this, tag);
+                    }
                 });
                 icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
             }

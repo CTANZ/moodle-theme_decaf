@@ -159,6 +159,8 @@ input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F
 #page-mod-assignment-submissions.decaf_with_edit_buttons.jsenabled th.header .commands,
 #page-mod-lti-submissions.decaf_with_edit_buttons.jsenabled th.header .commands,
 #page-mod-quiz-report.decaf_with_edit_buttons.jsenabled th.header .commands {display:inline;}
+.decaf_with_edit_buttons.jsenabled ul.section>li>.dimmed_text,
+.decaf_with_edit_buttons.jsenabled ul.section>li>.dimmed_text .commands a  {opacity:1;} /* Don't allow the entire div to be "dimmed" - only the link inside it */
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}

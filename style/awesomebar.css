@@ -17,10 +17,6 @@
 #awesomebar ul.dropdown ul {left:0px; right:auto;}
 #awesomebar ul.dropdown ul ul {left:100%;}
 #awesomebar ul.dropdown li span {width:auto; padding-left:8px; padding-right:8px;}
-#awesomebar ul.dropdown li span.customitem {width:auto; padding:2px 8px 4px 8px;border-color:#404040 #1a1a1a #1a1a1a #505050;border-style:solid;border-width:1px;}
-#awesomebar ul.dropdown li span.customitem a {border: 0px none;padding:0;width:auto;background-image:none;background-color:transparent;}
-#awesomebar ul.dropdown li li span.customitem a {width:145px;}
-#awesomebar ul.dropdown li li span.customitem {padding-left:5px;border-left:0px none;}
 #awesomebar ul.dropdown ul span {width:145px; padding-left:20px; padding-right:6px;}
 #awesomebar #awesomeHomeMenu ul span {width:125px; padding-left:20px; padding-top:4px;}
 #awesomebar #awesomeHomeMenu ul a {width:146px; padding-top:4px;}
@@ -62,12 +58,18 @@ ul.dropdown a:active,ul.dropdown ul li:hover > a.dir:hover{color:#fff;}
 
 /* Custom Menu
 -------------------------- */
+#awesomebar ul.dropdown li span.customitem {width:auto; padding:2px 8px 4px 8px;border-color:#404040 #1a1a1a #1a1a1a #505050;border-style:solid;border-width:1px;}
+#awesomebar ul.dropdown li span.customitem a {border: 0px none;padding:0;width:auto;background-image:none;background-color:transparent;}
+#awesomebar ul.dropdown li li span.customitem a {width:145px;}
+#awesomebar ul.dropdown li li span.customitem {padding-left:5px;border-left:0px none;}
 #custommenu{height:25px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;}
 #awesomebar ul.dropdown {z-index: 697; }
 #awesomebar ul.dropdown ul {z-index: 698;}
 #awesomebar ul.dropdown li {z-index: 699;}
 ul.dropdown span.customitem {padding:0;border:0; width: auto;}
 ul.dropdown span.customitem a {padding:2px 8px 4px;}
+ul.dropdown span.customitem:hover,
+#awesomebar ul.dropdown li span.customitem:hover {background-color:#76b900;}
 ul.dropdown span.customitem a:hover {border-left-color: #505050;border-top-color: #404040 !important;}
 #custommenu ul.dropdown ul {padding:0;width:185px;}
 #custommenu ul.dropdown ul a {padding:4px 0px 4px 18px;}

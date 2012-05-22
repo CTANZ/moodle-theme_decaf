@@ -20,9 +20,9 @@
 .decaf-awesome-bar > ul > li > span, .decaf-awesome-bar > ul > li > a, .decaf-awesome-bar > ul > li > span.customitem {padding:4px 8px;}
 .decaf-awesome-bar li.clickable-with-children > a {padding:4px 2px 4px 19px;}
 .decaf-awesome-bar ul.dropdown ul {display:none; width:200px; z-index:598;}
-.decaf-awesome-bar ul.dropdown li:hover {position:relative;}
-.decaf-awesome-bar ul.dropdown li:hover > ul {display:block; position:absolute; left:100%; top:-1px;}
-.decaf-awesome-bar ul.dropdown > li:hover > ul {left:0; top:100%;}
+.decaf-awesome-bar ul.dropdown li {position:relative;}
+.decaf-awesome-bar ul.dropdown li:hover > ul, .decaf-awesome-bar ul.dropdown li.extended-hover > ul {display:block; position:absolute; left:100%; top:-1px;}
+.decaf-awesome-bar ul.dropdown > li:hover > ul, .decaf-awesome-bar ul.dropdown > li.extended-hover > ul {left:0; top:100%;}
 .decaf-awesome-bar img.smallicon {margin-left:2px; margin-right:2px; width:16px; height:16px;}
 .decaf-awesome-bar span, .decaf-awesome-bar a {display:block;}
 .decaf-awesome-bar ul ul a, .decaf-awesome-bar ul ul span {height:16px; padding-top:1px; padding-bottom:1px;}

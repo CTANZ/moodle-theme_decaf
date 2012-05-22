@@ -11,6 +11,8 @@ $hassidepost = strlen($blocks_side_post);
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
+decaf_initialise_awesomebar($PAGE);
+
 $bodyclasses = array();
 
 if(!empty($PAGE->theme->settings->useeditbuttons) && $PAGE->user_allowed_editing()) {

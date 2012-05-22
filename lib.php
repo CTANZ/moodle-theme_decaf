@@ -92,6 +92,10 @@ function decaf_initialise_editbuttons(moodle_page $page) {
     $page->requires->yui_module('moodle-theme_decaf-editbuttons', 'M.theme_decaf.initEditButtons');
 }
 
+function decaf_initialise_awesomebar(moodle_page $page) {
+    $page->requires->yui_module('moodle-theme_decaf-awesomebar', 'M.theme_decaf.initAwesomeBar');
+}
+
 function decaf_require_course_login($courseorid, $autologinguest = true, $cm = NULL, $setwantsurltome = true, $preventredirect = true) {
     global $CFG, $SITE;
     $issite = (is_object($courseorid) and $courseorid->id == SITEID)

@@ -67,7 +67,7 @@ echo $OUTPUT->doctype() ?>
 <?php echo $OUTPUT->standard_top_of_body_html();
     // Don't show awesomebar if site is being upgraded
     if($this->page->pagelayout != 'maintenance') { ?>
-        <div id="awesomebar">
+        <div id="awesomebar" class="decaf-awesome-bar">
             <?php
                     $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
                     echo $topsettings->navigation_tree($this->page->navigation);
@@ -112,7 +112,7 @@ echo $OUTPUT->doctype() ?>
     </div>
     
     <?php if ($hascustommenu && empty($PAGE->theme->settings->custommenuinawesomebar)) { ?>
-      <div id="custommenu"><?php echo $custommenu; ?></div>
+      <div id="custommenu" class="decaf-awesome-bar"><?php echo $custommenu; ?></div>
  	<?php } ?>
   	  
 <!-- END OF HEADER -->

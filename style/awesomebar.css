@@ -2,75 +2,54 @@
  * Customized Horizontal CSS Drop-Down Menu for Moodle settings
  *
  * @file		awesomebar.css
- * @version		1.0
- * @stacks		597-599
+ * @version		2.0
  * @browsers	Windows: IE7+, Opera7+, Firefox1+
  *				Mac OS: Safari2+, Firefox2+
  *
- * @author		http://www.lwis.net/
- * @modified by         Lei Zhang
- * @Copyright           GNU GENERAL PUBLIC LICENSE Version 3.0
+ * @author		Paul Nicholls
+ * @Copyright   GNU GENERAL PUBLIC LICENSE Version 3.0
  */
-#awesomebar{height:25px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;position:fixed;width:100%;z-index:1000;margin:0;top:0;}
-#awesomebar #home, #awesomebar #awesomeNavMenu{float:left;border-color: #404040 #1A1A1A #1A1A1A #505050;border-style: solid; border-width: 1px; padding:2px 8px 1px;width:auto;height:20px;}
-#awesomebar ul.dropdown > li span{height:17px;}
-#awesomebar ul.dropdown ul {left:0px; right:auto;}
-#awesomebar ul.dropdown ul ul {left:100%;}
-#awesomebar ul.dropdown li span {width:auto; padding-left:8px; padding-right:8px;}
-#awesomebar ul.dropdown ul span {width:145px; padding-left:20px; padding-right:6px;}
-#awesomebar #awesomeHomeMenu ul span {width:125px; padding-left:20px; padding-top:4px;}
-#awesomebar #awesomeHomeMenu ul a {width:146px; padding-top:4px;}
-#awesomebar #awesomeHomeMenu ul li.clickable-with-children > a {width:125px; padding-top:4px;}
-.topadminsearchform{float:right;}
-input#topadminsearchquery{-moz-border-radius:10px;-webkit-border-radius:10px;background:#fff url([[pix:theme|search_icon]]) no-repeat 1px 2px;width:200px;margin:1px 10px 2px 0;padding:2px 0 0 17px;}
-ul.dropdown,ul.dropdown li,ul.dropdown ul{list-style:none;margin:0;padding:0;}
-ul.dropdown{position:relative;z-index:597;float:left;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
-ul.dropdown li{float:left;line-height:1.3em;vertical-align:middle;background-color:#333;color:#fff;zoom:1 !important;}
-ul.dropdown li.hover,ul.dropdown li:hover{position:relative;z-index:599;cursor:default;}
-ul.dropdown ul{display:none;position:absolute;top:100%;z-index:598;left:auto;right:0;margin-top:-1px;border-top:1px solid #1a1a1a;border-left:solid 1px #4c4c4c;font:13px "Trebuchet MS",Arial,Helvetica,sans-serif;}
-ul.dropdown ul li{float:none;background-color:#3a3a3a;padding:0;}
-ul.dropdown ul ul{top:0;right:auto;left:100%;margin-top:0;border-top:none;border-left:none;font-weight:400;}
-ul.dropdown li:hover > ul{display:block;}
-ul.dropdown span,ul.dropdown span a,ul.dropdown li.clickable-with-children > a{background-image:none;background-position:100% 50%;background-repeat:no-repeat;width:145px;padding:2px 6px 4px 20px;}
-ul.dropdown ul span, ul.dropdown ul span a, ul.dropdown ul li.clickable-with-children > a{background-image:url([[pix:theme|nav-arrow-right]]);background-position:100% 50%;background-repeat:no-repeat;}
-ul.dropdown ul ul span, ul.dropdown ul ul span a, ul.dropdown ul ul li.clickable-with-children > a{background-image:url([[pix:theme|nav-arrow-right2]]);}
-ul.dropdown a:link,ul.dropdown a:visited{color:#fff;text-decoration:none;}
-ul.dropdown a:hover{border-top-color:#76B900 !important;border-left-color:#5db1e0;background-color:#76b900;color:#fff;}
-ul.dropdown li.clickable-with-children > a:hover {border-top-color:#595959 !important;}
-ul.dropdown ul a.dir:hover{background-color:#4698ca;background-image:url([[pix:theme|ab-arrowon]]);color:#fff;}
-ul.dropdown ul ul li{background-color:#4c4c4c;}
-ul.dropdown ul ul ul li{background-color:#595959;}
-ul.dropdown li a,ul.dropdown span,ul.dropdown span a{border-color:#404040 #1a1a1a #1a1a1a #505050;border-style:solid;border-width:1px;padding:2px 8px 4px;}
-ul.dropdown ul li a,ul.dropdown ul span,ul.dropdown ul span a{border-left:none;border-color:#4a4a4a #242424 #242424;}
-ul.dropdown ul ul li a,ul.dropdown ul ul span, ul.dropdown ul ul span a{border-color:#595959 #333 #333;}
-ul.dropdown ul ul ul li a,ul.dropdown ul ul ul span, ul.dropdown ul ul ul span a{border-color:#767676 #404040 #404040;}
-ul.dropdown a,ul.dropdown span{display:block;}
-ul.dropdown ul a{width:166px;padding:2px 0 4px 5px;}
-ul.dropdown ul a.dir{width:111px;}
-ul.dropdown ul *.open{background-color:#4c4c4c;background-image:url([[pix:theme|ab-arrowover]]);color:#fff;}
-ul.dropdown ul a.open:hover{background-image:url([[pix:theme|ab-arrowon]]);color:#fff;}
-ul.dropdown ul li:hover > span, ul.dropdown ul li:hover > span a{background-color:#4c4c4c;background-image:url([[pix:theme|ab-arrowover]]);}
-ul.dropdown li.clickable-with-children:hover > a{background-image:url([[pix:theme|ab-arrowover]]);}
-ul.dropdown *.open,ul.dropdown li:hover > span, ul.dropdown li:hover > span a{background-color:#3d3d3d;}
-ul.dropdown ul ul *.open,ul.dropdown ul ul li:hover > span, ul.dropdown ul ul li:hover > span a{background-color:#595959;background-image:url([[pix:theme|ab-arrowover2]]);color:#fff;}
-ul.dropdown a.open:hover,ul.dropdown li:hover > a.dir:hover{background-color:#4698ca;color:#fff;}
-ul.dropdown a:active,ul.dropdown ul li:hover > a.dir:hover{color:#fff;}
+/* Awesomebar - workings and structure */
+.decaf-awesome-bar {left:0; width:100%; height:25px; z-index:999;}
+#awesomebar {position:fixed; top:0;}
+#awesomebar ul#awesomeHomeMenu > li {padding-bottom:0;}
+#awesomebar ul#awesomeHomeMenu > li > span, #awesomebar ul#awesomeHomeMenu > li > a {padding-bottom:1px; padding-top:3px; height:20px;}
+.decaf-awesome-bar ul, .decaf-awesome-bar li {list-style:none; margin:0; padding:0;}
+.decaf-awesome-bar ul li {display:block;}
+.decaf-awesome-bar > ul > li {float:left; padding:0;}
+.decaf-awesome-bar > ul > li > span, .decaf-awesome-bar > ul > li > a, .decaf-awesome-bar > ul > li > span.customitem {padding:4px 8px;}
+.decaf-awesome-bar li.clickable-with-children > a {padding:4px 2px 4px 19px;}
+.decaf-awesome-bar ul.dropdown ul {display:none; width:200px; z-index:598;}
+.decaf-awesome-bar ul.dropdown li:hover {position:relative;}
+.decaf-awesome-bar ul.dropdown li:hover > ul {display:block; position:absolute; left:100%; top:-1px;}
+.decaf-awesome-bar ul.dropdown > li:hover > ul {left:0; top:100%;}
+.decaf-awesome-bar img.smallicon {margin-left:2px; margin-right:2px; width:16px; height:16px;}
+.decaf-awesome-bar span, .decaf-awesome-bar a {display:block;}
+.decaf-awesome-bar ul ul a, .decaf-awesome-bar ul ul span {height:16px; padding-top:1px; padding-bottom:1px;}
+body #dock {top:26px; height:auto; bottom:0px;} /* Start dock at bottom of Awesomebar */
 
-/* Custom Menu
--------------------------- */
-#awesomebar ul.dropdown li span.customitem {width:auto; padding:2px 8px 4px 8px;border-color:#404040 #1a1a1a #1a1a1a #505050;border-style:solid;border-width:1px;}
-#awesomebar ul.dropdown li span.customitem a {border: 0px none;padding:0;width:auto;background-image:none;background-color:transparent;}
-#awesomebar ul.dropdown li li span.customitem a {width:145px;}
-#awesomebar ul.dropdown li li span.customitem {padding-left:5px;border-left:0px none;}
-#custommenu{height:25px;background-color:#333;margin:0;text-shadow: 0 1px 0 #000;}
-#awesomebar ul.dropdown {z-index: 697; }
-#awesomebar ul.dropdown ul {z-index: 698;}
-#awesomebar ul.dropdown li {z-index: 699;}
-ul.dropdown span.customitem {padding:0;border:0; width: auto;}
-ul.dropdown span.customitem a {padding:2px 8px 4px;}
-ul.dropdown span.customitem:hover,
-#awesomebar ul.dropdown li span.customitem:hover {background-color:#76b900;}
-ul.dropdown span.customitem a:hover {border-left-color: #505050;border-top-color: #404040 !important;}
-#custommenu ul.dropdown ul {padding:0;width:185px;}
-#custommenu ul.dropdown ul a {padding:4px 0px 4px 18px;}
-#custommenu ul.dropdown > li span a {height:17px;}
+/* Awesomebar - appearance */
+.decaf-awesome-bar {border-bottom: 1px solid #1a1a1a;}
+.topadminsearchform{float:right;}
+input#topadminsearchquery{border:1px solid #aaa; -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; background:#fff url([[pix:theme|search_icon]]) no-repeat 2px 1px; width:200px; margin:4px 10px 2px 0; padding:1px 0 0 17px;}
+.decaf-awesome-bar a, .decaf-awesome-bar a:visited, .decaf-awesome-bar a:hover, .decaf-awesome-bar a:link {color:#fff;}
+.decaf-awesome-bar a:hover {background-color:#76b900;}
+.decaf-awesome-bar, .decaf-awesome-bar li {background-color:#333; color:#fff;}
+.decaf-awesome-bar li:hover {background-color:#595959;}
+.decaf-awesome-bar ul ul li span, .decaf-awesome-bar li.clickable-with-children > a {padding:3px 20px; background-image:url([[pix:theme|nav-arrow-right]]); background-position:100% 50%; background-repeat:no-repeat;}
+.decaf-awesome-bar ul ul a {display:block; height:100%; margin:0; vertical-align:top; padding-top:2px;}
+.decaf-awesome-bar ul ul li:hover > span, .decaf-awesome-bar li.clickable-with-children:hover > a {background-image:url([[pix:theme|ab-arrowover]]);}
+.decaf-awesome-bar ul ul li:hover > span {cursor:default;}
+.decaf-awesome-bar li {border-color:#404040 #1a1a1a #1a1a1a #505050; border-style:solid; border-width:1px;}
+
+/* Custom menu */
+#custommenu {position:relative; z-index:998;}
+#custommenu > ul > li > span.customitem, #custommenu > ul > li > a.customitem-no-children {padding:3px 8px 2px 8px; height:19px;}
+.decaf-awesome-bar span.customitem {padding-left:4px;}
+.decaf-awesome-bar span.customitem > a {padding:0;}
+.decaf-awesome-bar a.customitem-no-children {padding:3px 4px;}
+#custommenu a.customitem-no-children {padding:2px 4px 1px 4px;}
+.decaf-awesome-bar > ul > li > a.customitem-no-children {padding:4px 8px;}
+.decaf-awesome-bar ul.decaf-custom-menu span a:hover {background-color:transparent;}
+.decaf-awesome-bar ul.decaf-custom-menu li:hover > span.customitem {background-color:#76b900;}
+.decaf-awesome-bar ul.decaf-custom-menu li:hover > span.customitem.customitem-nolink {background-color:#595959; cursor:default;}

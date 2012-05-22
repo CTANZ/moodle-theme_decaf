@@ -101,7 +101,7 @@ class theme_decaf_core_renderer extends core_renderer {
             return '';
         }
         // Initialise this custom menu
-        $content = html_writer::start_tag('ul', array('class'=>'dropdown dropdown-horizontal'));
+        $content = html_writer::start_tag('ul', array('class'=>'dropdown dropdown-horizontal decaf-custom-menu'));
         // Render each child
         foreach ($menu->get_children() as $item) {
             $content .= $this->render_custom_menu_item($item);
@@ -131,13 +131,17 @@ class theme_decaf_core_renderer extends core_renderer {
         if ($menunode->has_children()) {
             // If the child has menus render it as a sub menu
             $submenucount++;
-            if ($menunode->get_url() !== null) {
-                $url = $menunode->get_url();
-            } else {
-                $url = '#cm_submenu_'.$submenucount;
+            $extra = '';
+            if ($menunode->get_url() === null) {
+                $extra = ' customitem-nolink';
             }
-            $content .= html_writer::start_tag('span', array('class'=>'customitem'));
-            $content .= html_writer::link($url, $menunode->get_text(), array('title'=>$menunode->get_title()));
+            $content .= html_writer::start_tag('span', array('class'=>'customitem'.$extra));
+            if ($menunode->get_url() !== null) {
+                $content .= html_writer::link($menunode->get_url(), $menunode->get_text(), array('title'=>$menunode->get_title()));
+            } else {
+                $content .= $menunode->get_text();
+            }
+            
             $content .= html_writer::end_tag('span');
             $content .= html_writer::start_tag('ul');
             foreach ($menunode->get_children() as $menunode) {
@@ -152,7 +156,7 @@ class theme_decaf_core_renderer extends core_renderer {
             } else {
                 $url = '#';
             }
-            $content .= html_writer::link($url, $menunode->get_text(), array('title'=>$menunode->get_title()));
+            $content .= html_writer::link($url, $menunode->get_text(), array('title'=>$menunode->get_title(), 'class'=>'customitem-no-children'));
         }
         $content .= html_writer::end_tag('li');
         // Return the sub menu

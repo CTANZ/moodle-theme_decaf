@@ -60,10 +60,7 @@ a:active {outline: none;}
 .ie6 #dock .bd.oversized_content .content,.ie7 #dock .bd.oversized_content .content{padding-bottom:0;}
 .ie6 .block_js_expansion.mouseover .content,.ie7 .block_js_expansion.mouseover .content{padding-bottom:2px;}
 .ie6 .block_tree .tree_item,.ie6 #dock .bd.oversized_content{width:100%;}
-/* Custom menu
--------------------------- */
-div#custommenu {z-index:99;}
-div#custommenu ul.dropdown {z-index:auto;}
+
 /* Breadcrumb
 --------------------------- */
 .navbar{font-size:1em;background-color:#F0F0F0;border-bottom:1px solid #DDD;margin:0;padding:0 10px;}

@@ -68,25 +68,27 @@ echo $OUTPUT->doctype() ?>
 </head>
 
 <body id="<?php p($PAGE->bodyid) ?>" class="<?php p($PAGE->bodyclasses.' '.join(' ', $bodyclasses)) ?>">
-<?php echo $OUTPUT->standard_top_of_body_html(); ?>
-<div id="awesomebar" class="decaf-awesome-bar">
-    <?php
-        if( $this->page->pagelayout != 'maintenance' // Don't show awesomebar if site is being upgraded
-            && !(get_user_preferences('auth_forcepasswordchange') && !session_is_loggedinas()) // Don't show it when forcibly changing password either
-          ) {
-            $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
-            echo $topsettings->navigation_tree($this->page->navigation);
-            if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && empty($PAGE->theme->settings->custommenuafterawesomebar)) {
-                echo $custommenu;
+<?php echo $OUTPUT->standard_top_of_body_html();
+if (empty($PAGE->layout_options['noawesomebar'])) { ?>
+    <div id="awesomebar" class="decaf-awesome-bar">
+        <?php
+            if( $this->page->pagelayout != 'maintenance' // Don't show awesomebar if site is being upgraded
+                && !(get_user_preferences('auth_forcepasswordchange') && !session_is_loggedinas()) // Don't show it when forcibly changing password either
+              ) {
+                $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
+                echo $topsettings->navigation_tree($this->page->navigation);
+                if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && empty($PAGE->theme->settings->custommenuafterawesomebar)) {
+                    echo $custommenu;
+                }
+                echo $topsettings->settings_tree($this->page->settingsnav);
+                if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && !empty($PAGE->theme->settings->custommenuafterawesomebar)) {
+                    echo $custommenu;
+                }
+                echo $topsettings->settings_search_box();
             }
-            echo $topsettings->settings_tree($this->page->settingsnav);
-            if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && !empty($PAGE->theme->settings->custommenuafterawesomebar)) {
-                echo $custommenu;
-            }
-            echo $topsettings->settings_search_box();
-        }
-    ?>
-</div>
+        ?>
+    </div>
+<? } ?>
 
 <div id="page">
 

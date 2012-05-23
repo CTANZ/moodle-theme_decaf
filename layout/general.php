@@ -90,7 +90,7 @@ if (empty($PAGE->layout_options['noawesomebar'])) { ?>
             }
         ?>
     </div>
-<? } ?>
+<?php } ?>
 
 <div id="page">
 

@@ -13,7 +13,7 @@
 <!-- END OF HEADER -->
 
     <div id="content" class="clearfix">
-        <?php echo core_renderer::MAIN_CONTENT_TOKEN ?>
+        <?php echo method_exists($OUTPUT, "main_content")?$OUTPUT->main_content():core_renderer::MAIN_CONTENT_TOKEN ?>
     </div>
 
 <!-- START OF FOOTER -->

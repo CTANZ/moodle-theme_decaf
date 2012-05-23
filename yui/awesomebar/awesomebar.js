@@ -24,6 +24,17 @@ AwesomeBar.prototype = {
             this.prev[level] = menuitem;
             if(item.hovertimer) window.clearTimeout(item.hovertimer);
             item.addClass('extended-hover');
+            if(level >= 2) { // don't try shifting initial dropdown
+                var submenu = menuitem.one('ul');
+                if(submenu == null) return;
+                submenu.setStyle('top', '');
+                var winbottom = Y.one("body").get("winHeight");
+                var scroll = document.documentElement.scrollTop || document.body.scrollTop;
+                var bottom = submenu.getY() + submenu.get('clientHeight') - scroll;
+                if(bottom > winbottom) {
+                    submenu.setStyle('top', (-1*(bottom-winbottom)-1)+'px');
+                }
+            }
         }, this, menuitem);
         menuitem.on('mouseout', function(e, item) {
             item.hovertimer = window.setTimeout(function(){item.removeClass('extended-hover')}, 500);

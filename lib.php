@@ -438,7 +438,9 @@ class decaf_expand_navigation extends global_navigation {
         $this->page = $page;
         $this->cache = new navigation_cache(NAVIGATION_CACHE_NAME);
         $this->children = new navigation_node_collection();
-        $this->initialise($branchtype, $id);
+        $this->branchtype = $branchtype;
+        $this->instanceid = $id;
+        $this->initialise();
     }
     /**
      * Initialise the navigation given the type and id for the branch to expand.
@@ -447,8 +449,10 @@ class decaf_expand_navigation extends global_navigation {
      * @param int $id
      * @return array The expandable nodes
      */
-    public function initialise($branchtype, $id) {
+    public function initialise() {
         global $CFG, $DB, $SITE, $PAGE;
+
+        $id = $this->instanceid;
 
         if ($this->initialised || during_initial_install()) {
             return $this->expandable;
@@ -460,7 +464,7 @@ class decaf_expand_navigation extends global_navigation {
         $this->rootnodes['courses'] = $this->add(get_string('courses'), null, self::TYPE_ROOTNODE, null, 'courses');
 
         // Branchtype will be one of navigation_node::TYPE_*
-        switch ($branchtype) {
+        switch ($this->branchtype) {
             case self::TYPE_CATEGORY :
                 $this->load_all_categories($id);
                 $limit = 20;

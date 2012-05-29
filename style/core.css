@@ -22,12 +22,13 @@ a:active {outline: none;}
 -------------------------- */
 #header-profileoptions ul{margin-right:4px;}
 #header-profileoptions ul li{display:inline;padding-left:5px;font-size:1.3em;}
-.headermenu{font-size:1em;margin:0 10px 0 0;}
+.headermenu{font-size:1em;margin:0 10px 0 0;width:225px;}
 .loginform_row{padding:0 0 5px;}
 /* Profileblock
 -----------------------*/
-.headermenu div.logininfo{width:130px;height:43px;float:right;border-right:none;margin-top:7px;text-align:center;padding:0 0 17px 10px;}
+.headermenu div.logininfo{width:140px;height:60px;float:right;border-right:none;margin-top:7px;text-align:center;padding-left:10px;}
 .headermenu img.userpicture{width:48px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;margin-left:10px;padding:8px;}
+.headermenu div.langmenu {float:right;}
 /* Menu Navigation
 -------------------------- */
 #page-navigation{font-size:1.1em;background-image:url();height:36px;margin:0;padding:0 40px;}

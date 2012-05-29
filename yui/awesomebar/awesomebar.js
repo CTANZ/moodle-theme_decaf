@@ -14,7 +14,17 @@ AwesomeBar.prototype = {
         Y.all('.decaf-awesome-bar ul.dropdown li.clickable-with-children > a').each(this.enhanceAwesomeBar, this);
     },
     enhanceAwesomeBar : function(menuitem) {
-        var level = menuitem.ancestors('ul')._nodes.length;
+        var level = 0;
+        try {
+            level = menuitem.ancestors('ul')._nodes.length;
+        } catch(x) {
+            // Old version of YUI - no ancestors() method
+            var temp = menuitem;
+            while(temp) {
+                level++;
+                temp = temp.ancestor('ul');
+            }
+        }
         menuitem = menuitem.ancestor('li');
         menuitem.on('mouseover', function(e, item) {
             if(this.prev[level]) {

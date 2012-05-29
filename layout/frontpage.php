@@ -100,7 +100,7 @@ if (empty($PAGE->layout_options['noawesomebar'])) {  ?>
         				}
         				else {
         					?>
-						<img class="userpicture" src="<?php echo $CFG->wwwroot .'/theme/'. current_theme().'/pix/image.png' ?>" />
+						<img class="userpicture" src="<?php echo $OUTPUT->pix_url('image', 'theme'); ?>" />
 						<?php
         				}
         			}

@@ -506,66 +506,23 @@ class decaf_expand_navigation extends global_navigation {
                     $sections = $this->load_course_sections($course, $coursenode);
                     if(method_exists($this,'generate_sections_and_activities')) {
                         list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
-                        $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, $activities);
+                        $activitynodes = $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, $activities);
                     } else {
                         // pre-Moodle 2.1
-                        $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, get_fast_modinfo($course));
+                        $activitynodes = $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, get_fast_modinfo($course));
+                    }
+                    foreach ($activitynodes as $id=>$node) {
+                        // load all section activities now
+                        $cm_stub = new stdClass();
+                        $cm_stub->id = $id;
+                        $this->load_activity($cm_stub, $course, $node);
                     }
                 } catch(require_login_exception $rle) {
                     $coursenode = $this->add_course($course);
                 }
                 break;
             case self::TYPE_ACTIVITY :
-                if(method_exists($this,'generate_sections_and_activities')) {
-                    $sql = "SELECT c.*
-                              FROM {course} c
-                              JOIN {course_modules} cm ON cm.course = c.id
-                             WHERE cm.id = :cmid";
-                    $params = array('cmid' => $id);
-                    $course = $DB->get_record_sql($sql, $params, MUST_EXIST);
-                    $modinfo = get_fast_modinfo($course);
-                    $cm = $modinfo->get_cm($id);
-                } else {
-                    // pre-Moodle 2.1
-                    $cm = get_coursemodule_from_id(false, $id, 0, false, MUST_EXIST);
-                    $course = $DB->get_record('course', array('id'=>$cm->course), '*', MUST_EXIST);
-                }
-                try {
-                    decaf_require_course_login($course, true, $cm);
-                    //$this->page = $PAGE;
-                    $this->page->set_context(get_context_instance(CONTEXT_MODULE, $cm->id));
-                    $coursenode = $this->load_course($course);
-                    if(!method_exists($this,'generate_sections_and_activities')) {
-                        // pre-Moodle 2.1
-                        $sections = $this->load_course_sections($course, $coursenode);
-                        foreach ($sections as $section) {
-                            if ($section->id == $cm->section) {
-                                $cm->sectionnumber = $section->section;
-                                break;
-                            }
-                        }
-                    }
-                    if ($course->id == SITEID) {
-                        if(method_exists($this,'generate_sections_and_activities')) {
-                            // >= 2.1 doesn't seem to have generated the course sections yet,
-                            // so we'll do it here to make sure we get the activity node
-                            $this->load_course_sections($course, $coursenode);
-                        }
-                        $modulenode = $this->load_activity($cm, $course, $this->rootnodes['site']->find($cm->id, null));
-                    } else {
-                        if(method_exists($this,'generate_sections_and_activities')) {
-                            $sections   = $this->load_course_sections($course, $coursenode);
-                            list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
-                            $activities = $this->load_section_activities($sections[$cm->sectionnum]->sectionnode, $cm->sectionnum, $activities);
-                        } else {
-                            // pre-Moodle 2.1
-                            $activities = $this->load_section_activities($sections[$cm->sectionnumber]->sectionnode, $cm->sectionnumber, get_fast_modinfo($course));
-                        }
-                        $modulenode = $this->load_activity($cm, $course, $activities[$cm->id]);
-                    }
-                } catch(require_login_exception $rle) {
-                    $coursenode = $this->add_course($course);
-                }
+                // Now expanded above, as part of the section expansion
                 break;
             default:
                 throw new Exception('Unknown type');

@@ -9,17 +9,30 @@ var EditButtons = function() {
 };
 EditButtons.prototype = {
     initializer : function(config) {
-        var editbutton = Y.Node.create('<a></a>');
+        var wrapButton = function(icons, button) {
+            try{
+                icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
+            } catch(x) {
+                // Fallback for old versions of YUI without Node.wrap() (MDL20)
+                var wrapper = Y.DOM.create('<div class="decaf-editbutton-wrap"></div>');
+                icons.ancestor().replaceChild(wrapper, icons);
+                wrapper = Y.one(wrapper);
+                wrapper.appendChild(icons);
+                wrapper.insert(button, icons);
+            }
+        }
+        var editbutton = Y.Node.create('<a href="#"></a>');
         editbutton.set('innerHTML', M.util.get_string('edit', 'moodle'));
         editbutton.addClass('decaf-editbutton');
         // Find all sets of icons and convert them to edit buttons
         Y.all('.commands').each(function(icons) {
-            if(icons.getComputedStyle('display')=='none' && (icons.all('a').getDOMNodes().length && icons.ancestor('.path-mod-forum #region-main')==null)) {
+            if(icons.getComputedStyle('display')=='none' && (!icons.all('a').isEmpty() && icons.ancestor('.path-mod-forum #region-main')==null)) {
                 var thisbutton = editbutton.cloneNode(true);
                 thisbutton.on('click', function(e, button) {
                     e.preventDefault();
                     button.ancestor().toggleClass('active');
-                    button.ancestor('li').toggleClass('decaf-editbutton-active-module');
+                    var mod = button.ancestor('li');
+                    if(mod) mod.toggleClass('decaf-editbutton-active-module');
                 }, this, thisbutton);
                 icons.all('a').each(function(tag) {
                     var icon = tag.one('img');
@@ -35,7 +48,7 @@ EditButtons.prototype = {
                         }, this, tag);
                     }
                 });
-                icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
+                wrapButton(icons, thisbutton);
             }
         });
         try {
@@ -46,9 +59,8 @@ EditButtons.prototype = {
                 thisbutton.on('click', function(e, button) {
                     e.preventDefault();
                     button.ancestor().toggleClass('active');
-                    button.ancestor('li').toggleClass('decaf-editbutton-active-module');
                 }, this, thisbutton);
-                icons.wrap('<div class="decaf-editbutton-wrap"></div>').insert(thisbutton, icons);
+                wrapButton(icons, thisbutton);
                 if(closeicon) {
                     thisbutton.ancestor().insertBefore(icons.removeChild(closeicon), thisbutton);
                 }

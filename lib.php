@@ -450,9 +450,7 @@ class decaf_expand_navigation extends global_navigation {
      * @return array The expandable nodes
      */
     public function initialise() {
-        global $CFG, $DB, $SITE, $PAGE;
-
-        $id = $this->instanceid;
+        global $CFG, $DB, $SITE;
 
         if ($this->initialised || during_initial_install()) {
             return $this->expandable;
@@ -462,9 +460,15 @@ class decaf_expand_navigation extends global_navigation {
         $this->rootnodes = array();
         $this->rootnodes['site']      = $this->add_course($SITE);
         $this->rootnodes['courses'] = $this->add(get_string('courses'), null, self::TYPE_ROOTNODE, null, 'courses');
+        
+        $this->expand($this->branchtype, $this->instanceid);
+    }
 
+    public function expand($branchtype, $id) {
+        global $CFG, $DB, $PAGE;
+        static $decaf_expanded_courses = array();
         // Branchtype will be one of navigation_node::TYPE_*
-        switch ($this->branchtype) {
+        switch ($branchtype) {
             case self::TYPE_CATEGORY :
                 $this->load_all_categories($id);
                 $limit = 20;
@@ -501,9 +505,12 @@ class decaf_expand_navigation extends global_navigation {
                     decaf_require_course_login($course);
                     //$this->page = $PAGE;
                     $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
-                    $coursenode = $this->add_course($course);
-                    $this->add_course_essentials($coursenode, $course);
-                    $sections = $this->load_course_sections($course, $coursenode);
+                    if(!array_key_exists($course->id, $decaf_expanded_courses)) {
+                        $coursenode = $this->add_course($course);
+                        $this->add_course_essentials($coursenode, $course);
+                        $decaf_expanded_courses[$course->id] = $this->load_course_sections($course, $coursenode);
+                    }
+                    $sections = $decaf_expanded_courses[$course->id];
                     if(method_exists($this,'generate_sections_and_activities')) {
                         list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
                         $activitynodes = $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, $activities);

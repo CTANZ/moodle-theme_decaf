@@ -98,6 +98,9 @@ ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}
 body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative;}
 input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+/* Make 2.3 activity chooser sit on top of modules in sections */
+div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
+
 /* Blocks
 --------------------------- */
 .block {border-style:none;}

@@ -369,7 +369,13 @@ function decaf_require_login($courseorid = NULL, $autologinguest = true, $cm = N
                 $access = true;
 
                 // remove traces of previous temp guest access
-                $USER->access = remove_temp_roles($coursecontext, $USER->access);
+                if(function_exists('remove_temp_course_roles')) {
+                    if ($coursecontext->instanceid !== SITEID) {
+                        remove_temp_course_roles($coursecontext);
+                    }
+                } else {
+                    $USER->access = remove_temp_roles($coursecontext, $USER->access);
+                }
 
             } else {
                 $instances = $DB->get_records('enrol', array('courseid'=>$course->id, 'status'=>ENROL_INSTANCE_ENABLED), 'sortorder, id ASC');

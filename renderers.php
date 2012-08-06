@@ -222,8 +222,8 @@ class theme_decaf_core_renderer extends core_renderer {
         $output = '';
         foreach ($blockcontents as $bc) {
             if ($bc instanceof block_contents) {
-                if (!($bc->attributes['class'] == 'block_settings  block' && $this->page->theme->settings->hidesettingsblock)
-                        && !($bc->attributes['class'] == 'block_navigation  block' && $this->page->theme->settings->hidenavigationblock)) {
+                if (!($this->page->theme->settings->hidesettingsblock && substr($bc->attributes['class'], 0, 15) == 'block_settings ')
+                        && !($this->page->theme->settings->hidenavigationblock && substr($bc->attributes['class'], 0, 17) == 'block_navigation ')) {
                     $output .= $this->block($bc, $region);
                 }
             } else if ($bc instanceof block_move_target) {

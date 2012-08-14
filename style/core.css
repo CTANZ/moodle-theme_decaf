@@ -91,6 +91,7 @@ a:active {outline: none;}
 img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px solid #808080; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px;border-radius:5px; }
 ul.section .commands,
 .block_with_controls .commands {position:absolute; top:0px; right:0px;}
+.block .content .commands {position:relative;}
 ul.section li {clear:right;}
 ul.section li div {min-height:23px;}
 ul.section li.label div {height: auto;}
@@ -113,6 +114,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .block_with_controls .header .title {position:relative;padding-bottom:20px;}
 .block .commands{clear:both;height:16px;padding:4px;top:auto;bottom:0px;}
 .block .content{padding:5px 10px;}
+.block .content .buttons{margin-top:2px;}
 .block_login label{font-size:0.85em;display:block;}
 .block_login .fld input{width:95%;margin:1px 0 5px;padding:2px;}
 .block_login .btn{padding:4px 0;}
@@ -145,6 +147,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .commands a span {padding-top:3px;}
 .decaf_with_edit_buttons.jsenabled .block .header .commands .icon img {margin-left:0px; margin-right:4px;}
+.decaf_with_edit_buttons.jsenabled .block .header .decaf-editbutton-wrap {z-index:150;}
 .decaf_with_edit_buttons.jsenabled .block {min-height:125px;}
 .decaf_with_edit_buttons.jsenabled .block .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled #page-content #region-main,
@@ -162,6 +165,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 #page-mod-quiz-report.decaf_with_edit_buttons.jsenabled th.header .commands {display:inline;}
 .decaf_with_edit_buttons.jsenabled ul.section>li>.dimmed_text,
 .decaf_with_edit_buttons.jsenabled ul.section>li>.dimmed_text .commands a  {opacity:1;} /* Don't allow the entire div to be "dimmed" - only the link inside it */
+.decaf_with_edit_buttons.jsenabled .block .content .buttons {text-align:left; position:relative;}
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}

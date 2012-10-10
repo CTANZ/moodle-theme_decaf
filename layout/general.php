@@ -1,5 +1,9 @@
 <?php
-require_once ($CFG->dirroot."/theme/decaf/lib.php");
+if (!empty($CFG->themedir) and file_exists("$CFG->themedir/decaf")) {
+    require_once ($CFG->themedir."/decaf/lib.php");
+} else {
+    require_once ($CFG->dirroot."/theme/decaf/lib.php");
+}
 
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());

@@ -1,5 +1,9 @@
 <?php
-require_once ($CFG->dirroot."/theme/decaf/lib.php");
+if (!empty($CFG->themedir) and file_exists("$CFG->themedir/decaf")) {
+    require_once ($CFG->themedir."/decaf/lib.php");
+} else {
+    require_once ($CFG->dirroot."/theme/decaf/lib.php");
+}
 
 // $PAGE->blocks->region_has_content('region_name') doesn't work as we do some sneaky stuff 
 // to hide nav and/or settings blocks if requested

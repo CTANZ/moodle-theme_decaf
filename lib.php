@@ -494,7 +494,7 @@ class decaf_expand_navigation extends global_navigation {
                     $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
                     $coursenode = $this->add_course($course);
                     $this->add_course_essentials($coursenode, $course);
-                    if ($this->format_display_course_content($course->format) && $PAGE->course->id == $course->id) {
+                    if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
                         $this->load_course_sections($course, $coursenode);
                     }
                 } catch(require_login_exception $rle) {

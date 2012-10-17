@@ -489,13 +489,14 @@ class decaf_expand_navigation extends global_navigation {
             case self::TYPE_COURSE :
                 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
                 try {
-                    decaf_require_course_login($course);
-                    //$this->page = $PAGE;
-                    $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
-                    $coursenode = $this->add_course($course);
-                    $this->add_course_essentials($coursenode, $course);
-                    if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
-                        $this->load_course_sections($course, $coursenode);
+                    if(!array_key_exists($course->id, $decaf_expanded_courses)) {
+                        $coursenode = $this->add_course($course);
+                        $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
+                        $this->add_course_essentials($coursenode, $course);
+                        if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
+                            decaf_require_course_login($course);
+                            $decaf_expanded_courses[$course->id] = $this->load_course_sections($course, $coursenode);
+                        }
                     }
                 } catch(require_login_exception $rle) {
                     $coursenode = $this->add_course($course);
@@ -508,8 +509,6 @@ class decaf_expand_navigation extends global_navigation {
                         WHERE cs.id = ?';
                 $course = $DB->get_record_sql($sql, array($id), MUST_EXIST);
                 try {
-                    decaf_require_course_login($course);
-                    //$this->page = $PAGE;
                     $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
                     if(!array_key_exists($course->id, $decaf_expanded_courses)) {
                         $coursenode = $this->add_course($course);

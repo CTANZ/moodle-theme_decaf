@@ -152,6 +152,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled .block .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled #page-content #region-main,
 .decaf_with_edit_buttons.jsenabled #page-content .region-content {overflow:visible;}
+.decaf_with_edit_buttons.jsenabled #page-content {padding-bottom:70px;}
 .decaf_with_edit_buttons.jsenabled.editing ul.section>li {border-bottom:none;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .header .title {padding-bottom:4px;}
 .decaf_with_edit_buttons.jsenabled .forumpost .commands {display:block;}

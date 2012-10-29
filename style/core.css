@@ -122,6 +122,12 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .block_calendar_month .content{padding:5px;}
 .block_course_summary .content{padding:10px;}
 
+/* Question bank faux-block
+--------------------------- */
+.decaf_with_edit_buttons.jsenabled .block.questionbankwindow {min-height:auto;}
+#page-mod-quiz-edit .block.questionbankwindow div.header {background-color:transparent;}
+#page-mod-quiz-edit .block.questionbankwindow div.header a {color:#1D8AC3;font-size:0.9em;}
+
 /* "Edit" buttons to replace groups of icons with menus
 ------------------------ */
 .decaf_persistent_edit.path-course .navbar .navbutton {display:none;}

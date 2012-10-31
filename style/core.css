@@ -236,7 +236,6 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .forumpost .topic .subject { font-size:1.25em; }
 .forumpost .topic .author { font-style:italic;color:#444;font-size:0.95em; }
 .forumpost .content { border-bottom:5px solid #aaa;padding:5px 7px 10px 7px; }
-.forumpost .options .commands {position:relative; }
 
 /* Assignments
 --------------------------*/

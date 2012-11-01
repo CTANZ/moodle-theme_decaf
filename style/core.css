@@ -131,16 +131,16 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 /* "Edit" buttons to replace groups of icons with menus
 ------------------------ */
 .decaf_persistent_edit.path-course .navbar .navbutton {display:none;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:100;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:3;}
 .dockeditempanel_hd .decaf-editbutton-wrap {float:right;}
 .dockeditempanel_hd .decaf-editbutton-wrap .hidepanelicon {margin-right:4px;}
-.decaf_with_edit_buttons.jsenabled.editing ul.section>li {z-index:100;}
-.decaf_with_edit_buttons.jsenabled.editing ul.section>li.decaf-editbutton-active-module {z-index:101;}
+.decaf_with_edit_buttons.jsenabled.editing ul.section>li {z-index:3;}
+.decaf_with_edit_buttons.jsenabled.editing ul.section>li.decaf-editbutton-active-module {z-index:4;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton:hover,
 .decaf_with_edit_buttons.jsenabled .active .decaf-editbutton {opacity:1;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active {z-index:475;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active {z-index:4;}
 .decaf_with_edit_buttons.jsenabled .commands,
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
@@ -153,7 +153,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .commands a span {padding-top:3px;}
 .decaf_with_edit_buttons.jsenabled .block .header .commands .icon img {margin-left:0px; margin-right:4px;}
-.decaf_with_edit_buttons.jsenabled .block .header .decaf-editbutton-wrap {z-index:150;}
+.decaf_with_edit_buttons.jsenabled .block .header .decaf-editbutton-wrap {z-index:4;}
 .decaf_with_edit_buttons.jsenabled .block {min-height:125px;}
 .decaf_with_edit_buttons.jsenabled .block .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled #page-content #region-main,

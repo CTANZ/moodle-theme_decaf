@@ -265,5 +265,10 @@ body.pagelayout-report #page-content #region-main .region-content {
 	overflow-x:auto;
 }
 
+/* Quiz ordering/paging tool
+--------------------------*/
+#page-mod-quiz-edit div.question div.content div.qorder {right:60px;}
+#page-mod-quiz-edit div.question div.content div.questioncontrols {width:65px;}
+
 /** Custom CSS **/
 [[setting:customcss]]

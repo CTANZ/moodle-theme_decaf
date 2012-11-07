@@ -16,6 +16,7 @@ a:active {outline: none;}
 #page-header{float:none;background:#E1E1E1 url([[pix:theme|bg-header]]) repeat-x scroll center bottom;margin-right:0;position:relative;min-height:100px;}
 #page-header .sitelogo {float:left;margin:0.75em 0;}
 #page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.9em 20px 0.9em 0px;}
+#page-header .headermenu {width:235px;}
 #page-header .headermenu a:hover{color:#C30;}
 #page-site-index .headermain{font-size:2.5em;margin:0.85em 0;}
 /* Header Profile
@@ -27,7 +28,7 @@ a:active {outline: none;}
 /* Profileblock
 -----------------------*/
 .headermenu div.logininfo{width:140px;height:60px;float:right;border-right:none;margin-top:7px;text-align:center;padding-left:8px;overflow-x:hidden;}
-.headermenu img.userpicture{width:48px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;margin-left:10px;padding:8px;}
+.headermenu img.userpicture{width:58px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;margin-left:10px;padding:8px;}
 .headermenu div.langmenu {float:right;}
 /* Menu Navigation
 -------------------------- */

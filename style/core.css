@@ -146,7 +146,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a img {clear:left; float:left; margin:1px 4px;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a span {float:left; padding-top:5px; max-width:122px;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a span {float:left; padding-top:5px; max-width:120px;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands {float:none !important; left:100%; position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:600; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active .commands,
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .decaf-editbutton-wrap.active .commands {display:block;}

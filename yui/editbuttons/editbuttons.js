@@ -10,6 +10,7 @@ var EditButtons = function() {
 EditButtons.prototype = {
     hasOverriddenDndUpload: false,
     editbutton: false,
+    activeButton: null,
     initializer : function(config) {
         var self = this;
         if(!this.editbutton) {
@@ -28,12 +29,9 @@ EditButtons.prototype = {
         Y.delegate('click', function(e) {
             e = e || window.event;
             e.preventDefault();
-            var button = e.target;
-            button.ancestor().toggleClass('active');
-            var mod = button.ancestor('li');
-            if(mod) mod.toggleClass('decaf-editbutton-active-module');
+            this.toggleButton(e.target);
         },
-        'body', 'a.decaf-editbutton');
+        'body', 'a.decaf-editbutton', this);
 
         try {
             M.core_dock.getPanel().on('dockpanel:beforeshow', function(e) {
@@ -106,6 +104,19 @@ EditButtons.prototype = {
             }
         });
         this.wrapButton(icons, thisbutton);
+    },
+    toggleButton : function(button) {
+        if(this.activeButton != null && this.activeButton != button) {
+            this.toggleButton(this.activeButton);
+            this.activeButton = button;
+        } else if(this.activeButton == button) {
+            this.activeButton = null;
+        } else {
+            this.activeButton = button;
+        }
+        button.ancestor().toggleClass('active');
+        var mod = button.ancestor('li');
+        if(mod) mod.toggleClass('decaf-editbutton-active-module');
     }
 };
 // Make the colour switcher a fully fledged YUI module

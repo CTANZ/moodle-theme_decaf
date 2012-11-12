@@ -23,6 +23,18 @@ EditButtons.prototype = {
                 self.processIcons(icons);
             }
         });
+
+        // Delegated click handler for all edit buttons
+        Y.delegate('click', function(e) {
+            e = e || window.event;
+            e.preventDefault();
+            var button = e.target;
+            button.ancestor().toggleClass('active');
+            var mod = button.ancestor('li');
+            if(mod) mod.toggleClass('decaf-editbutton-active-module');
+        },
+        'body', 'a.decaf-editbutton');
+
         try {
             M.core_dock.getPanel().on('dockpanel:beforeshow', function(e) {
                 var thisbutton = self.editbutton.cloneNode(true);
@@ -79,12 +91,6 @@ EditButtons.prototype = {
     },
     processIcons : function(icons) {
         var thisbutton = this.editbutton.cloneNode(true);
-        thisbutton.on('click', function(e, button) {
-            e.preventDefault();
-            button.ancestor().toggleClass('active');
-            var mod = button.ancestor('li');
-            if(mod) mod.toggleClass('decaf-editbutton-active-module');
-        }, this, thisbutton);
         icons.all('a').each(function(tag) {
             var icon = tag.one('img');
             var caption = tag.get('title') || icon.get('title') || icon.get('alt');

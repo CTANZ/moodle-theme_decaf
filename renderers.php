@@ -289,7 +289,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                 continue;
             }
 
-            $isbranch = ($item->children->count() > 0 || $item->nodetype == navigation_node::NODETYPE_BRANCH);
+            $isbranch = ($item->children->count() > 0 || $item->nodetype == navigation_node::NODETYPE_BRANCH || (property_exists($item, 'isexpandable') && $item->isexpandable));
             $hasicon = (!$isbranch && $item->icon instanceof renderable);
 
             if ($isbranch) {

@@ -58,4 +58,4 @@ $string['custommenuafterawesomebardesc'] = 'Places custom menu after Awesomebar 
 $string['useeditbuttons'] = 'Use Edit Buttons';
 $string['useeditbuttonsdesc'] = 'Instead of rows of icons, small "Edit" buttons appear.  When clicked, a menu of editing options appears.';
 $string['persistentedit'] = 'Enable Persistent Editing Mode';
-$string['persistenteditdesc'] = 'Persistent Editing Mode keeps editing mode turned on permanently for users with editing privileges.';
+$string['persistenteditdesc'] = 'Persistent Editing Mode keeps editing mode turned on permanently for users with editing privileges.<br />Block editing can still be turned on and off independently via the "Turn editing on/off" option under Course Administration.';

@@ -2,12 +2,17 @@
 
 class theme_decaf_core_renderer extends core_renderer {
 
+    protected $really_editing = false;
+
+    public function set_really_editing($editing) {
+        $this->really_editing = $editing;
+    }
     /**
      * Outputs the page's footer
      * @return string HTML fragment
      */
     public function footer() {
-        global $CFG, $DB;
+        global $CFG, $DB, $USER;
 
         $output = $this->container_end_all(true);
 
@@ -37,6 +42,10 @@ class theme_decaf_core_renderer extends core_renderer {
         $footer = str_replace($endhtmltoken, $this->page->requires->get_end_code(), $footer);
 
         $this->page->set_state(moodle_page::STATE_DONE);
+
+        if(property_exists($USER, 'editing') && $USER->editing && !$this->really_editing) {
+            $USER->editing = false;
+        }
 
         return $output . $footer;
     }

@@ -16,6 +16,10 @@ $hassidepre = strlen($blocks_side_pre);
 $blocks_side_post = trim($OUTPUT->blocks_for_region('side-post'));
 $hassidepost = strlen($blocks_side_post);
 
+$topsettings = $this->page->get_renderer('theme_decaf','topsettings');
+$awesome_nav = $topsettings->navigation_tree($this->page->navigation);
+$awesome_settings = $topsettings->settings_tree($this->page->settingsnav);
+
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
@@ -37,6 +41,9 @@ if ($hassidepre && !$hassidepost) {
 }
 
 if(!empty($PAGE->theme->settings->persistentedit) && $PAGE->user_allowed_editing()) {
+    if(property_exists($USER, 'editing') && $USER->editing) {
+        $OUTPUT->set_really_editing(true);
+    }
     $USER->editing = 1;
     $bodyclasses[] = 'decaf_persistent_edit';
 }
@@ -81,12 +88,11 @@ if (empty($PAGE->layout_options['noawesomebar'])) { ?>
             if( $this->page->pagelayout != 'maintenance' // Don't show awesomebar if site is being upgraded
                 && !(get_user_preferences('auth_forcepasswordchange') && !session_is_loggedinas()) // Don't show it when forcibly changing password either
               ) {
-                $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
-                echo $topsettings->navigation_tree($this->page->navigation);
+                echo $awesome_nav;
                 if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && empty($PAGE->theme->settings->custommenuafterawesomebar)) {
                     echo $custommenu;
                 }
-                echo $topsettings->settings_tree($this->page->settingsnav);
+                echo $awesome_settings;
                 if ($hascustommenu && !empty($PAGE->theme->settings->custommenuinawesomebar) && !empty($PAGE->theme->settings->custommenuafterawesomebar)) {
                     echo $custommenu;
                 }

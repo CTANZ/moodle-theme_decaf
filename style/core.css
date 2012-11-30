@@ -204,7 +204,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 #back-to-top a {text-decoration: none;border: 0;outline: none;}
 /* PerformanceInfo
 -------------------------- */
-#page-footer .performanceinfo{-moz-border-radius-topleft:15px;-moz-border-radius-topright:15px;-webkit-border-top-left-radius:15px 15px;-webkit-border-top-right-radius:15px 15px;border-radius:15px 15px 0 0;bottom:0;left:-290px !important;position:fixed;background-color:#222;width:580px !important;border-width:12px 12px medium;margin:0 50% !important;}
+#page-footer .performanceinfo{-moz-border-radius-topleft:15px;-moz-border-radius-topright:15px;-webkit-border-top-left-radius:15px 15px;-webkit-border-top-right-radius:15px 15px;border-radius:15px 15px 0 0;bottom:0;left:-290px !important;position:fixed;background-color:#222;width:580px !important;border-width:12px 12px medium;margin:0 50% !important;z-index:400;}
 #page-footer .performanceinfo ul {text-align: center; margin: 0 auto;}
 #page-footer .performanceinfo li{display:block;list-style-type:none;float:left;padding:5px 0;width:25%;}
 #page-footer .performanceinfo li var{font-size:1.3em;font-weight:700;}

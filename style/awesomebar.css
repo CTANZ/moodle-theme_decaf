@@ -53,3 +53,6 @@ input#topadminsearchquery{border:1px solid #aaa; -moz-border-radius:10px; -webki
 .decaf-awesome-bar ul.decaf-custom-menu span a:hover {background-color:transparent;}
 .decaf-awesome-bar ul.decaf-custom-menu li:hover > span.customitem {background-color:#76b900;}
 .decaf-awesome-bar ul.decaf-custom-menu li:hover > span.customitem.customitem-nolink {background-color:#595959; cursor:default;}
+
+/* z-index overrides to prevent other things sitting on top of Awesomebar */
+.filepicker-filelist .filepicker-container, .filemanager.fm-noitems .fm-empty-container {z-index:300;}

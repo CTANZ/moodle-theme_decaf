@@ -43,7 +43,7 @@ class theme_decaf_core_renderer extends core_renderer {
 
         $this->page->set_state(moodle_page::STATE_DONE);
 
-        if(property_exists($USER, 'editing') && $USER->editing && !$this->really_editing) {
+        if(!empty($this->page->theme->settings->persistentedit) && property_exists($USER, 'editing') && $USER->editing && !$this->really_editing) {
             $USER->editing = false;
         }
 

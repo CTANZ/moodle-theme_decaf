@@ -56,3 +56,6 @@ input#topadminsearchquery{border:1px solid #aaa; -moz-border-radius:10px; -webki
 
 /* z-index overrides to prevent other things sitting on top of Awesomebar */
 .filepicker-filelist .filepicker-container, .filemanager.fm-noitems .fm-empty-container {z-index:300;}
+
+/* z-index boosts to push overlays above the custom menu (if separate) - but not the Awesomebar */
+.user-enroller-panel {z-index:998;}

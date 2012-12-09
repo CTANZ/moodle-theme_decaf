@@ -554,7 +554,10 @@ class decaf_expand_navigation extends global_navigation {
                     $sections = $decaf_expanded_courses[$course->id];
                     if(method_exists($this,'generate_sections_and_activities')) {
                         list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
-                        $activitynodes = $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, $activities);
+                        if (!array_key_exists($course->sectionnumber, $sections)) break;
+                        $section = $sections[$course->sectionnumber];
+                        if (is_null($section) || is_null($section->sectionnode)) break;
+                        $activitynodes = $this->load_section_activities($section->sectionnode, $course->sectionnumber, $activities);
                     } else {
                         // pre-Moodle 2.1
                         $activitynodes = $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, get_fast_modinfo($course));

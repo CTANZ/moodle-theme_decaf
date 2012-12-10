@@ -139,6 +139,8 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 /* "Edit" buttons to replace groups of icons with menus
 ------------------------ */
 .decaf_persistent_edit.path-course .navbar .navbutton {display:none;}
+.decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .activityinstance,
+.decaf_with_edit_buttons.jsenabled .course-content .section .activity .activityinstance {padding-right:1.5em;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:3;}
 .dockeditempanel_hd .decaf-editbutton-wrap {float:right;}
 .dockeditempanel_hd .decaf-editbutton-wrap .hidepanelicon {margin-right:4px;}
@@ -150,13 +152,17 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active {z-index:4;}
 .decaf_with_edit_buttons.jsenabled .commands,
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands {display:none;}
+.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands,
+.decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .commands,
+.decaf_with_edit_buttons.jsenabled .course-content .section .activity .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a img {clear:left; float:left; margin:1px 4px;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a span {float:left; padding-top:5px; max-width:120px;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands {float:none !important; left:100%; position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:600; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active .commands,
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .decaf-editbutton-wrap.active .commands {display:block;}
+.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .decaf-editbutton-wrap.active .commands,
+.decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .decaf-editbutton-wrap.active .commands,
+.decaf_with_edit_buttons.jsenabled .course-content .section .activity .decaf-editbutton-wrap.active .commands {display:block;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .decaf-editbutton {margin-left:4px;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
 .decaf_with_edit_buttons.jsenabled .block_with_controls .commands a span {padding-top:3px;}

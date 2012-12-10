@@ -110,7 +110,8 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .block .calendar-controls .previous {background:transparent url([[pix:theme|previous]]) no-repeat left top; height:19px;}
 .block .calendar-controls .next {background:transparent url([[pix:theme|next]]) no-repeat right top;}
 .block .header{border-color:#EEE;border-width:0 1px;}
-.block .header h2{background:#EEE url([[pix:theme|bg-header]]) repeat-x scroll bottom center;color:#555;font-family:"Droid Sans",Helvetica,Arial,sans-serif;font-size:16px;letter-spacing:-0.5px;line-height:30px;text-shadow:0 1px 0 #DDD;text-transform:uppercase;}
+.block .header h2{background:#EEE url([[pix:theme|bg-header]]) repeat-x scroll bottom center;color:#555;font-family:"Droid Sans",Helvetica,Arial,sans-serif;font-size:16px;letter-spacing:-0.5px;line-height:30px;text-shadow:0 1px 0 #DDD;text-transform:uppercase;padding:0;margin:4px;}
+.block .block_action {margin-right:4px;}
 .block .header .block_action{margin:4px 5px;}
 .block_with_controls .header .title {position:relative;padding-bottom:20px;}
 .block .commands{clear:both;height:16px;padding:4px;top:auto;bottom:0px;}

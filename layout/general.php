@@ -16,9 +16,11 @@ $hassidepre = strlen($blocks_side_pre);
 $blocks_side_post = trim($OUTPUT->blocks_for_region('side-post'));
 $hassidepost = strlen($blocks_side_post);
 
-$topsettings = $this->page->get_renderer('theme_decaf','topsettings');
-$awesome_nav = $topsettings->navigation_tree($this->page->navigation);
-$awesome_settings = $topsettings->settings_tree($this->page->settingsnav);
+if (empty($PAGE->layout_options['noawesomebar'])) {
+    $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
+    $awesome_nav = $topsettings->navigation_tree($this->page->navigation);
+    $awesome_settings = $topsettings->settings_tree($this->page->settingsnav);
+}
 
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));

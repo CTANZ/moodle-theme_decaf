@@ -93,6 +93,10 @@ function decaf_initialise_editbuttons(moodle_page $page) {
 }
 
 function decaf_initialise_awesomebar(moodle_page $page) {
+    // Ensure that navigation has been initialised properly, in case Navigation block is not visible in 2.4
+    $unused = array();
+    $page->navigation->initialise();
+    $page->navigation->find_expandable($unused);
     $page->requires->yui_module('moodle-theme_decaf-awesomebar', 'M.theme_decaf.initAwesomeBar');
 }
 
@@ -616,7 +620,11 @@ class decaf_expand_navigation extends global_navigation {
             $categories->close();
         } else {
             foreach ($courses as $course) {
-                $this->add_course($course, false, self::COURSE_MY);
+                $node = $this->add_course($course, false, self::COURSE_MY);
+                if (!$this->rootnodes['mycourses']->find($node->key, self::TYPE_COURSE)) {
+                    // Hasn't been added to this node
+                    $this->rootnodes['mycourses']->add_node($node);
+                }
             }
         }
     }

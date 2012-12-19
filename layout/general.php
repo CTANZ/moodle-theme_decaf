@@ -18,14 +18,13 @@ $hassidepost = strlen($blocks_side_post);
 
 if (empty($PAGE->layout_options['noawesomebar'])) {
     $topsettings = $this->page->get_renderer('theme_decaf','topsettings');
+    decaf_initialise_awesomebar($PAGE);
     $awesome_nav = $topsettings->navigation_tree($this->page->navigation);
     $awesome_settings = $topsettings->settings_tree($this->page->settingsnav);
 }
 
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
-
-decaf_initialise_awesomebar($PAGE);
 
 $bodyclasses = array();
 

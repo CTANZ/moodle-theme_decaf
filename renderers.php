@@ -298,6 +298,11 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                 continue;
             }
 
+            // Skip pointless "Current course" node, go straight to its last (sole) child
+            if ($item->key === 'currentcourse') {
+                $item = $item->children->last();
+            }
+
             $isbranch = ($item->children->count() > 0 || $item->nodetype == navigation_node::NODETYPE_BRANCH || (property_exists($item, 'isexpandable') && $item->isexpandable));
             $hasicon = (!$isbranch && $item->icon instanceof renderable);
 
@@ -311,7 +316,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                 if(!$subnav) {
                     // Prepare dummy page for subnav initialisation
                     $dummypage = new decaf_dummy_page();
-                    $dummypage->set_context(get_context_instance(CONTEXT_SYSTEM));
+                    $dummypage->set_context($PAGE->context);
                     $dummypage->set_url($PAGE->url);
                     $subnav = new decaf_expand_navigation($dummypage, $item->type, $item->key);
                 } else {

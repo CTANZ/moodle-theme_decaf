@@ -93,6 +93,15 @@ if ($ADMIN->fulltree) {
     $choices = array(0=>'No', 1=>'Yes');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
+
+    // Hide courses menu from non-logged-in users
+    $name = 'theme_decaf/coursesloggedinonly';
+    $title = get_string('coursesloggedinonly','theme_decaf');
+    $description = get_string('coursesloggedinonlydesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'No', 1=>'Yes');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
    
 
 }

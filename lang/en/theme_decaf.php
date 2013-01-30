@@ -59,3 +59,5 @@ $string['useeditbuttons'] = 'Use Edit Buttons';
 $string['useeditbuttonsdesc'] = 'Instead of rows of icons, small "Edit" buttons appear.  When clicked, a menu of editing options appears.';
 $string['persistentedit'] = 'Enable Persistent Editing Mode';
 $string['persistenteditdesc'] = 'Persistent Editing Mode keeps editing mode turned on permanently for users with editing privileges.<br />Block editing can still be turned on and off independently via the "Turn editing on/off" option under Course Administration.';
+$string['coursesloggedinonly'] = 'Hide Courses menu from non-logged-in users';
+$string['coursesloggedinonlydesc'] = 'If you do not want users who are not logged in to see the "Courses" menu in the Awesomebar, enable this setting.';

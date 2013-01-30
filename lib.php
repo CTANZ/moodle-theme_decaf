@@ -520,6 +520,11 @@ class decaf_expand_navigation extends global_navigation {
                 try {
                     if(!array_key_exists($course->id, $decaf_expanded_courses)) {
                         $coursenode = $this->add_course($course);
+                        if ($PAGE->course->id !== $course->id) {
+                            $coursenode->nodetype = navigation_node::NODETYPE_LEAF;
+                            $coursenode->isexpandable = false;
+                            break;
+                        }
                         $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
                         $this->add_course_essentials($coursenode, $course);
                         if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
@@ -588,6 +593,60 @@ class decaf_expand_navigation extends global_navigation {
     }
 
     /**
+     * Loads all of the activities for a section into the navigation structure.
+     *
+     * @param navigation_node $sectionnode
+     * @param int $sectionnumber
+     * @param array $activities An array of activites as returned by {@link global_navigation::generate_sections_and_activities()}
+     * @param stdClass $course The course object the section and activities relate to.
+     * @return array Array of activity nodes
+     */
+    protected function load_section_activities(navigation_node $sectionnode, $sectionnumber, array $activities, $course = null) {
+        global $CFG, $SITE;
+        // A static counter for JS function naming
+        static $legacyonclickcounter = 0;
+
+        $activitynodes = array();
+        if (empty($activities)) {
+            return $activitynodes;
+        }
+
+        if (!is_object($course)) {
+            $activity = reset($activities);
+            $courseid = $activity->course;
+        } else {
+            $courseid = $course->id;
+        }
+        $showactivities = ($courseid != $SITE->id || !empty($CFG->navshowfrontpagemods));
+
+        foreach ($activities as $activity) {
+            if ($activity->section != $sectionnumber) {
+                continue;
+            }
+            if ($activity->icon) {
+                $icon = new pix_icon($activity->icon, get_string('modulename', $activity->modname), $activity->iconcomponent);
+            } else {
+                $icon = new pix_icon('icon', get_string('modulename', $activity->modname), $activity->modname);
+            }
+
+            // Prepare the default name and url for the node
+            $activityname = format_string($activity->name, true, array('context' => context_module::instance($activity->id)));
+            $action = new moodle_url($activity->url);
+
+            // Legacy onclick removed from Decaf - clicking in Awesomebar should go to the page, not trigger popups etc.
+
+            $activitynode = $sectionnode->add($activityname, $action, navigation_node::TYPE_ACTIVITY, null, $activity->id, $icon);
+            $activitynode->title(get_string('modulename', $activity->modname));
+            $activitynode->hidden = $activity->hidden;
+            $activitynode->display = $showactivities && $activity->display;
+            $activitynode->nodetype = $activity->nodetype;
+            $activitynodes[$activity->id] = $activitynode;
+        }
+
+        return $activitynodes;
+    }
+
+    /**
      * They've expanded the 'my courses' branch.
      */
     protected function load_courses_enrolled() {
@@ -598,14 +657,17 @@ class decaf_expand_navigation extends global_navigation {
             // In order to make sure we load everything required we must first find the categories that are not
             // base categories and work out the bottom category in thier path.
             $categoryids = array();
+            $toplevelcats = array();
             foreach ($courses as $course) {
                 $categoryids[] = $course->category;
+                $toplevelcats[$course->category] = $course->category;
             }
             $categoryids = array_unique($categoryids);
             list($sql, $params) = $DB->get_in_or_equal($categoryids);
             $categories = $DB->get_recordset_select('course_categories', 'id '.$sql.' AND parent <> 0', $params, 'sortorder, id', 'id, path');
             foreach ($categories as $category) {
                 $bits = explode('/', trim($category->path,'/'));
+                $toplevelcats[$category->id] = $bits[0];
                 $categoryids[] = array_shift($bits);
             }
             $categoryids = array_unique($categoryids);
@@ -618,6 +680,10 @@ class decaf_expand_navigation extends global_navigation {
                 $this->add_category($category, $this->rootnodes['mycourses']);
             }
             $categories->close();
+            foreach ($courses as $course) {
+                $cat = $this->rootnodes['mycourses']->find($toplevelcats[$course->category], self::TYPE_CATEGORY);
+                $node = $this->add_course_to($course, false, self::COURSE_MY, $cat);
+            }
         } else {
             foreach ($courses as $course) {
                 $node = $this->add_course($course, false, self::COURSE_MY);
@@ -627,6 +693,63 @@ class decaf_expand_navigation extends global_navigation {
                 }
             }
         }
+    }
+
+    /**
+     * Adds a structured category to the navigation in the correct order/place
+     *
+     * @param stdClass $category
+     * @param navigation_node $parent
+     */
+    protected function add_category(stdClass $category, navigation_node $parent) {
+        if ($parent->find($category->id, self::TYPE_CATEGORY)) {
+            return;
+        }
+        $url = new moodle_url('/course/category.php', array('id' => $category->id));
+        $context = context_coursecat::instance($category->id);
+        $categoryname = format_string($category->name, true, array('context' => $context));
+        $categorynode = $parent->add($categoryname, $url, self::TYPE_CATEGORY, $categoryname, $category->id);
+        if (empty($category->visible)) {
+            if (has_capability('moodle/category:viewhiddencategories', get_system_context())) {
+                $categorynode->hidden = true;
+            } else {
+                $categorynode->display = false;
+            }
+        }
+        $this->addedcategories[$category->id] = $categorynode;
+    }
+
+    /**
+     * Adds the given course to the navigation structure, under a specified parent.
+     *
+     * @param stdClass $course
+     * @param bool $forcegeneric
+     * @param bool $ismycourse
+     * @return navigation_node
+     */
+    public function add_course_to(stdClass $course, $forcegeneric = false, $coursetype = self::COURSE_OTHER, navigation_node $parent) {
+        global $CFG, $SITE;
+
+        $coursecontext = context_course::instance($course->id);
+
+        if ($course->id != $SITE->id && !$course->visible) {
+            if (is_role_switched($course->id)) {
+                // user has to be able to access course in order to switch, let's skip the visibility test here
+            } else if (!has_capability('moodle/course:viewhiddencourses', $coursecontext)) {
+                return false;
+            }
+        }
+
+        $shortname = format_string($course->shortname, true, array('context' => $coursecontext));
+
+        $url = new moodle_url('/course/view.php', array('id'=>$course->id));
+
+        $coursenode = $parent->add($shortname, $url, self::TYPE_COURSE, $shortname, $course->id);
+        $coursenode->nodetype = self::NODETYPE_BRANCH;
+        $coursenode->hidden = (!$course->visible);
+        $coursenode->title(format_string($course->fullname, true, array('context' => $coursecontext)));
+
+        return $coursenode;
     }
 
     /**

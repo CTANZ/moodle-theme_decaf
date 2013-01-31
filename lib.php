@@ -373,12 +373,8 @@ function decaf_require_login($courseorid = NULL, $autologinguest = true, $cm = N
                 $access = true;
 
                 // remove traces of previous temp guest access
-                if(function_exists('remove_temp_course_roles')) {
-                    if ($coursecontext->instanceid !== SITEID) {
-                        remove_temp_course_roles($coursecontext);
-                    }
-                } else {
-                    $USER->access = remove_temp_roles($coursecontext, $USER->access);
+                if ($coursecontext->instanceid !== SITEID) {
+                    remove_temp_course_roles($coursecontext);
                 }
 
             } else {
@@ -527,7 +523,7 @@ class decaf_expand_navigation extends global_navigation {
                         }
                         $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
                         $this->add_course_essentials($coursenode, $course);
-                        if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
+                        if ($PAGE->course->id == $course->id && $this->format_display_course_content($course->format)) {
                             decaf_require_course_login($course);
                             $decaf_expanded_courses[$course->id] = $this->load_course_sections($course, $coursenode);
                         }
@@ -561,16 +557,11 @@ class decaf_expand_navigation extends global_navigation {
                         $decaf_expanded_courses[$course->id] = $sectionnodes;
                     }
                     $sections = $decaf_expanded_courses[$course->id];
-                    if(method_exists($this,'generate_sections_and_activities')) {
-                        list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
-                        if (!array_key_exists($course->sectionnumber, $sections)) break;
-                        $section = $sections[$course->sectionnumber];
-                        if (is_null($section) || is_null($section->sectionnode)) break;
-                        $activitynodes = $this->load_section_activities($section->sectionnode, $course->sectionnumber, $activities);
-                    } else {
-                        // pre-Moodle 2.1
-                        $activitynodes = $this->load_section_activities($sections[$course->sectionnumber]->sectionnode, $course->sectionnumber, get_fast_modinfo($course));
-                    }
+                    list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
+                    if (!array_key_exists($course->sectionnumber, $sections)) break;
+                    $section = $sections[$course->sectionnumber];
+                    if (is_null($section) || is_null($section->sectionnode)) break;
+                    $activitynodes = $this->load_section_activities($section->sectionnode, $course->sectionnumber, $activities);
                     foreach ($activitynodes as $id=>$node) {
                         // load all section activities now
                         $cm_stub = new stdClass();

@@ -34,12 +34,9 @@ class theme_decaf_core_renderer extends core_renderer {
             }
         }
 
-        $perftoken = (property_exists($this, "unique_performance_info_token"))?$this->unique_performance_info_token:self::PERFORMANCE_INFO_TOKEN;
-        $endhtmltoken = (property_exists($this, "unique_end_html_token"))?$this->unique_end_html_token:self::END_HTML_TOKEN;
+        $footer = str_replace($this->unique_performance_info_token, $performanceinfo, $footer);
 
-        $footer = str_replace($perftoken, $performanceinfo, $footer);
-
-        $footer = str_replace($endhtmltoken, $this->page->requires->get_end_code(), $footer);
+        $footer = str_replace($this->unique_end_html_token, $this->page->requires->get_end_code(), $footer);
 
         $this->page->set_state(moodle_page::STATE_DONE);
 
@@ -62,19 +59,17 @@ class theme_decaf_core_renderer extends core_renderer {
         // This function is normally called from a layout.php file in {@link header()}
         // but some of the content won't be known until later, so we return a placeholder
         // for now. This will be replaced with the real content in {@link footer()}.
-        $output = (property_exists($this, "unique_performance_info_token"))?$this->unique_performance_info_token:self::PERFORMANCE_INFO_TOKEN;
+        $output = $this->unique_performance_info_token;
         // Moodle 2.1 uses a magic accessor for $this->page->devicetypeinuse so we need to
         // check for the existence of the function that uses as
         // isset($this->page->devicetypeinuse) returns false
-        if (function_exists('get_user_device_type')?($this->page->devicetypeinuse=='legacy'):$this->page->legacythemeinuse) {
+        if ($this->page->devicetypeinuse=='legacy') {
             // The legacy theme is in use print the notification
             $output .= html_writer::tag('div', get_string('legacythemeinuse'), array('class'=>'legacythemeinuse'));
         }
 
         // Get links to switch device types (only shown for users not on a default device)
-        if(method_exists($this, 'theme_switch_links')) {
-            $output .= $this->theme_switch_links();
-        }
+        $output .= $this->theme_switch_links();
         
        // if (!empty($CFG->debugpageinfo)) {
        //     $output .= '<div class="performanceinfo">This page is: ' . $this->page->debug_summary() . '</div>';

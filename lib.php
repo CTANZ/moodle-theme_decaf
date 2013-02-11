@@ -523,7 +523,7 @@ class decaf_expand_navigation extends global_navigation {
                         }
                         $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
                         $this->add_course_essentials($coursenode, $course);
-                        if ($PAGE->course->id == $course->id && $this->format_display_course_content($course->format)) {
+                        if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
                             decaf_require_course_login($course);
                             $decaf_expanded_courses[$course->id] = $this->load_course_sections($course, $coursenode);
                         }

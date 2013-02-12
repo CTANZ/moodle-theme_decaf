@@ -94,9 +94,7 @@ function decaf_initialise_editbuttons(moodle_page $page) {
 
 function decaf_initialise_awesomebar(moodle_page $page) {
     // Ensure that navigation has been initialised properly, in case Navigation block is not visible in 2.4
-    $unused = array();
     $page->navigation->initialise();
-    $page->navigation->find_expandable($unused);
     $page->requires->yui_module('moodle-theme_decaf-awesomebar', 'M.theme_decaf.initAwesomeBar');
 }
 
@@ -489,6 +487,7 @@ class decaf_expand_navigation extends global_navigation {
     public function expand($branchtype, $id) {
         global $CFG, $DB, $PAGE;
         static $decaf_expanded_courses = array();
+        static $decaf_course_activities = array();
         // Branchtype will be one of navigation_node::TYPE_*
         switch ($branchtype) {
             case self::TYPE_ROOTNODE :
@@ -556,8 +555,13 @@ class decaf_expand_navigation extends global_navigation {
                         }
                         $decaf_expanded_courses[$course->id] = $sectionnodes;
                     }
+                    if(!array_key_exists($course->id, $decaf_course_activities)) {
+                        list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
+                        $decaf_course_activities[$course->id] = $activities;
+                    }
                     $sections = $decaf_expanded_courses[$course->id];
-                    list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
+                    $activities = $decaf_course_activities[$course->id];
+
                     if (!array_key_exists($course->sectionnumber, $sections)) break;
                     $section = $sections[$course->sectionnumber];
                     if (is_null($section) || is_null($section->sectionnode)) break;
@@ -579,7 +583,6 @@ class decaf_expand_navigation extends global_navigation {
                 throw new Exception('Unknown type');
                 return $this->expandable;
         }
-        $this->find_expandable($this->expandable);
         return $this->expandable;
     }
 

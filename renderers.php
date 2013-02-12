@@ -310,7 +310,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
             }
 
             $content = $this->output->render($item);
-            if(substr($item->id, 0, 17)=='expandable_branch' && $item->children->count()==0) {
+            if($isbranch && $item->children->count()==0) {
                 // Navigation block does this via AJAX - we'll merge it in directly instead
                 if(!$subnav) {
                     // Prepare dummy page for subnav initialisation

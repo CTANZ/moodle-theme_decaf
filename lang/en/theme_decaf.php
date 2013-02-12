@@ -61,3 +61,5 @@ $string['persistentedit'] = 'Enable Persistent Editing Mode';
 $string['persistenteditdesc'] = 'Persistent Editing Mode keeps editing mode turned on permanently for users with editing privileges.<br />Block editing can still be turned on and off independently via the "Turn editing on/off" option under Course Administration.';
 $string['coursesloggedinonly'] = 'Hide Courses menu from non-logged-in users';
 $string['coursesloggedinonlydesc'] = 'If you do not want users who are not logged in to see the "Courses" menu in the Awesomebar, enable this setting.';
+$string['expandtoactivities'] = 'Expand to show activities within sections';
+$string['expandtoactivitiesdesc'] = 'Enabling this option shows activities underneath the sections in the Awesomebar, but degrades performance - especially in courses with lots of activities/resources.';

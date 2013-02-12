@@ -555,22 +555,24 @@ class decaf_expand_navigation extends global_navigation {
                         }
                         $decaf_expanded_courses[$course->id] = $sectionnodes;
                     }
-                    if(!array_key_exists($course->id, $decaf_course_activities)) {
-                        list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
-                        $decaf_course_activities[$course->id] = $activities;
-                    }
-                    $sections = $decaf_expanded_courses[$course->id];
-                    $activities = $decaf_course_activities[$course->id];
+                    if (property_exists($PAGE->theme->settings, 'expandtoactivities') && $PAGE->theme->settings->expandtoactivities) {
+                        if(!array_key_exists($course->id, $decaf_course_activities)) {
+                            list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
+                            $decaf_course_activities[$course->id] = $activities;
+                        }
+                        $sections = $decaf_expanded_courses[$course->id];
+                        $activities = $decaf_course_activities[$course->id];
 
-                    if (!array_key_exists($course->sectionnumber, $sections)) break;
-                    $section = $sections[$course->sectionnumber];
-                    if (is_null($section) || is_null($section->sectionnode)) break;
-                    $activitynodes = $this->load_section_activities($section->sectionnode, $course->sectionnumber, $activities);
-                    foreach ($activitynodes as $id=>$node) {
-                        // load all section activities now
-                        $cm_stub = new stdClass();
-                        $cm_stub->id = $id;
-                        $this->load_activity($cm_stub, $course, $node);
+                        if (!array_key_exists($course->sectionnumber, $sections)) break;
+                        $section = $sections[$course->sectionnumber];
+                        if (is_null($section) || is_null($section->sectionnode)) break;
+                        $activitynodes = $this->load_section_activities($section->sectionnode, $course->sectionnumber, $activities);
+                        foreach ($activitynodes as $id=>$node) {
+                            // load all section activities now
+                            $cm_stub = new stdClass();
+                            $cm_stub->id = $id;
+                            $this->load_activity($cm_stub, $course, $node);
+                        }
                     }
                 } catch(require_login_exception $rle) {
                     $coursenode = $this->add_course($course);

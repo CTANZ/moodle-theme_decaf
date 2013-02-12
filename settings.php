@@ -102,6 +102,15 @@ if ($ADMIN->fulltree) {
     $choices = array(0=>'No', 1=>'Yes');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
+
+    // Expand to activities at cost of performance
+    $name = 'theme_decaf/expandtoactivities';
+    $title = get_string('expandtoactivities','theme_decaf');
+    $description = get_string('expandtoactivitiesdesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'No', 1=>'Yes');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
    
 
 }

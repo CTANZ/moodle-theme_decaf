@@ -284,5 +284,10 @@ body.pagelayout-report #page-content #region-main .region-content {
 #page-mod-quiz-edit div.question div.content div.qorder {right:60px;}
 #page-mod-quiz-edit div.question div.content div.questioncontrols {width:65px;}
 
+/* Question bank
+--------------------------*/
+table#categoryquestions .iconcol {width:21px;}
+body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questioncategories .commands > img.iconsmall {display:none;}
+
 /** Custom CSS **/
 [[setting:customcss]]

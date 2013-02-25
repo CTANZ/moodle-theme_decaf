@@ -280,7 +280,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
         global $PAGE;
         static $subnav;
         $items = $node->children;
-        $hidecourses = (property_exists($PAGE->theme->settings, 'coursesloggedinonly') && $PAGE->theme->settings->coursesloggedinonly);
+        $hidecourses = (property_exists($PAGE->theme->settings, 'coursesloggedinonly') && $PAGE->theme->settings->coursesloggedinonly && !isloggedin());
 
         // exit if empty, we don't want an empty ul element
         if ($items->count() == 0) {

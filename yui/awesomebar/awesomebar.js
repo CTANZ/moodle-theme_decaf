@@ -41,14 +41,54 @@ AwesomeBar.prototype = {
                 var winbottom = Y.one("body").get("winHeight");
                 var scroll = document.documentElement.scrollTop || document.body.scrollTop;
                 var bottom = submenu.getY() + submenu.get('clientHeight') - scroll;
-                if(bottom > winbottom) {
-                    submenu.setStyle('top', (-1*(bottom-winbottom)-1)+'px');
+                if(bottom >= winbottom) {
+                    var top = (-1*(bottom-winbottom)-1);
+                    submenu.maxTop = -1*submenu.getY();
+                    submenu.setStyle('top', top+'px');
+                    submenu.minTop = top;
+                    if(submenu.scrollInterval) window.clearTimeout(submenu.scrollInterval);
+                    submenu.scrollInterval = 0;
+                    if(top < submenu.maxTop) { // Submenu is taller than the viewport
+                        submenu.on('mouseover', function(e) {e.stopPropagation()});
+                        submenu.on('mousemove', this.hover, this, submenu);
+                        submenu.on('mouseout', function(e, submenu) {
+                            if (submenu.contains(e.target)) return;
+                            if ((e.target._node===submenu || e.target._node===submenu.parentNode) && submenu.scrollInterval) {
+                                window.clearInterval(submenu.scrollInterval);
+                                submenu.scrollInterval = 0;
+                            }
+                        }, this, submenu);
+                    }
                 }
             }
         }, this, menuitem);
         menuitem.on('mouseout', function(e, item) {
+            if (item.hovertimer) window.clearTimeout(item.hovertimer);
             item.hovertimer = window.setTimeout(function(){item.removeClass('extended-hover')}, 500);
         }, this, menuitem);
+    },
+    hover : function(e, submenu) {
+        var vpHeight = Y.one("body").get("winHeight");
+        var self = this;
+        e.stopPropagation();
+        if (e.clientY < 50) {
+            if (submenu.scrollInterval) return;
+            submenu.scrollInterval = window.setInterval(function(){self.hoverScroll(submenu, 'up')}, 25);
+        } else if (e.clientY > (vpHeight-50)) {
+            if (submenu.scrollInterval) return;
+            submenu.scrollInterval = window.setInterval(function(){self.hoverScroll(submenu, 'down')}, 25);
+        } else if (submenu.scrollInterval) {
+            window.clearInterval(submenu.scrollInterval);
+            submenu.scrollInterval = 0;
+        }
+    },
+    hoverScroll : function(submenu, direction) {
+        var top = parseInt(submenu.getStyle('top'));
+        if (direction === 'up') {
+            submenu.setStyle('top', Math.min(submenu.maxTop, top+5)+'px');
+        } else if (direction === 'down') {
+            submenu.setStyle('top', Math.max(submenu.minTop, top-5)+'px');
+        }
     }
 };
 // Make the AwesomeBar enhancer a fully fledged YUI module

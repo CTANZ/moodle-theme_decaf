@@ -64,7 +64,7 @@ AwesomeBar.prototype = {
         }, this, menuitem);
         menuitem.on('mouseout', function(e, item) {
             if (item.hovertimer) window.clearTimeout(item.hovertimer);
-            item.hovertimer = window.setTimeout(function(){item.removeClass('extended-hover')}, 500);
+            item.hovertimer = window.setTimeout(function(){item.removeClass('extended-hover')}, 750);
         }, this, menuitem);
     },
     hover : function(e, submenu) {

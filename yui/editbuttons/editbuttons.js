@@ -34,26 +34,40 @@ EditButtons.prototype = {
         'body', 'a.decaf-editbutton', this);
 
         try {
-            M.core_dock.getPanel().on('dockpanel:beforeshow', function(e) {
-                var thisbutton = self.editbutton.cloneNode(true);
-                var icons = this.one('.dockeditempanel_hd .commands');
-                var closeicon = icons.one('.hidepanelicon');
-                thisbutton.on('click', function(e, button) {
-                    e.preventDefault();
-                    button.ancestor().toggleClass('active');
-                }, this, thisbutton);
-                self.wrapButton(icons, thisbutton);
-                if(closeicon) {
-                    thisbutton.ancestor().insertBefore(icons.removeChild(closeicon), thisbutton);
+            M.core_dock.on('dock:panelresizestart', function(e) {
+                var item = M.core_dock.getActiveItem();
+                if (item.decaf_editbutton_done) {
+                    this.all('.dockeditempanel_hd .hidepanelicon').remove();
+                    item.fire('dockeditem:drawcomplete');
+                    return;
                 }
-            }, M.core_dock.getPanel())
-            M.core_dock.getPanel().on('dockpanel:beforehide', function(e) {
                 var icons = this.one('.dockeditempanel_hd .commands');
-                var closeicon = this.one('.decaf-editbutton-wrap .hidepanelicon');
-                if(closeicon) {
-                    icons.appendChild(closeicon.ancestor().removeChild(closeicon));
+                icons.all('.moveto span').remove()
+
+                // Don't bother if it's only the undock and close icons
+                if (icons.get('children').size()===2) {
+                    icons.addClass('dock-commands');
+                } else {
+                    self.wrapButton(icons, self.editbutton.cloneNode(true));
+                    var wrap = icons.ancestor();
+                    // Put dock controls back outside edit button
+                    wrap.append(icons.all('.moveto').remove());
+                    wrap.append(icons.all('.hidepanelicon').remove());
+                    item.commands = wrap.cloneNode(true);
                 }
-            }, M.core_dock.getPanel())
+                item.on('dockeditem:itemremoved', function() {
+                    this.Y.one('#'+this.titlestring.id).ancestor().one('.decaf-editbutton-wrap').remove();
+                }, item);
+                item.decaf_editbutton_done = true;
+            }, M.core_dock.getPanel());
+            M.core_dock.on('dock:itemadded', function(item) {
+                item.on('dockeditem:itemremoved', function() {
+                    if (!this.decaf_editbutton_done) {
+                        this.Y.one('#'+this.titlestring.id).ancestor().one('.decaf-editbutton-wrap').remove();
+                        self.wrapButton(this.commands, self.editbutton.cloneNode(true));
+                    }
+                }, item);
+            }, M.core_dock);
         } catch(x) {}
 
         // Horribly nasty hack, since nothing in the dndupload chain fires any events we can listen for.

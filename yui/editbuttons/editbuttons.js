@@ -55,19 +55,20 @@ EditButtons.prototype = {
                     wrap.append(icons.all('.hidepanelicon').remove());
                     item.commands = wrap.cloneNode(true);
                 }
-                item.on('dockeditem:itemremoved', function() {
-                    this.Y.one('#'+this.titlestring.id).ancestor().one('.decaf-editbutton-wrap').remove();
-                }, item);
                 item.decaf_editbutton_done = true;
             }, M.core_dock.getPanel());
-            M.core_dock.on('dock:itemadded', function(item) {
+
+            var attachRemoveHandler = function(item) {
                 item.on('dockeditem:itemremoved', function() {
-                    if (!this.decaf_editbutton_done) {
-                        this.Y.one('#'+this.titlestring.id).ancestor().one('.decaf-editbutton-wrap').remove();
+                    var button = this.commands.ancestor('.header').one('.decaf-editbutton-wrap');
+                    if (button) button.remove();
+                    if (!this.decaf_editbutton_done && this.commands.hasChildNodes()) {
                         self.wrapButton(this.commands, self.editbutton.cloneNode(true));
                     }
                 }, item);
-            }, M.core_dock);
+            }
+            M.core_dock.on('dock:itemadded', attachRemoveHandler, M.core_dock);
+            Y.Array.each(M.core_dock.items, attachRemoveHandler);
         } catch(x) {}
 
         // Horribly nasty hack, since nothing in the dndupload chain fires any events we can listen for.

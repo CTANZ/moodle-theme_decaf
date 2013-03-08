@@ -151,6 +151,10 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled .active .decaf-editbutton {opacity:1;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active {z-index:4;}
+.decaf_with_edit_buttons.jsenabled.ie8 .decaf-editbutton {background-color:#DFFFD6;color:#999;}
+.decaf_with_edit_buttons.jsenabled.ie8 .decaf-editbutton:hover,
+.decaf_with_edit_buttons.jsenabled.ie8 .active .decaf-editbutton {background-color:#C6FFB3;color:#000;}
+.decaf_with_edit_buttons.jsenabled.ie8 .decaf-editbutton:active {background-color:#B3FF99;}
 .decaf_with_edit_buttons.jsenabled .commands,
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands,
 .decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .commands,

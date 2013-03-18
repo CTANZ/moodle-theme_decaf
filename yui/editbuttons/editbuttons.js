@@ -109,12 +109,14 @@ EditButtons.prototype = {
             var caption = tag.get('title') || icon.get('title') || icon.get('alt');
             icon.removeAttribute('hspace');
             tag.append('<span>' + caption + '</span>');
-            if(icon.get('src').match(/hide$/) || icon.get('src').match(/show$/) || icon.get('src').match(/group[nvs]$/)) {
+            if(icon.get('src').match(/t%2Fhide/) || icon.get('src').match(/t%2Fshow/) || icon.get('src').match(/t%2Fgroup[nvs]/)) {
                 tag.on('click', function(e, tag) {
-                    var icon = tag.one('img');
-                    var caption = tag.get('title') || icon.get('title') || icon.get('alt');
-                    icon.removeAttribute('hspace');
-                    tag.one('span').set('innerHTML', caption);
+                    window.setTimeout(function(){
+                        var icon = tag.one('img');
+                        var caption = tag.get('title') || icon.get('title') || icon.get('alt');
+                        icon.removeAttribute('hspace');
+                        tag.one('span').set('innerHTML', caption);
+                    }, 1);
                 }, this, tag);
             }
         });

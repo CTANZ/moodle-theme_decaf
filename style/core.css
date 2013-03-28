@@ -161,8 +161,10 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:150;}
 .decaf_with_edit_buttons.jsenabled .course-content .section .activity .commands {display:none;}
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd {padding-bottom:20px;}
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .decaf-editbutton {margin-right:7px;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands.dock-commands {display:block;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands.dock-commands a img {border:0px none;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands.dock-commands,
+.decaf_with_edit_buttons.jsenabled .commands.decaf-noeditbutton {display:block;}
+.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands.dock-commands a img,
+.decaf_with_edit_buttons.jsenabled .commands.decaf-noeditbutton a img {border:0px none;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;width:12px;height:12px;}
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .hidepanelicon,
 .decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .moveto {margin:3px;}
 .decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a {display:block; line-height:14px; font-size:12px; vertical-align:middle; text-align:left;}

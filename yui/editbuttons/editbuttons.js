@@ -20,7 +20,10 @@ EditButtons.prototype = {
         }
         // Find all sets of icons and convert them to edit buttons
         Y.all('.commands').each(function(icons) {
-            if(icons.getComputedStyle('display')=='none' && (!icons.all('a').isEmpty() && icons.ancestor('.path-mod-forum #region-main')==null)) {
+            var buttons = icons.all('a');
+            if (!buttons.isEmpty() && buttons.size() == 1) {
+                icons.addClass('decaf-noeditbutton');
+            } else if(icons.getComputedStyle('display')=='none' && (!buttons.isEmpty() && icons.ancestor('.path-mod-forum #region-main')==null)) {
                 self.processIcons(icons);
             }
         });

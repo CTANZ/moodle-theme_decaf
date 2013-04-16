@@ -10,6 +10,7 @@ a:link,a:visited {color: #C22323;}
 a:hover,a:active {color: #251c17;}
 a img {border: none;}
 a:active {outline: none;}
+.singleselect option {text-align:left;}
 /* Header
 ------------------------- */
 #page-header-wrapper{margin:0 0 0 50px;}

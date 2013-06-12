@@ -369,4 +369,47 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
 
 }
 
-?>
+require_once($CFG->dirroot.'/course/renderer.php');
+class theme_decaf_core_course_renderer extends core_course_renderer {
+    protected function course_modchooser_module($module, $classes = array('option')) {
+        if(empty($PAGE->theme->settings->usemodchoosertiles)) {
+            return parent::course_modchooser_module($module, $classes);
+        }
+        $output = '';
+        $output .= html_writer::start_tag('div', array('class' => implode(' ', $classes)));
+        $output .= html_writer::start_tag('label', array('for' => 'module_' . $module->name));
+        if (!isset($module->types)) {
+            $output .= html_writer::tag('input', '', array('type' => 'radio',
+                    'name' => 'jumplink', 'id' => 'module_' . $module->name, 'value' => $module->link));
+        }
+
+        $attributes = array('class' => 'modicon');
+        if (isset($module->icon)) {
+            // Add an icon if we have one
+            $attributes['style'] = 'background-image:url('.$this->pix_url('icon', $module->name).');';
+        }
+        $output .= html_writer::tag('span', '', $attributes);
+
+        $output .= html_writer::tag('span', $module->title, array('class' => 'typename'));
+        if (!isset($module->help)) {
+            // Add help if found
+            $module->help = get_string('nohelpforactivityorresource', 'moodle');
+        }
+
+        // Format the help text using markdown with the following options
+        $options = new stdClass();
+        $options->trusted = false;
+        $options->noclean = false;
+        $options->smiley = false;
+        $options->filter = false;
+        $options->para = true;
+        $options->newlines = false;
+        $options->overflowdiv = false;
+        $module->help = format_text($module->help, FORMAT_MARKDOWN, $options);
+        $output .= html_writer::tag('span', $module->help, array('class' => 'typesummary'));
+        $output .= html_writer::end_tag('label');
+        $output .= html_writer::end_tag('div');
+
+        return $output;
+    }
+}

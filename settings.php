@@ -31,6 +31,15 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configtextarea($name, $title, $description, '');
     $settings->add($setting);
 
+    // Enable mod chooser "tiles"
+    $name = 'theme_decaf/usemodchoosertiles';
+    $title = get_string('usemodchoosertiles','theme_decaf');
+    $description = get_string('usemodchoosertilesdesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'No', 1=>'Yes');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
+
     // Enable edit buttons (replace rows of icons)
     $name = 'theme_decaf/useeditbuttons';
     $title = get_string('useeditbuttons','theme_decaf');

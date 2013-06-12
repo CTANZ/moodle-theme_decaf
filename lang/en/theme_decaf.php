@@ -63,3 +63,5 @@ $string['coursesloggedinonly'] = 'Hide Courses menu from non-logged-in users';
 $string['coursesloggedinonlydesc'] = 'If you do not want users who are not logged in to see the "Courses" menu in the Awesomebar, enable this setting.';
 $string['expandtoactivities'] = 'Expand to show activities within sections';
 $string['expandtoactivitiesdesc'] = 'Enabling this option shows activities underneath the sections in the Awesomebar, but degrades performance - especially in courses with lots of activities/resources.';
+$string['usemodchoosertiles'] = 'Use Mod Chooser Tiles';
+$string['usemodchoosertilesdesc'] = 'In the Mod Chooser, mods will be shown as "tiles" (similar to icons on the desktop of most OSes).';

@@ -45,6 +45,10 @@ if(!empty($PAGE->theme->settings->persistentedit) && $PAGE->user_allowed_editing
     $bodyclasses[] = 'decaf_persistent_edit';
 }
 
+if(!empty($PAGE->theme->settings->usemodchoosertiles)) {
+    $bodyclasses[] = 'decaf_modchooser_tiles';
+}
+
 if (!empty($PAGE->theme->settings->footnote)) {
     $footnote = $PAGE->theme->settings->footnote;
 } else {

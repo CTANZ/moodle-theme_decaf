@@ -30,6 +30,18 @@ if ($ADMIN->fulltree) {
     $description = get_string('customcssdesc', 'theme_decaf');
     $setting = new admin_setting_configtextarea($name, $title, $description, '');
     $settings->add($setting);
+    
+    // Show user profile picture
+    $name = 'theme_decaf/showuserpicture';
+    $title = get_string('showuserpicture','theme_decaf');
+    $description = get_string('showuserpicturedesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(1=>'Yes', 0=>'No');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
+
+    // Editing Mode heading
+    $settings->add(new admin_setting_heading('themedecafeditingsettings', get_string('editingsettings', 'theme_decaf'), get_string('editingsettingsdesc', 'theme_decaf')));
 
     // Enable mod chooser "tiles"
     $name = 'theme_decaf/usemodchoosertiles';
@@ -58,6 +70,9 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
 
+    // Awesomebar / Navigation heading
+    $settings->add(new admin_setting_heading('themedecafawesombarsettings', get_string('awesomebarsettings', 'theme_decaf'), get_string('awesomebarsettingsdesc', 'theme_decaf')));
+
     // Hide Settings block
     $name = 'theme_decaf/hidesettingsblock';
     $title = get_string('hidesettingsblock','theme_decaf');
@@ -71,15 +86,6 @@ if ($ADMIN->fulltree) {
     $name = 'theme_decaf/hidenavigationblock';
     $title = get_string('hidenavigationblock','theme_decaf');
     $description = get_string('hidenavigationblockdesc', 'theme_decaf');
-    $default = 0;
-    $choices = array(1=>'Yes', 0=>'No');
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
-    $settings->add($setting);
-    
-    // Show user profile picture
-    $name = 'theme_decaf/showuserpicture';
-    $title = get_string('showuserpicture','theme_decaf');
-    $description = get_string('showuserpicturedesc', 'theme_decaf');
     $default = 0;
     $choices = array(1=>'Yes', 0=>'No');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);

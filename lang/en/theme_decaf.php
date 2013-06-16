@@ -65,3 +65,7 @@ $string['expandtoactivities'] = 'Expand to show activities within sections';
 $string['expandtoactivitiesdesc'] = 'Enabling this option shows activities underneath the sections in the Awesomebar, but degrades performance - especially in courses with lots of activities/resources.';
 $string['usemodchoosertiles'] = 'Use Mod Chooser Tiles';
 $string['usemodchoosertilesdesc'] = 'In the Mod Chooser, mods will be shown as "tiles" (similar to icons on the desktop of most OSes).';
+$string['awesomebarsettings'] = 'Awesomebar / Navigation Settings';
+$string['awesomebarsettingsdesc'] = 'The "Awesomebar" is the black navigation bar that is fixed to the top of the browser window when using Decaf.<br>The following settings relate to the "Awesomebar" and other page navigation.';
+$string['editingsettings'] = 'Editing Mode Settings';
+$string['editingsettingsdesc'] = 'The following settings relate to Editing Mode, and aim to make it tidier and easier to use.';

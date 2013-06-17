@@ -434,6 +434,8 @@ class decaf_expand_navigation extends global_navigation {
 
     /** @var array */
     protected $expandable = array();
+    private $expandtocourses = true;
+    private $expandedcourses = array();
 
     /**
      * Constructs the navigation for use in AJAX request
@@ -454,7 +456,7 @@ class decaf_expand_navigation extends global_navigation {
      * @return array The expandable nodes
      */
     public function initialise() {
-        global $CFG, $DB, $SITE;
+        global $CFG, $DB, $SITE, $PAGE;
 
         if ($this->initialised || during_initial_install()) {
             return $this->expandable;
@@ -463,8 +465,13 @@ class decaf_expand_navigation extends global_navigation {
 
         $this->rootnodes = array();
         $this->rootnodes['site']      = $this->add_course($SITE);
+        $this->rootnodes['currentcourse'] = $this->add(get_string('currentcourse'), null, self::TYPE_ROOTNODE, null, 'currentcourse');
         $this->rootnodes['mycourses'] = $this->add(get_string('mycourses'), new moodle_url('/my'), self::TYPE_ROOTNODE, null, 'mycourses');
         $this->rootnodes['courses'] = $this->add(get_string('courses'), null, self::TYPE_ROOTNODE, null, 'courses');
+
+        if (!empty($PAGE->theme->settings->coursesleafonly) || (!empty($PAGE->theme->settings->coursesloggedinonly) && !isloggedin())) {
+            $this->expandtocourses = false;
+        }
         
         if(function_exists('enrol_user_sees_own_courses')) {
             // Determine if the user is enrolled in any course.
@@ -486,7 +493,6 @@ class decaf_expand_navigation extends global_navigation {
 
     public function expand($branchtype, $id) {
         global $CFG, $DB, $PAGE;
-        static $decaf_expanded_courses = array();
         static $decaf_course_activities = array();
         // Branchtype will be one of navigation_node::TYPE_*
         switch ($branchtype) {
@@ -495,11 +501,20 @@ class decaf_expand_navigation extends global_navigation {
                     $this->rootnodes['mycourses']->isexpandable = true;
                     $this->load_courses_enrolled();
                 } else if ($id === 'courses') {
-                    $this->rootnodes['courses']->isexpandable = true;
-                    $this->load_courses_other();
+                    if ($this->expandtocourses) {
+                        $this->rootnodes['courses']->isexpandable = true;
+                        $this->load_courses_other();
+                    } else {
+                        // Don't load courses - theme settings say we shouldn't.
+                        $this->rootnodes['courses']->isexpandable = false;
+                        $this->rootnodes['courses']->nodetype = self::NODETYPE_LEAF;
+                    }
                 }
                 break;
             case self::TYPE_CATEGORY :
+                if (!empty($PAGE->theme->settings->coursesleafonly)) {
+                    return false;
+                }
                 $this->load_all_categories($id);
                 $limit = 20;
                 if (!empty($CFG->navcourselimit)) {
@@ -513,8 +528,11 @@ class decaf_expand_navigation extends global_navigation {
             case self::TYPE_COURSE :
                 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
                 try {
-                    if(!array_key_exists($course->id, $decaf_expanded_courses)) {
+                    if(!array_key_exists($course->id, $this->expandedcourses)) {
                         $coursenode = $this->add_course($course);
+                        if (!$coursenode) {
+                            break;
+                        }
                         if ($PAGE->course->id !== $course->id) {
                             $coursenode->nodetype = navigation_node::NODETYPE_LEAF;
                             $coursenode->isexpandable = false;
@@ -524,7 +542,7 @@ class decaf_expand_navigation extends global_navigation {
                         $this->add_course_essentials($coursenode, $course);
                         if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
                             decaf_require_course_login($course);
-                            $decaf_expanded_courses[$course->id] = $this->load_course_sections($course, $coursenode);
+                            $this->expandedcourses[$course->id] = $this->expand_course($course, $coursenode);
                         }
                     }
                 } catch(require_login_exception $rle) {
@@ -539,28 +557,20 @@ class decaf_expand_navigation extends global_navigation {
                 $course = $DB->get_record_sql($sql, array($id), MUST_EXIST);
                 try {
                     $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
-                    if(!array_key_exists($course->id, $decaf_expanded_courses)) {
+                    if(!array_key_exists($course->id, $this->expandedcourses)) {
                         $coursenode = $this->add_course($course);
-                        $this->add_course_essentials($coursenode, $course);
-                        $decaf_expanded_courses[$course->id] = $this->load_course_sections($course, $coursenode);
-                    }
-                    if (empty($decaf_expanded_courses[$course->id])) {
-                        // 2.4 compat - load_course_sections no longer returns the list of sections
-                        $sectionnodes = array();
-                        foreach ($coursenode->children as $node) {
-                            if($node->type != self::TYPE_SECTION) continue;
-                            $section = new stdClass();
-                            $section->sectionnode = $node;
-                            $sectionnodes[] = $section;
+                        if (!$coursenode) {
+                            break;
                         }
-                        $decaf_expanded_courses[$course->id] = $sectionnodes;
+                        $this->add_course_essentials($coursenode, $course);
+                        $this->expandedcourses[$course->id] = $this->expand_course($course, $coursenode);
                     }
                     if (property_exists($PAGE->theme->settings, 'expandtoactivities') && $PAGE->theme->settings->expandtoactivities) {
                         if(!array_key_exists($course->id, $decaf_course_activities)) {
                             list($sectionarray, $activities) = $this->generate_sections_and_activities($course);
                             $decaf_course_activities[$course->id] = $activities;
                         }
-                        $sections = $decaf_expanded_courses[$course->id];
+                        $sections = $this->expandedcourses[$course->id];
                         $activities = $decaf_course_activities[$course->id];
 
                         if (!array_key_exists($course->sectionnumber, $sections)) break;
@@ -586,6 +596,21 @@ class decaf_expand_navigation extends global_navigation {
                 return $this->expandable;
         }
         return $this->expandable;
+    }
+    private function expand_course(stdClass $course, navigation_node $coursenode) {
+        $sectionnodes = $this->load_course_sections($course, $coursenode);
+        if (empty($sectionnodes)) {
+            // 2.4 compat - load_course_sections no longer returns the list of sections
+            $sectionnodes = array();
+            foreach ($coursenode->children as $node) {
+                if($node->type != self::TYPE_SECTION) continue;
+                $section = new stdClass();
+                $section->sectionnode = $node;
+                $sectionnodes[] = $section;
+            }
+            $expanded = $sectionnodes;
+        }
+        return $sectionnodes;
     }
 
     /**
@@ -698,7 +723,7 @@ class decaf_expand_navigation extends global_navigation {
      * @param navigation_node $parent
      */
     protected function add_category(stdClass $category, navigation_node $parent) {
-        if ($parent->find($category->id, self::TYPE_CATEGORY)) {
+        if ((!$this->expandtocourses && $parent->key=='courses') || $parent->find($category->id, self::TYPE_CATEGORY)) {
             return;
         }
         $url = new moodle_url('/course/category.php', array('id' => $category->id));
@@ -725,7 +750,6 @@ class decaf_expand_navigation extends global_navigation {
      */
     public function add_course_to(stdClass $course, $forcegeneric = false, $coursetype = self::COURSE_OTHER, navigation_node $parent) {
         global $CFG, $SITE;
-
         $coursecontext = context_course::instance($course->id);
 
         if ($course->id != $SITE->id && !$course->visible) {
@@ -747,13 +771,36 @@ class decaf_expand_navigation extends global_navigation {
 
         return $coursenode;
     }
+    public function add_course(stdClass $course, $forcegeneric = false, $coursetype = self::COURSE_OTHER) {
+        global $PAGE;
+        if (!$forcegeneric && array_key_exists($course->id, $this->addedcourses)) {
+            return $this->addedcourses[$course->id];
+        }
+        if ($coursetype == self::COURSE_OTHER && $PAGE->course->id == $course->id) {
+            $coursetype = self::COURSE_CURRENT;
+        }
+        if ($this->expandtocourses || $coursetype == self::COURSE_MY || $coursetype == self::COURSE_CURRENT) {
+            return parent::add_course($course, $forcegeneric, $coursetype);
+        }
+        return false;
+    }
 
     /**
      * They've expanded the general 'courses' branch.
      */
     protected function load_courses_other() {
+        if (!$this->expandtocourses) {
+            return;
+        }
         $this->load_all_courses();
     }
+    protected function load_all_courses($categoryids = null) {
+        if (!$this->expandtocourses) {
+            return array();
+        }
+        return parent::load_all_courses($categoryids);
+    }
+
 
     public function get_expandable() {
         return $this->expandable;

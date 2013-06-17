@@ -277,8 +277,9 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
     }
 
     protected function navigation_node(navigation_node $node, $attrs=array()) {
-        global $PAGE;
-        static $subnav;
+        global $CFG, $PAGE;
+        static $mainsubnav;
+        static $coursessubnav;
         $items = $node->children;
         $hidecourses = (property_exists($PAGE->theme->settings, 'coursesloggedinonly') && $PAGE->theme->settings->coursesloggedinonly && !isloggedin());
 
@@ -311,14 +312,30 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
 
             $content = $this->output->render($item);
             if($isbranch && $item->children->count()==0) {
+                $expanded = false;
                 // Navigation block does this via AJAX - we'll merge it in directly instead
-                if(!$subnav) {
-                    // Prepare dummy page for subnav initialisation
-                    $dummypage = new decaf_dummy_page();
-                    $dummypage->set_context($PAGE->context);
-                    $dummypage->set_url($PAGE->url);
-                    $subnav = new decaf_expand_navigation($dummypage, $item->type, $item->key);
+                if (!empty($CFG->navshowallcourses) && $item->key === 'courses') {
+                    if(!$coursessubnav) {
+                        // Prepare dummy page for subnav initialisation
+                        $dummypage = new decaf_dummy_page();
+                        $dummypage->set_context($PAGE->context);
+                        $dummypage->set_url($PAGE->url);
+                        $coursessubnav = new decaf_expand_navigation($dummypage, $item->type, $item->key);
+                        $expanded = true;
+                    }
+                    $subnav = $coursessubnav;
                 } else {
+                    if(!$mainsubnav) {
+                        // Prepare dummy page for subnav initialisation
+                        $dummypage = new decaf_dummy_page();
+                        $dummypage->set_context($PAGE->context);
+                        $dummypage->set_url($PAGE->url);
+                        $mainsubnav = new decaf_expand_navigation($dummypage, $item->type, $item->key);
+                        $expanded = true;
+                    }
+                    $subnav = $mainsubnav;
+                }
+                if (!$expanded) {
                     // re-use subnav so we don't have to reinitialise everything
                     $subnav->expand($item->type, $item->key);
                 }

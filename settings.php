@@ -118,6 +118,15 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
 
+    // Don't actually show courses under "Courses" menu item
+    $name = 'theme_decaf/coursesleafonly';
+    $title = get_string('coursesleafonly','theme_decaf');
+    $description = get_string('coursesleafonlydesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'Yes', 1=>'No'); // This seems backwards, but makes it easier for users to understand as it eliminates the double-negative.
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
+
     // Expand to activities at cost of performance
     $name = 'theme_decaf/expandtoactivities';
     $title = get_string('expandtoactivities','theme_decaf');

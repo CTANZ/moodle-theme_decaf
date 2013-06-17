@@ -69,3 +69,5 @@ $string['awesomebarsettings'] = 'Awesomebar / Navigation Settings';
 $string['awesomebarsettingsdesc'] = 'The "Awesomebar" is the black navigation bar that is fixed to the top of the browser window when using Decaf.<br>The following settings relate to the "Awesomebar" and other page navigation.';
 $string['editingsettings'] = 'Editing Mode Settings';
 $string['editingsettingsdesc'] = 'The following settings relate to Editing Mode, and aim to make it tidier and easier to use.';
+$string['coursesleafonly'] = 'Populate "Courses" menu'; // This seems backwards, but makes it easier for users to understand as it eliminates the double-negative.
+$string['coursesleafonlydesc'] = 'On sites with large numbers of courses, generating the full list of courses in the Awesomebar can cause performance issues.  Disable this setting (set it to "No") to prevent the list from being generated - the "Courses" node will remain as a quick way to reach the course list.';

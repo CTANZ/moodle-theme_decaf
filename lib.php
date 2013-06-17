@@ -606,7 +606,16 @@ class decaf_expand_navigation extends global_navigation {
                 if($node->type != self::TYPE_SECTION) continue;
                 $section = new stdClass();
                 $section->sectionnode = $node;
-                $sectionnodes[] = $section;
+                // Get section number out of action URL (it doesn't seem to be available elsewhere!)
+                $hasparams = false;
+                if (!empty($node->action) && $params = $node->action->params()){
+                    $hasparams = true;
+                }
+                if ($hasparams && array_key_exists('section', $params)) {
+                    $sectionnodes[$params['section']] = $section;
+                } else {
+                    $sectionnodes[] = $section;
+                }
             }
             $expanded = $sectionnodes;
         }

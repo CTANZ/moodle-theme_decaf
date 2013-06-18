@@ -389,6 +389,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
 require_once($CFG->dirroot.'/course/renderer.php');
 class theme_decaf_core_course_renderer extends core_course_renderer {
     protected function course_modchooser_module($module, $classes = array('option')) {
+        global $PAGE;
         if(empty($PAGE->theme->settings->usemodchoosertiles)) {
             return parent::course_modchooser_module($module, $classes);
         }

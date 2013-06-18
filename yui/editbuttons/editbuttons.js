@@ -123,6 +123,14 @@ EditButtons.prototype = {
                 }, this, tag);
             }
         });
+        Y.later(1500, this, function(icons) {
+            icons.all('span.editing_move').each(function(tag) {
+                var icon = tag.one('img');
+                var caption = tag.get('title') || icon.get('title') || icon.get('alt');
+                icon.removeAttribute('hspace');
+                tag.append('<span>' + caption + '</span>');
+            });
+        }, icons);
         this.wrapButton(icons, thisbutton);
     },
     toggleButton : function(button) {

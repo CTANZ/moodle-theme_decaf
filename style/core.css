@@ -313,7 +313,8 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
 .decaf_modchooser_tiles .choosercontainer #chooseform .options .option input {position:absolute;left:-10000px;}
 .decaf_modchooser_tiles .choosercontainer #chooseform .options .option .modicon {display:block;width:24px;height:24px;margin: 0 auto;}
 .decaf_modchooser_tiles .choosercontainer #chooseform .options .option .modicon img.icon {padding:0;}
-.decaf_modchooser_tiles .choosercontainer #chooseform .options .option .typename {padding:0;font-size:90%;line-height:1em;}
+.decaf_modchooser_tiles .choosercontainer #chooseform .options .option .typename {padding:0;font-size:90%;line-height:1;}
+.decaf_modchooser_tiles .moodle-dialogue-base .moodle-dialogue.chooserdialogue .moodle-dialogue-bd .option label {line-height:1;}
 
 
 /** Custom CSS **/

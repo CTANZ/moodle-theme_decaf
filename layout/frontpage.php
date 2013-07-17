@@ -37,12 +37,14 @@ if ($hassidepre && !$hassidepost) {
     $bodyclasses[] = 'content-only';
 }
 
-if(!empty($PAGE->theme->settings->persistentedit) && $PAGE->user_allowed_editing()) {
+if(!empty($PAGE->theme->settings->persistentedit)) {
     if(property_exists($USER, 'editing') && $USER->editing) {
         $OUTPUT->set_really_editing(true);
     }
-    $USER->editing = 1;
-    $bodyclasses[] = 'decaf_persistent_edit';
+    if ($PAGE->user_allowed_editing()) {
+        $USER->editing = 1;
+        $bodyclasses[] = 'decaf_persistent_edit';
+    }
 }
 
 if(!empty($PAGE->theme->settings->usemodchoosertiles)) {

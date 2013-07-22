@@ -310,6 +310,11 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                 $item->hideicon = true;
             }
 
+            if ($item->action instanceof action_link && $hasicon && !$item->hideicon && (strip_tags($item->action->text)==$item->action->text)) {
+                // Icon hasn't already been rendered - render it now.
+                $item->action->text = $this->output->render($item->icon) . $item->action->text;
+            }
+
             $content = $this->output->render($item);
             if($isbranch && $item->children->count()==0) {
                 $expanded = false;

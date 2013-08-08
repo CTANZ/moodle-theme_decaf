@@ -471,6 +471,8 @@ class decaf_expand_navigation extends global_navigation {
 
         if (!empty($PAGE->theme->settings->coursesleafonly) || (!empty($PAGE->theme->settings->coursesloggedinonly) && !isloggedin())) {
             $this->expandtocourses = false;
+        } else if (!empty($CFG->navshowcategories)) {
+            $this->load_all_categories(self::LOAD_ALL_CATEGORIES);
         }
         
         if(function_exists('enrol_user_sees_own_courses')) {
@@ -515,39 +517,8 @@ class decaf_expand_navigation extends global_navigation {
                 if (!empty($PAGE->theme->settings->coursesleafonly)) {
                     return false;
                 }
-                $this->load_all_categories($id);
-                $limit = 20;
-                if (!empty($CFG->navcourselimit)) {
-                    $limit = (int)$CFG->navcourselimit;
-                }
-                $courses = $DB->get_records('course', array('category' => $id), 'sortorder','*', 0, $limit);
-                foreach ($courses as $course) {
-                    $this->add_course($course);
-                }
                 break;
             case self::TYPE_COURSE :
-                $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
-                try {
-                    if(!array_key_exists($course->id, $this->expandedcourses)) {
-                        $coursenode = $this->add_course($course);
-                        if (!$coursenode) {
-                            break;
-                        }
-                        if ($PAGE->course->id !== $course->id) {
-                            $coursenode->nodetype = navigation_node::NODETYPE_LEAF;
-                            $coursenode->isexpandable = false;
-                            break;
-                        }
-                        $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
-                        $this->add_course_essentials($coursenode, $course);
-                        if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
-                            decaf_require_course_login($course);
-                            $this->expandedcourses[$course->id] = $this->expand_course($course, $coursenode);
-                        }
-                    }
-                } catch(require_login_exception $rle) {
-                    $coursenode = $this->add_course($course);
-                }
                 break;
             case self::TYPE_SECTION :
                 $sql = 'SELECT c.*, cs.section AS sectionnumber

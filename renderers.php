@@ -280,6 +280,8 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
         global $CFG, $PAGE;
         static $mainsubnav;
         static $coursessubnav;
+        $ancestors = array();
+        $parent = $node;
         $items = $node->children;
         $hidecourses = (property_exists($PAGE->theme->settings, 'coursesloggedinonly') && $PAGE->theme->settings->coursesloggedinonly && !isloggedin());
 
@@ -342,7 +344,19 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                 if (!isloggedin() || isguestuser()) {
                     $subnav->set_expansion_limit(navigation_node::TYPE_COURSE);
                 }
-                $branch = $subnav->find($item->key, $item->type);
+
+                while (!empty($parent)) {
+                    if (empty($parent->key)) break;
+                    $ancestors[] = $parent;
+                    $parent = $parent->parent;
+                }
+                $branch = $subnav;
+                while (sizeof($ancestors)) {
+                    $parent = array_pop($ancestors);
+                    if ($parent->key == 'home') continue;
+                    $branch = $branch->get($parent->key, $parent->type);
+                }
+                $branch = $branch->find($item->key, $item->type);
                 if($branch!==false) $content .= $this->navigation_node($branch);
             } else {
                 $content .= $this->navigation_node($item);

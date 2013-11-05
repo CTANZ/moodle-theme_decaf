@@ -36,8 +36,8 @@ input#topadminsearchquery{border:1px solid #aaa; -moz-border-radius:10px; -webki
 .decaf-awesome-bar a:hover {background-color:#76b900;}
 .decaf-awesome-bar, .decaf-awesome-bar li {background-color:#333; color:#fff;}
 .decaf-awesome-bar li:hover {background-color:#595959;}
-.decaf-awesome-bar ul ul li span, .decaf-awesome-bar li.clickable-with-children > a {padding:3px 20px; background-image:url([[pix:theme|nav-arrow-right]]); background-position:100% 50%; background-repeat:no-repeat;}
-.decaf-awesome-bar ul ul a {display:block; height:100%; margin:0; vertical-align:top; padding-top:2px;}
+.decaf-awesome-bar ul ul li span, .decaf-awesome-bar li.clickable-with-children > a {padding:3px 20px; margin:0; text-indent:0; background-image:url([[pix:theme|nav-arrow-right]]); background-position:100% 50%; background-repeat:no-repeat;}
+.decaf-awesome-bar ul ul a {display:block; height:100%; margin:0 0 0 21px; text-indent:-21px; vertical-align:top; padding-top:2px;}
 .decaf-awesome-bar ul ul li:hover > span, .decaf-awesome-bar li.clickable-with-children:hover > a {background-image:url([[pix:theme|ab-arrowover]]);}
 .decaf-awesome-bar ul ul li:hover > span {cursor:default;}
 .decaf-awesome-bar li {border-color:#404040 #1a1a1a #1a1a1a #505050; border-style:solid; border-width:1px;}

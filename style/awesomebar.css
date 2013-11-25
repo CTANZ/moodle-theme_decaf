@@ -41,6 +41,7 @@ input#topadminsearchquery{border:1px solid #aaa; -moz-border-radius:10px; -webki
 .decaf-awesome-bar ul ul li:hover > span, .decaf-awesome-bar li.clickable-with-children:hover > a {background-image:url([[pix:theme|ab-arrowover]]);}
 .decaf-awesome-bar ul ul li:hover > span {cursor:default;}
 .decaf-awesome-bar li {border-color:#404040 #1a1a1a #1a1a1a #505050; border-style:solid; border-width:1px;}
+.decaf-awesome-bar > ul > li.clickable-with-children > a, .decaf-awesome-bar > ul > li.clickable-with-children:hover > a {padding:4px 8px; background-image:none;}
 
 /* Custom menu */
 #custommenu {position:relative; z-index:998;}

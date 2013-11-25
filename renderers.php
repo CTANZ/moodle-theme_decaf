@@ -251,7 +251,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
     public function settings_search_box() {
         global $CFG;
         $content = "";
-        if (has_capability('moodle/site:config', get_context_instance(CONTEXT_SYSTEM))) {
+        if (has_capability('moodle/site:config', context_system::instance())) {
             $content .= $this->search_form(new moodle_url("$CFG->wwwroot/$CFG->admin/search.php"), optional_param('query', '', PARAM_RAW));
         }
         $content .= html_writer::empty_tag('br', array('clear' => 'all'));

@@ -25,8 +25,9 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
 $bodyclasses = array();
 
 if(!empty($PAGE->theme->settings->useeditbuttons) && $PAGE->user_allowed_editing()) {
-    decaf_initialise_editbuttons($PAGE);
-    $bodyclasses[] = 'decaf_with_edit_buttons';
+    if (decaf_initialise_editbuttons($PAGE)) {
+        $bodyclasses[] = 'decaf_with_edit_buttons';
+    }
 }
 
 if ($hassidepre && !$hassidepost) {
@@ -57,9 +58,19 @@ if (!empty($PAGE->theme->settings->footnote)) {
     $footnote = '<!-- There was no custom footnote set -->';
 }
 
-if (check_browser_version("MSIE", "0")) {
+// Tell IE to use the latest engine (no Compatibility mode), if the user is using IE.
+$ie = false;
+if (class_exists('core_useragent')) {
+    if (core_useragent::check_ie_version()) {
+        $ie = true;
+    }
+} else if (check_browser_version("MSIE", "0")) {
+    $ie = true;
+}
+if ($ie) {
     header('X-UA-Compatible: IE=edge');
 }
+
 echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes() ?>>
 <head>

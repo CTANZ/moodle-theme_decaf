@@ -88,8 +88,14 @@ function decaf_set_customcss($css, $customcss) {
  * @param moodle_page $page 
  */
 function decaf_initialise_editbuttons(moodle_page $page) {
+    global $CFG;
+    if ($CFG->version >= 2013111800) {
+        // Do nothing - Moodle >= 2.6 has its own implementation of this.  Will adjust eventually, but for now just skip our stuff.
+        return false;
+    }
     $page->requires->string_for_js('edit', 'moodle');
     $page->requires->yui_module('moodle-theme_decaf-editbuttons', 'M.theme_decaf.initEditButtons');
+    return true;
 }
 
 function decaf_initialise_awesomebar(moodle_page $page) {
@@ -268,10 +274,10 @@ function decaf_require_login($courseorid = NULL, $autologinguest = true, $cm = N
     }
 
     // Fetch the system context, the course context, and prefetch its child contexts
-    $sysctx = get_context_instance(CONTEXT_SYSTEM);
-    $coursecontext = get_context_instance(CONTEXT_COURSE, $course->id, MUST_EXIST);
+    $sysctx = context_system::instance();
+    $coursecontext = context_course::instance($course->id, MUST_EXIST);
     if ($cm) {
-        $cmcontext = get_context_instance(CONTEXT_MODULE, $cm->id, MUST_EXIST);
+        $cmcontext = context_module::instance($cm->id, MUST_EXIST);
     } else {
         $cmcontext = null;
     }
@@ -437,6 +443,10 @@ class decaf_expand_navigation extends global_navigation {
     private $expandtocourses = true;
     private $expandedcourses = array();
 
+    // Added in 2.6, so we need to specify it here so that earlier versions don't complain.
+    /** @var int site admin branch node type, used only within settings nav 71 */
+    const TYPE_SITE_ADMIN = 71;
+
     /**
      * Constructs the navigation for use in AJAX request
      */
@@ -487,6 +497,8 @@ class decaf_expand_navigation extends global_navigation {
                 $this->rootnodes['courses']->isexpandable = true;
             }
         }
+
+        $PAGE->requires->data_for_js('siteadminexpansion', false);
         
         $this->expand($this->branchtype, $this->instanceid);
     }
@@ -497,6 +509,7 @@ class decaf_expand_navigation extends global_navigation {
         // Branchtype will be one of navigation_node::TYPE_*
         switch ($branchtype) {
             case self::TYPE_ROOTNODE :
+            case self::TYPE_SITE_ADMIN :
                 if ($id === 'mycourses') {
                     $this->rootnodes['mycourses']->isexpandable = true;
                     $this->load_courses_enrolled();
@@ -538,7 +551,7 @@ class decaf_expand_navigation extends global_navigation {
                             $coursenode->isexpandable = false;
                             break;
                         }
-                        $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
+                        $this->page->set_context(context_course::instance($course->id));
                         $this->add_course_essentials($coursenode, $course);
                         if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
                             decaf_require_course_login($course);
@@ -556,7 +569,7 @@ class decaf_expand_navigation extends global_navigation {
                         WHERE cs.id = ?';
                 $course = $DB->get_record_sql($sql, array($id), MUST_EXIST);
                 try {
-                    $this->page->set_context(get_context_instance(CONTEXT_COURSE, $course->id));
+                    $this->page->set_context(context_course::instance($course->id));
                     if(!array_key_exists($course->id, $this->expandedcourses)) {
                         $coursenode = $this->add_course($course);
                         if (!$coursenode) {
@@ -731,14 +744,14 @@ class decaf_expand_navigation extends global_navigation {
      * @param stdClass $category
      * @param navigation_node $parent
      */
-    protected function add_category(stdClass $category, navigation_node $parent) {
+    protected function add_category(stdClass $category, navigation_node $parent, $nodetype = self::TYPE_CATEGORY) {
         if ((!$this->expandtocourses && $parent->key=='courses') || $parent->find($category->id, self::TYPE_CATEGORY)) {
             return;
         }
         $url = new moodle_url('/course/category.php', array('id' => $category->id));
         $context = context_coursecat::instance($category->id);
         $categoryname = format_string($category->name, true, array('context' => $context));
-        $categorynode = $parent->add($categoryname, $url, self::TYPE_CATEGORY, $categoryname, $category->id);
+        $categorynode = $parent->add($categoryname, $url, $nodetype, $categoryname, $category->id);
         if (empty($category->visible)) {
             if (has_capability('moodle/category:viewhiddencategories', get_system_context())) {
                 $categorynode->hidden = true;
@@ -819,14 +832,14 @@ class decaf_expand_navigation extends global_navigation {
 class decaf_dummy_page extends moodle_page {
     /**
      * REALLY Set the main context to which this page belongs.
-     * @param object $context a context object, normally obtained with get_context_instance.
+     * @param object $context a context object, normally obtained with context_XXX::instance.
      */
     public function set_context($context) {
         if ($context === null) {
             // extremely ugly hack which sets context to some value in order to prevent warnings,
             // use only for core error handling!!!!
             if (!$this->_context) {
-                $this->_context = get_context_instance(CONTEXT_SYSTEM);
+                $this->_context = context_system::instance();
             }
             return;
         }

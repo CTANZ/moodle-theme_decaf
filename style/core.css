@@ -299,6 +299,8 @@ body.pagelayout-report #page-content #region-main .region-content {
 --------------------------*/
 #page-mod-quiz-edit div.question div.content div.qorder {right:60px;}
 #page-mod-quiz-edit div.question div.content div.questioncontrols {width:65px;}
+#page-mod-quiz-edit .editq div.question div.content .randomquestioncategory {margin-right:12.5em;}
+#page-mod-quiz-edit .editq div.question div.content .randomquestioncategory > a {white-space:normal;max-width:100%;display:inline;float:none;}
 
 /* Question bank
 --------------------------*/

@@ -756,7 +756,7 @@ class decaf_expand_navigation extends global_navigation {
         $categoryname = format_string($category->name, true, array('context' => $context));
         $categorynode = $parent->add($categoryname, $url, $nodetype, $categoryname, $category->id);
         if (empty($category->visible)) {
-            if (has_capability('moodle/category:viewhiddencategories', get_system_context())) {
+            if (has_capability('moodle/category:viewhiddencategories', context_system::instance())) {
                 $categorynode->hidden = true;
             } else {
                 $categorynode->display = false;

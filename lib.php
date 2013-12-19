@@ -443,9 +443,11 @@ class decaf_expand_navigation extends global_navigation {
     private $expandtocourses = true;
     private $expandedcourses = array();
 
-    // Added in 2.6, so we need to specify it here so that earlier versions don't complain.
+    // Added in 2.6, so we need to specify these here so that earlier versions don't complain.
     /** @var int site admin branch node type, used only within settings nav 71 */
     const TYPE_SITE_ADMIN = 71;
+    /** var int Category displayed in MyHome navigation node */
+    const TYPE_MY_CATEGORY = 11;
 
     /**
      * Constructs the navigation for use in AJAX request
@@ -525,6 +527,7 @@ class decaf_expand_navigation extends global_navigation {
                 }
                 break;
             case self::TYPE_CATEGORY :
+            case self::TYPE_MY_CATEGORY :
                 if (!empty($PAGE->theme->settings->coursesleafonly)) {
                     return false;
                 }

@@ -340,14 +340,17 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
                     }
                     $subnav = $mainsubnav;
                 }
-                if (!$expanded) {
-                    // re-use subnav so we don't have to reinitialise everything
-                    $subnav->expand($item->type, $item->key);
-                }
-                if (!isloggedin() || isguestuser()) {
-                    $subnav->set_expansion_limit(navigation_node::TYPE_COURSE);
-                }
                 $branch = $subnav->find($item->key, $item->type);
+                if ($branch === false) {
+                    if (!$expanded) {
+                        // re-use subnav so we don't have to reinitialise everything
+                        $subnav->expand($item->type, $item->key);
+                    }
+                    if (!isloggedin() || isguestuser()) {
+                        $subnav->set_expansion_limit(navigation_node::TYPE_COURSE);
+                    }
+                    $branch = $subnav->find($item->key, $item->type);
+                }
                 if($branch!==false) $content .= $this->navigation_node($branch);
             } else {
                 $content .= $this->navigation_node($item);

@@ -105,10 +105,10 @@ ul.section li.label {padding-bottom:5px !important;}
 .course-content .section .activity .availabilityinfo,
 .course-content .section .activity .contentafterlink {margin-left:26px;margin-top:0;}
 ul.section .activity .contentafterlink p {margin:0 0 1em;}
-body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative;}
+body.editing ul.section>li {border-bottom: 1px dashed #808080;}
 input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 /* Make 2.3 activity chooser sit on top of modules in sections */
-div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:1500;}
+div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;}
 
 /* Blocks
 --------------------------- */
@@ -142,7 +142,7 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:1500;}
 .decaf_persistent_edit.path-course .navbar .navbutton {display:none;}
 .decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .activityinstance,
 .decaf_with_edit_buttons.jsenabled .course-content .section .activity .activityinstance {padding-right:1.5em;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;z-index:3;}
+.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;}
 .dockeditempanel_hd .decaf-editbutton-wrap {float:right;}
 .dockeditempanel_hd .decaf-editbutton-wrap .hidepanelicon {margin-right:4px;}
 .decaf_with_edit_buttons.jsenabled.editing ul.section>li {z-index:3;}

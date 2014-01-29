@@ -805,6 +805,9 @@ class decaf_expand_navigation extends global_navigation {
             $coursetype = self::COURSE_CURRENT;
         }
         if ($this->expandtocourses || $coursetype == self::COURSE_MY || $coursetype == self::COURSE_CURRENT) {
+            if ($coursenode = $this->find($course->id, self::TYPE_COURSE)) {
+                return $coursenode;
+            }
             return parent::add_course($course, $forcegeneric, $coursetype);
         }
         return false;

@@ -1,58 +1,150 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * get_performance_output() override get_peformance_info()
- *  in moodlelib.php. Returns a string
- * values ready for use.
+ * Responsive Decaf theme for Moodle 2.6 and above.
  *
- * @return string
+ * For full information about creating Moodle themes, see:
+ * http://docs.moodle.org/dev/Themes_2.0
+ *
+ * @package   theme_decaf
+ * @copyright 2014 Paul Nicholls
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-function decaf_performance_output($param) {
-	
-    $html = '<div class="performanceinfo"><ul>';
-	if (isset($param['realtime'])) $html .= '<li><a class="red" href="#"><var>'.$param['realtime'].' secs</var><span>Load Time</span></a></li>';
-	if (isset($param['memory_total'])) $html .= '<li><a class="orange" href="#"><var>'.display_size($param['memory_total']).'</var><span>Memory Used</span></a></li>';
-    if (isset($param['includecount'])) $html .= '<li><a class="blue" href="#"><var>'.$param['includecount'].' Files </var><span>Included</span></a></li>';
-    if (isset($param['dbqueries'])) $html .= '<li><a class="purple" href="#"><var>'.$param['dbqueries'].' </var><span>DB Read/Write</span></a></li>';
-    $html .= '</ul></div>';
 
-    return $html;
+/**
+ * Initialises various Decaf options.  $PAGE thinks that output has already started when this is called,
+ * so we need to create a list of supplementary body classes in case various Decaf options are enabled.
+ */
+function theme_decaf_init() {
+    global $CFG, $PAGE, $USER, $OUTPUT;
+    $decaf = clone $PAGE->theme->settings;
+    $decaf->bodyclasses = array();
+    $decaf->awesome_nav = '';
+    $decaf->awesome_settings = '';
+
+    if (!empty($decaf->alwaysexpandsiteadmin)) {
+        navigation_node::require_admin_tree();
+    }
+
+    // Initialise and generate Awesomebar before handling Persistent Edit mode.
+    if (empty($PAGE->layout_options['noawesomebar'])) {
+        // Ensure that navigation has been initialised properly, in case Navigation block is not visible.
+        $PAGE->navigation->initialise();
+        $PAGE->requires->yui_module('moodle-theme_decaf-awesomebar', 'M.theme_decaf.initAwesomeBar');
+        $decaf->topsettings = $PAGE->get_renderer('theme_decaf','topsettings');
+        $decaf->awesome_nav = $decaf->topsettings->navigation_tree($PAGE->navigation);
+        $decaf->awesome_settings = $decaf->topsettings->settings_tree($PAGE->settingsnav);
+        if (!strlen($decaf->awesome_nav) && !strlen($decaf->awesome_settings)) {
+            if (!$decaf->custommenuinawesomebar || !(empty($PAGE->layout_options['nocustommenu']) && strlen($OUTPUT->custom_menu()))) {
+                // No Awesomebar content - hide it.
+                $decaf->bodyclasses[] = 'decaf_no_awesomebar';
+            }
+        }
+    } else {
+        $decaf->bodyclasses[] = 'decaf_no_awesomebar';
+    }
+
+    if(!empty($decaf->persistentedit)) {
+        if(property_exists($USER, 'editing') && $USER->editing) {
+            $OUTPUT->set_really_editing(true);
+        }
+        if ($PAGE->user_allowed_editing()) {
+            $USER->editing = 1;
+            $decaf->bodyclasses[] = 'decaf_persistent_edit';
+            if (!$OUTPUT->is_really_editing()) {
+                // Persistent editing mode - initialise action menus since core won't.
+                $PAGE->requires->yui_module('moodle-core-actionmenu', 'M.core.actionmenu.init');
+            }
+        }
+    }
+
+    if(!empty($decaf->usemodchoosertiles)) {
+        $decaf->bodyclasses[] = 'decaf_modchooser_tiles';
+    }
+
+    // Initialise group mode fix for action menu if applicable.
+    if (!empty($CFG->modeditingmenu)) {
+        $decaf->bodyclasses[] = 'decaf_with_actionmenus';
+        $PAGE->requires->yui_module('moodle-theme_decaf-actionmenu', 'M.theme_decaf.initActionMenu');
+    }
+    return $decaf;
 }
 
 /**
- * Makes our changes to the CSS
+ * Parses CSS before it is cached.
  *
- * @param string $css
- * @param theme_config $theme
- * @return string
+ * This function can make alterations and replace patterns within the CSS.
+ *
+ * @param string $css The CSS
+ * @param theme_config $theme The theme config object.
+ * @return string The parsed CSS The parsed CSS.
  */
-function decaf_process_css($css, $theme) {
+function theme_decaf_process_css($css, $theme) {
 
+    // Set the page background colour.
     if (!empty($theme->settings->backgroundcolor)) {
         $backgroundcolor = $theme->settings->backgroundcolor;
     } else {
         $backgroundcolor = null;
     }
-    $css = decaf_set_backgroundcolor($css, $backgroundcolor);
+    $css = theme_decaf_set_backgroundcolor($css, $backgroundcolor);
 
+    // Set the background image for the logo.
+    $logo = $theme->setting_file_url('logo', 'logo');
+    $css = theme_decaf_set_logo($css, $logo);
+
+    // Set custom CSS.
     if (!empty($theme->settings->customcss)) {
         $customcss = $theme->settings->customcss;
     } else {
         $customcss = null;
     }
-    $css = decaf_set_customcss($css, $customcss);
+    $css = theme_decaf_set_customcss($css, $customcss);
 
     return $css;
 }
 
 /**
- * Sets the background colour variable in CSS
+ * Adds the logo to CSS.
+ *
+ * @param string $css The CSS.
+ * @param string $logo The URL of the logo.
+ * @return string The parsed CSS
+ */
+function theme_decaf_set_logo($css, $logo) {
+    $tag = '[[setting:logo]]';
+    $replacement = $logo;
+    if (is_null($replacement)) {
+        $replacement = '';
+    }
+
+    $css = str_replace($tag, $replacement, $css);
+
+    return $css;
+}
+
+/**
+ * Sets the background colour variable in CSS.
  *
  * @param string $css
  * @param mixed $backgroundcolor
  * @return string
  */
-function decaf_set_backgroundcolor($css, $backgroundcolor) {
+function theme_decaf_set_backgroundcolor($css, $backgroundcolor) {
     $tag = '[[setting:backgroundcolor]]';
     $replacement = $backgroundcolor;
     if (is_null($replacement)) {
@@ -63,380 +155,140 @@ function decaf_set_backgroundcolor($css, $backgroundcolor) {
 }
 
 /**
- * Sets the custom css variable in CSS
+ * Serves any files associated with the theme settings.
  *
- * @param string $css
- * @param mixed $customcss
- * @return string
+ * @param stdClass $course
+ * @param stdClass $cm
+ * @param context $context
+ * @param string $filearea
+ * @param array $args
+ * @param bool $forcedownload
+ * @param array $options
+ * @return bool
  */
-function decaf_set_customcss($css, $customcss) {
+function theme_decaf_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+    if ($context->contextlevel == CONTEXT_SYSTEM and $filearea === 'logo') {
+        $theme = theme_config::load('decaf');
+        return $theme->setting_file_serve('logo', $args, $forcedownload, $options);
+    } else {
+        send_file_not_found();
+    }
+}
+
+/**
+ * Adds any custom CSS to the CSS before it is cached.
+ *
+ * @param string $css The original CSS.
+ * @param string $customcss The custom CSS to add.
+ * @return string The CSS which now contains our custom CSS.
+ */
+function theme_decaf_set_customcss($css, $customcss) {
     $tag = '[[setting:customcss]]';
     $replacement = $customcss;
     if (is_null($replacement)) {
         $replacement = '';
     }
+
     $css = str_replace($tag, $replacement, $css);
+
     return $css;
 }
 
 /**
- * Adds the JavaScript for the edit buttons to the page.
+ * Returns an object containing HTML for the areas affected by settings.
  *
- * The edit buttoniser is a YUI moodle module that is located in
- *     theme/decaf/yui/editbuttons/editbuttons.js
- *
- * @param moodle_page $page 
+ * @param renderer_base $output Pass in $OUTPUT.
+ * @param moodle_page $page Pass in $PAGE.
+ * @return stdClass An object with the following properties:
+ *      - navbarclass A CSS class to use on the navbar. By default ''.
+ *      - heading HTML to use for the heading. A logo if one is selected or the default heading.
+ *      - footnote HTML to use as a footnote. By default ''.
  */
-function decaf_initialise_editbuttons(moodle_page $page) {
+function theme_decaf_get_html_for_settings(renderer_base $output, moodle_page $page) {
     global $CFG;
-    if ($CFG->version >= 2013111800) {
-        // Do nothing - Moodle >= 2.6 has its own implementation of this.  Will adjust eventually, but for now just skip our stuff.
-        return false;
+    $return = new stdClass;
+
+    $return->navbarclass = '';
+    if (!empty($page->theme->settings->invert)) {
+        $return->navbarclass .= ' navbar-inverse';
     }
-    $page->requires->string_for_js('edit', 'moodle');
-    $page->requires->yui_module('moodle-theme_decaf-editbuttons', 'M.theme_decaf.initEditButtons');
-    return true;
+
+    if (!empty($page->theme->settings->logo)) {
+        $return->heading = html_writer::link($CFG->wwwroot, '', array('title' => get_string('home'), 'class' => 'logo'));
+    } else {
+        $return->heading = $output->page_heading();
+    }
+
+    $return->footnote = '';
+    if (!empty($page->theme->settings->footnote)) {
+        $return->footnote = '<div class="footnote text-center">'.$page->theme->settings->footnote.'</div>';
+    }
+
+    return $return;
 }
 
-function decaf_initialise_awesomebar(moodle_page $page) {
-    // Ensure that navigation has been initialised properly, in case Navigation block is not visible in 2.4
-    $page->navigation->initialise();
-    $page->requires->yui_module('moodle-theme_decaf-awesomebar', 'M.theme_decaf.initAwesomeBar');
+/**
+ * All theme functions should start with theme_decaf_
+ * @deprecated since 2.5.1
+ */
+function decaf_process_css() {
+    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
 }
 
-function decaf_require_course_login($courseorid, $autologinguest = true, $cm = NULL, $setwantsurltome = true, $preventredirect = true) {
-    global $CFG, $SITE;
-    $issite = (is_object($courseorid) and $courseorid->id == SITEID)
-          or (!is_object($courseorid) and $courseorid == SITEID);
-    if ($issite && !empty($cm) && !($cm instanceof cm_info)) {
-        // note: nearly all pages call get_fast_modinfo anyway and it does not make any
-        // db queries so this is not really a performance concern, however it is obviously
-        // better if you use get_fast_modinfo to get the cm before calling this.
-        if (is_object($courseorid)) {
-            $course = $courseorid;
-        } else {
-            $course = clone($SITE);
-        }
-        $modinfo = get_fast_modinfo($course);
-        $cm = $modinfo->get_cm($cm->id);
-    }
-    if (!empty($CFG->forcelogin)) {
-        // login required for both SITE and courses
-        decaf_require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
+/**
+ * All theme functions should start with theme_decaf_
+ * @deprecated since 2.5.1
+ */
+function decaf_set_logo() {
+    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
+}
 
-    } else if ($issite && !empty($cm) and !$cm->uservisible) {
-        // always login for hidden activities
-        decaf_require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
+/**
+ * All theme functions should start with theme_decaf_
+ * @deprecated since 2.5.1
+ */
+function decaf_set_customcss() {
+    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
+}
 
-    } else if ($issite) {
-              //login for SITE not required
-        if ($cm and empty($cm->visible)) {
-            // hidden activities are not accessible without login
-            decaf_require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
-        } else if ($cm and !empty($CFG->enablegroupmembersonly) and $cm->groupmembersonly) {
-            // not-logged-in users do not have any group membership
-            decaf_require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
-        } else {
-            // We still need to instatiate PAGE vars properly so that things
-            // that rely on it like navigation function correctly.
-            if (!empty($courseorid)) {
-                if (is_object($courseorid)) {
-                    $course = $courseorid;
-                } else {
-                    $course = clone($SITE);
-                }
-                if ($cm) {
-                    if ($cm->course != $course->id) {
-                        throw new coding_exception('course and cm parameters in require_course_login() call do not match!!');
-                    }
-                }
+/**
+ * get_performance_output() override get_peformance_info()
+ *  in moodlelib.php. Returns a string
+ * values ready for use.
+ *
+ * @return string
+ */
+function theme_decaf_performance_output($param) {
+    
+    $html = '<div class="performanceinfo"><ul>';
+    if (isset($param['realtime'])) $html .= '<li><a class="red" href="#"><var>'.$param['realtime'].' secs</var><span>Load Time</span></a></li>';
+    if (isset($param['memory_total'])) $html .= '<li><a class="orange" href="#"><var>'.display_size($param['memory_total']).'</var><span>Memory Used</span></a></li>';
+    if (isset($param['includecount'])) $html .= '<li><a class="blue" href="#"><var>'.$param['includecount'].' Files </var><span>Included</span></a></li>';
+    if (isset($param['dbqueries'])) $html .= '<li><a class="purple" href="#"><var>'.$param['dbqueries'].' </var><span>DB Read/Write</span></a></li>';
+    $html .= '</ul></div>';
+
+    return $html;
+}
+
+class theme_decaf_dummy_page extends moodle_page {
+    /**
+     * REALLY Set the main context to which this page belongs.
+     * @param object $context a context object, normally obtained with context_XXX::instance.
+     */
+    public function set_context($context) {
+        if ($context === null) {
+            // extremely ugly hack which sets context to some value in order to prevent warnings,
+            // use only for core error handling!!!!
+            if (!$this->_context) {
+                $this->_context = context_system::instance();
             }
             return;
         }
-
-    } else {
-        // course login always required
-        decaf_require_login($courseorid, $autologinguest, $cm, $setwantsurltome, $preventredirect);
+        $this->_context = $context;
     }
 }
 
-function decaf_require_login($courseorid = NULL, $autologinguest = true, $cm = NULL, $setwantsurltome = true, $preventredirect = false) {
-    global $CFG, $SESSION, $USER, $FULLME, $DB;
-
-    // setup global $COURSE, themes, language and locale
-    if (!empty($courseorid)) {
-        if (is_object($courseorid)) {
-            $course = $courseorid;
-        } else if ($courseorid == SITEID) {
-            $course = clone($SITE);
-        } else {
-            $course = $DB->get_record('course', array('id' => $courseorid), '*', MUST_EXIST);
-        }
-        if ($cm) {
-            if ($cm->course != $course->id) {
-                throw new coding_exception('course and cm parameters in require_login() call do not match!!');
-            }
-            // make sure we have a $cm from get_fast_modinfo as this contains activity access details
-            if (!($cm instanceof cm_info)) {
-                // note: nearly all pages call get_fast_modinfo anyway and it does not make any
-                // db queries so this is not really a performance concern, however it is obviously
-                // better if you use get_fast_modinfo to get the cm before calling this.
-                $modinfo = get_fast_modinfo($course);
-                $cm = $modinfo->get_cm($cm->id);
-            }
-        }
-    } else {
-        // do not touch global $COURSE via $PAGE->set_course(),
-        // the reasons is we need to be able to call require_login() at any time!!
-        $course = $SITE;
-        if ($cm) {
-            throw new coding_exception('cm parameter in require_login() requires valid course parameter!');
-        }
-    }
-
-    // If the user is not even logged in yet then make sure they are
-    if (!isloggedin()) {
-        if ($autologinguest and !empty($CFG->guestloginbutton) and !empty($CFG->autologinguests)) {
-            if (!$guest = get_complete_user_data('id', $CFG->siteguest)) {
-                // misconfigured site guest, just redirect to login page
-                redirect(get_login_url());
-                exit; // never reached
-            }
-            $lang = isset($SESSION->lang) ? $SESSION->lang : $CFG->lang;
-            complete_user_login($guest);
-            $USER->autologinguest = true;
-            $SESSION->lang = $lang;
-        } else {
-            //NOTE: $USER->site check was obsoleted by session test cookie,
-            //      $USER->confirmed test is in login/index.php
-            if ($preventredirect) {
-                throw new require_login_exception('You are not logged in');
-            }
-
-            if ($setwantsurltome) {
-                // TODO: switch to PAGE->url
-                $SESSION->wantsurl = $FULLME;
-            }
-            if (!empty($_SERVER['HTTP_REFERER'])) {
-                $SESSION->fromurl  = $_SERVER['HTTP_REFERER'];
-            }
-            redirect(get_login_url());
-            exit; // never reached
-        }
-    }
-
-    // loginas as redirection if needed
-    if ($course->id != SITEID and session_is_loggedinas()) {
-        if ($USER->loginascontext->contextlevel == CONTEXT_COURSE) {
-            if ($USER->loginascontext->instanceid != $course->id) {
-                print_error('loginasonecourse', '', $CFG->wwwroot.'/course/view.php?id='.$USER->loginascontext->instanceid);
-            }
-        }
-    }
-
-    // check whether the user should be changing password (but only if it is REALLY them)
-    if (get_user_preferences('auth_forcepasswordchange') && !session_is_loggedinas()) {
-        $userauth = get_auth_plugin($USER->auth);
-        if ($userauth->can_change_password() and !$preventredirect) {
-            $SESSION->wantsurl = $FULLME;
-            if ($changeurl = $userauth->change_password_url()) {
-                //use plugin custom url
-                redirect($changeurl);
-            } else {
-                //use moodle internal method
-                if (empty($CFG->loginhttps)) {
-                    redirect($CFG->wwwroot .'/login/change_password.php');
-                } else {
-                    $wwwroot = str_replace('http:','https:', $CFG->wwwroot);
-                    redirect($wwwroot .'/login/change_password.php');
-                }
-            }
-        } else {
-            print_error('nopasswordchangeforced', 'auth');
-        }
-    }
-
-    // Check that the user account is properly set up
-    if (user_not_fully_set_up($USER)) {
-        if ($preventredirect) {
-            throw new require_login_exception('User not fully set-up');
-        }
-        $SESSION->wantsurl = $FULLME;
-        redirect($CFG->wwwroot .'/user/edit.php?id='. $USER->id .'&amp;course='. SITEID);
-    }
-
-    // Make sure the USER has a sesskey set up. Used for CSRF protection.
-    sesskey();
-
-    // Do not bother admins with any formalities
-    if (is_siteadmin()) {
-        return;
-    }
-
-    // Fetch the system context, the course context, and prefetch its child contexts
-    $sysctx = context_system::instance();
-    $coursecontext = context_course::instance($course->id, MUST_EXIST);
-    if ($cm) {
-        $cmcontext = context_module::instance($cm->id, MUST_EXIST);
-    } else {
-        $cmcontext = null;
-    }
-
-    // make sure the course itself is not hidden
-    if ($course->id == SITEID) {
-        // frontpage can not be hidden
-    } else {
-        if (is_role_switched($course->id)) {
-            // when switching roles ignore the hidden flag - user had to be in course to do the switch
-        } else {
-            if (!$course->visible and !has_capability('moodle/course:viewhiddencourses', $coursecontext)) {
-                // originally there was also test of parent category visibility,
-                // BUT is was very slow in complex queries involving "my courses"
-                // now it is also possible to simply hide all courses user is not enrolled in :-)
-                if ($preventredirect) {
-                    throw new require_login_exception('Course is hidden');
-                }
-                notice(get_string('coursehidden'), $CFG->wwwroot .'/');
-            }
-        }
-    }
-
-    // is the user enrolled?
-    if ($course->id == SITEID) {
-        // everybody is enrolled on the frontpage
-
-    } else {
-        if (session_is_loggedinas()) {
-            // Make sure the REAL person can access this course first
-            $realuser = session_get_realuser();
-            if (!is_enrolled($coursecontext, $realuser->id, '', true) and !is_viewing($coursecontext, $realuser->id) and !is_siteadmin($realuser->id)) {
-                if ($preventredirect) {
-                    throw new require_login_exception('Invalid course login-as access');
-                }
-                echo $OUTPUT->header();
-                notice(get_string('studentnotallowed', '', fullname($USER, true)), $CFG->wwwroot .'/');
-            }
-        }
-
-        // very simple enrolment caching - changes in course setting are not reflected immediately
-        if (!isset($USER->enrol)) {
-            $USER->enrol = array();
-            $USER->enrol['enrolled'] = array();
-            $USER->enrol['tempguest'] = array();
-        }
-
-        $access = false;
-
-        if (is_viewing($coursecontext, $USER)) {
-            // ok, no need to mess with enrol
-            $access = true;
-
-        } else {
-            if (isset($USER->enrol['enrolled'][$course->id])) {
-                if ($USER->enrol['enrolled'][$course->id] == 0) {
-                    $access = true;
-                } else if ($USER->enrol['enrolled'][$course->id] > time()) {
-                    $access = true;
-                } else {
-                    //expired
-                    unset($USER->enrol['enrolled'][$course->id]);
-                }
-            }
-            if (isset($USER->enrol['tempguest'][$course->id])) {
-                if ($USER->enrol['tempguest'][$course->id] == 0) {
-                    $access = true;
-                } else if ($USER->enrol['tempguest'][$course->id] > time()) {
-                    $access = true;
-                } else {
-                    //expired
-                    unset($USER->enrol['tempguest'][$course->id]);
-                    $USER->access = remove_temp_roles($coursecontext, $USER->access);
-                }
-            }
-
-            if ($access) {
-                // cache ok
-            } else if (is_enrolled($coursecontext, $USER, '', true)) {
-                // active participants may always access
-                // TODO: refactor this into some new function
-                $now = time();
-                $sql = "SELECT MAX(ue.timeend)
-                          FROM {user_enrolments} ue
-                          JOIN {enrol} e ON (e.id = ue.enrolid AND e.courseid = :courseid)
-                          JOIN {user} u ON u.id = ue.userid
-                         WHERE ue.userid = :userid AND ue.status = :active AND e.status = :enabled AND u.deleted = 0
-                               AND ue.timestart < :now1 AND (ue.timeend = 0 OR ue.timeend > :now2)";
-                $params = array('enabled'=>ENROL_INSTANCE_ENABLED, 'active'=>ENROL_USER_ACTIVE,
-                                'userid'=>$USER->id, 'courseid'=>$coursecontext->instanceid, 'now1'=>$now, 'now2'=>$now);
-                $until = $DB->get_field_sql($sql, $params);
-                if (!$until or $until > time() + ENROL_REQUIRE_LOGIN_CACHE_PERIOD) {
-                    $until = time() + ENROL_REQUIRE_LOGIN_CACHE_PERIOD;
-                }
-
-                $USER->enrol['enrolled'][$course->id] = $until;
-                $access = true;
-
-                // remove traces of previous temp guest access
-                if ($coursecontext->instanceid !== SITEID) {
-                    remove_temp_course_roles($coursecontext);
-                }
-
-            } else {
-                $instances = $DB->get_records('enrol', array('courseid'=>$course->id, 'status'=>ENROL_INSTANCE_ENABLED), 'sortorder, id ASC');
-                $enrols = enrol_get_plugins(true);
-                // first ask all enabled enrol instances in course if they want to auto enrol user
-                foreach($instances as $instance) {
-                    if (!isset($enrols[$instance->enrol])) {
-                        continue;
-                    }
-                    // Get a duration for the guestaccess, a timestamp in the future or false.
-                    $until = $enrols[$instance->enrol]->try_autoenrol($instance);
-                    if ($until !== false) {
-                        $USER->enrol['enrolled'][$course->id] = $until;
-                        $USER->access = remove_temp_roles($coursecontext, $USER->access);
-                        $access = true;
-                        break;
-                    }
-                }
-                // if not enrolled yet try to gain temporary guest access
-                if (!$access) {
-                    foreach($instances as $instance) {
-                        if (!isset($enrols[$instance->enrol])) {
-                            continue;
-                        }
-                        // Get a duration for the guestaccess, a timestamp in the future or false.
-                        $until = $enrols[$instance->enrol]->try_guestaccess($instance);
-                        if ($until !== false) {
-                            $USER->enrol['tempguest'][$course->id] = $until;
-                            $access = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (!$access) {
-            if ($preventredirect) {
-                throw new require_login_exception('Not enrolled');
-            }
-            $SESSION->wantsurl = $FULLME;
-            redirect($CFG->wwwroot .'/enrol/index.php?id='. $course->id);
-        }
-    }
-
-    // Check visibility of activity to current user; includes visible flag, groupmembersonly,
-    // conditional availability, etc
-    if ($cm && !$cm->uservisible) {
-        if ($preventredirect) {
-            throw new require_login_exception('Activity is hidden');
-        }
-        redirect($CFG->wwwroot, get_string('activityiscurrentlyhidden'));
-    }
-}
-
-
-class decaf_expand_navigation extends global_navigation {
+class theme_decaf_expand_navigation extends global_navigation {
 
     /** @var array */
     protected $expandable = array();
@@ -805,9 +657,6 @@ class decaf_expand_navigation extends global_navigation {
             $coursetype = self::COURSE_CURRENT;
         }
         if ($this->expandtocourses || $coursetype == self::COURSE_MY || $coursetype == self::COURSE_CURRENT) {
-            if ($coursenode = $this->find($course->id, self::TYPE_COURSE)) {
-                return $coursenode;
-            }
             return parent::add_course($course, $forcegeneric, $coursetype);
         }
         return false;
@@ -832,23 +681,5 @@ class decaf_expand_navigation extends global_navigation {
 
     public function get_expandable() {
         return $this->expandable;
-    }
-}
-
-class decaf_dummy_page extends moodle_page {
-    /**
-     * REALLY Set the main context to which this page belongs.
-     * @param object $context a context object, normally obtained with context_XXX::instance.
-     */
-    public function set_context($context) {
-        if ($context === null) {
-            // extremely ugly hack which sets context to some value in order to prevent warnings,
-            // use only for core error handling!!!!
-            if (!$this->_context) {
-                $this->_context = context_system::instance();
-            }
-            return;
-        }
-        $this->_context = $context;
     }
 }

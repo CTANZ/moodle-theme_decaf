@@ -1,7 +1,6 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
-//  
+//
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -16,23 +15,43 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'theme_decaf', language 'en', branch 'MOODLE_20_STABLE'
+ * Strings for component 'theme_decaf', language 'en'
  *
  * @package   theme_decaf
- * @copyright 2010 Lei Zhang  {@link http://www.canterbury.ac.nz}
+ * @copyright 2014 Paul Nicholls
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @credits 
- * Performance Info bar ideas from: <http://particletree.com/features/php-quick-profiler/>
- * CSS Dropdown menu Framework: <http://www.lwis.net/free-css-drop-down-menu/>
- * Fugue Icons set: <http://creativecommons.org/licenses/by/3.0/>
- * Back homepage icon from: Shaun Daubney's Aardvark theme <http://moodle.org/mod/data/view.php?d=26&rid=3934>
  */
 
-$string['pluginname'] = 'Decaf';
-$string['region-side-post'] = 'Right';
-$string['region-side-pre'] = 'Left';
-$string['choosereadme'] = '<div class="clearfix"><div class="theme_screenshot"><h2>Decaf</h2><img src="decaf/pix/screenshot.png" alt="Decaf screenshot" /><h3>Theme Discussion Forum:</h3><p><a href="http://moodle.org/mod/forum/view.php?id=46">http://moodle.org/mod/forum/view.php?id=46</a></p><h3>Theme Credits</h3><p><a href="http://docs.moodle.org/en/Theme_credits">http://docs.moodle.org/en/Theme_credits</a></p><h3>Theme Documentation:</h3><p><a href="http://docs.moodle.org/en/Themes">http://docs.moodle.org/en/Themes</a></p><h3>Report a bug:</h3><p><a href="http://tracker.moodle.org">http://tracker.moodle.org</a></p></div><div class="theme_description"><h2>About</h2><p>Decaf is a three-column, fluid-width theme for Moodle that was created by <a href="http://moodle.org/user/view.php?id=390408">Lei Zhang</a>. It improves usability by shifting setting blocks to top of the page, so called "Moodle awesome bar". For developers, It transfers the performance info into a colorful floated bar at bottom of the page, which brings the performance awareness as well as improves usability.  </p>';
-$string['searchsettings'] = 'Search settings...';
+$string['choosereadme'] = '
+<div class="clearfix">
+<div class="well">
+<h2>Decaf</h2>
+<p><img class=img-polaroid src="clean/pix/screenshot.jpg" /></p>
+</div>
+<div class="well">
+<h3>About</h3>
+<p>Clean is a modified Moodle bootstrap theme which inherits styles and renderers from its parent theme.</p>
+<h3>Parents</h3>
+<p>This theme is based upon the Bootstrap theme, which was created for Moodle 2.5, with the help of:<br>
+Stuart Lamour, Mark Aberdour, Paul Hibbitts, Mary Evans.</p>
+<h3>Theme Credits</h3>
+<p>Authors: Bas Brands, David Scotson, Mary Evans<br>
+Contact: bas@sonsbeekmedia.nl<br>
+Website: <a href="http://www.basbrands.nl">www.basbrands.nl</a>
+</p>
+<h3>Report a bug:</h3>
+<p><a href="http://tracker.moodle.org">http://tracker.moodle.org</a></p>
+<h3>More information</h3>
+<p><a href="clean/README.txt">How to copy and customise this theme.</a></p>
+</div></div>';
+
+$string['configtitle'] = 'Decaf';
+
+$string['customcss'] = 'Custom CSS';
+$string['customcssdesc'] = 'Whatever CSS rules you add to this textarea will be reflected in every page, making for easier customization of this theme.';
+
+$string['footnote'] = 'Footnote';
+$string['footnotedesc'] = 'Whatever you add to this textarea will be displayed in the footer throughout your Moodle site.';
 
 $string['backgroundcolor'] = 'Background colour';
 $string['backgroundcolordesc'] = 'This sets the background colour for the theme.';
@@ -55,8 +74,6 @@ $string['custommenuinawesomebar'] = 'Add custom menu to Awesomebar';
 $string['custommenuinawesomebardesc'] = 'Moves the custom menu into the Awesomebar.  Otherwise, it will appear below the header.';
 $string['custommenuafterawesomebar'] = 'Place custom menu after Awesomebar';
 $string['custommenuafterawesomebardesc'] = 'Places custom menu after Awesomebar content.  Otherwise, it will appear before the Settings menus.  (Only applicable if previous option is enabled.)';
-$string['useeditbuttons'] = 'Use Edit Buttons';
-$string['useeditbuttonsdesc'] = 'Instead of rows of icons, small "Edit" buttons appear.  When clicked, a menu of editing options appears.';
 $string['persistentedit'] = 'Enable Persistent Editing Mode';
 $string['persistenteditdesc'] = 'Persistent Editing Mode keeps editing mode turned on permanently for users with editing privileges.<br />Block editing can still be turned on and off independently via the "Turn editing on/off" option under Course Administration.';
 $string['coursesloggedinonly'] = 'Hide Courses menu from non-logged-in users';
@@ -68,6 +85,19 @@ $string['usemodchoosertilesdesc'] = 'In the Mod Chooser, mods will be shown as "
 $string['awesomebarsettings'] = 'Awesomebar / Navigation Settings';
 $string['awesomebarsettingsdesc'] = 'The "Awesomebar" is the black navigation bar that is fixed to the top of the browser window when using Decaf.<br>The following settings relate to the "Awesomebar" and other page navigation.';
 $string['editingsettings'] = 'Editing Mode Settings';
-$string['editingsettingsdesc'] = 'The following settings relate to Editing Mode, and aim to make it tidier and easier to use.';
+$string['editingsettingsdesc'] = 'The following settings relate to Editing Mode, and aim to make it tidier and easier to use.<br />The "Use Edit Buttons" setting from previous versions of Decaf has been replaced by the "Activity editing menus" setting under Appearance / AJAX and Javascript ($CFG->modeditingmenu).';
 $string['coursesleafonly'] = 'Populate "Courses" menu'; // This seems backwards, but makes it easier for users to understand as it eliminates the double-negative.
 $string['coursesleafonlydesc'] = 'On sites with large numbers of courses, generating the full list of courses in the Awesomebar can cause performance issues.  Disable this setting (set it to "No") to prevent the list from being generated - the "Courses" node will remain as a quick way to reach the course list.';
+$string['alwaysexpandsiteadmin'] = 'Always populate site administration menu';
+$string['alwaysexpandsiteadmindesc'] = 'Enabling this option will populate the Site Administration menu (if applicable), at the expense of performance.';
+
+$string['logo'] = 'Logo';
+$string['logodesc'] = 'Please upload your custom logo here if you want to add it to the header.<br>
+If the height of your logo is more than 75px add the following CSS rule to the Custom CSS box below.<br>
+a.logo {height: 100px;} or whatever height in pixels the logo is.';
+
+$string['pluginname'] = 'Decaf';
+
+$string['region-side-post'] = 'Right';
+$string['region-side-pre'] = 'Left';
+

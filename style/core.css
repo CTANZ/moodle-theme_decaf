@@ -1,6 +1,6 @@
 /* W3C CSS Validated - 20 January 2012
 -------------------------------------*/
-html{background-color:[[setting:backgroundcolor]];}
+html, html body {background-color:[[setting:backgroundcolor]];}
 body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,input,textarea{font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .wrapper {margin: 0 25px;}
 h1,h2,h3,h4,h5,h6,p{text-shadow:0 1px 0 #FFF;}
@@ -11,26 +11,51 @@ a:hover,a:active {color: #251c17;}
 a img {border: none;}
 a:active {outline: none;}
 .singleselect option {text-align:left;}
-/* Header
+.span12 {padding:0 20px;}
+
+/* Fancy double borders
+------------------------- */
+.decaf-border, .course-content ul li.section.main {border:0px solid #cbcbcb;position:relative;}
+.decaf-border:before, .course-content ul li.section.main:before {position:absolute;display:block;content:"";border:0 solid #FFF;}
+.decaf-border-right, .decaf-border-right:before {border-right-width:1px;}
+.decaf-border-left, .decaf-border-left:before {border-left-width:1px;}
+.decaf-border-top, .decaf-border-top:before {border-top-width:1px;}
+.decaf-border-bottom, .decaf-border-bottom:before,
+.course-content ul li.section.main, .course-content ul li.section.main:before {border-bottom-width:1px;}
+.decaf-border-right:before {right:-2px;height:100%;}
+.decaf-border-left:before {left:-2px;height:100%;}
+.decaf-border-top:before {top:-2px;left:0;width:100%;}
+.decaf-border-bottom:before, .course-content ul li.section.main:before {bottom:-2px;left:0;width:100%;}
+
+/* Fixed header
+------------------------- */
+.navbar-fixed-top{margin-top:25px;} /* Offset for Awesomebar */
+.navbar-fixed-top .navbar-inner{background:none #CCC;}
+.navbar-fixed-top .breadcrumb-nav .brand,
+.navbar-fixed-top .breadcrumb > li{text-shadow:none;}
+.navbar-fixed-top .breadcrumb .divider,
+.navbar-fixed-top .breadcrumb span{color:#777;}
+.navbar .brand{padding-right:0;}
+/* Page
+------------------------- */
+#page{padding:0;top:25px;}
+#page-header{padding:0 20px;margin-top:-4px;}
+#page-content{padding-top:15px;}
+#region-main.pull-right {padding:0 20px;}
+.used-region-side-post #region-main.pull-right {padding-right:0;}
+.used-region-side-pre #region-main.pull-right {padding-left:0;}
+
+/* Page header
 ------------------------- */
 #page-header-wrapper{margin:0 0 0 50px;}
-#page-header{float:none;background:#E1E1E1 url([[pix:theme|bg-header]]) repeat-x scroll center bottom;margin-right:0;position:relative;min-height:100px;}
+#page-header{float:none;background:#E1E1E1;/* url([[pix:theme|bg-header]]) repeat-x scroll center bottom;*/margin-right:0;position:relative;min-height:100px;}
 #page-header .sitelogo {float:left;margin:0.75em 0;}
 #page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.9em 20px 0.9em 0px;}
 #page-header .headermenu {width:235px;}
 #page-header .headermenu a:hover{color:#C30;}
+#page-header .breadcrumb-button{margin-top:14px;}
 #page-site-index .headermain{font-size:2.5em;margin:0.85em 0;}
-/* Header Profile
--------------------------- */
-#header-profileoptions ul{margin-right:4px;}
-#header-profileoptions ul li{display:inline;padding-left:5px;font-size:1.3em;}
-.headermenu{font-size:1em;margin:0 10px 0 0;width:225px;}
-.loginform_row{padding:0 0 5px;}
-/* Profileblock
------------------------*/
-.headermenu div.logininfo{width:140px;height:60px;float:right;border-right:none;margin-top:7px;text-align:center;padding-left:8px;overflow-x:hidden;}
-.headermenu img.userpicture{width:58px;height:58px;float:right;border-top:1px solid #eee;border-right:1px solid #dadada;border-bottom:1px solid #ccc;border-left:none;background:#fff;margin-top:10px;margin-left:10px;padding:8px;}
-.headermenu div.langmenu {float:right;}
+
 /* Menu Navigation
 -------------------------- */
 #page-navigation{font-size:1.1em;background-image:url();height:36px;margin:0;padding:0 40px;}
@@ -55,45 +80,27 @@ a:active {outline: none;}
 .block_js_expansion .block_tree{overflow-x:scroll;}
 .block_js_expansion.mouseover .content{width:200%;z-index:1000;position:relative;}
 .block_js_expansion.mouseover .content .block_tree{width:100%;background-color:#FAFAFA;padding-bottom:0;}
-/** IE stylings */
-.ie6 .block .block_tree{width:160px;overflow-x:scroll;}
-.ie6 #dock{position:absolute;}
-.ie6 #dock hr{display:none;height:0;margin:0;padding:0;}
-.ie6 #dock li p{background-color:inherit;}
-.ie6 #dock .bd.oversized_content .content,.ie7 #dock .bd.oversized_content .content{padding-bottom:0;}
-.ie6 .block_js_expansion.mouseover .content,.ie7 .block_js_expansion.mouseover .content{padding-bottom:2px;}
-.ie6 .block_tree .tree_item,.ie6 #dock .bd.oversized_content{width:100%;}
 
-/* Breadcrumb
+/* Breadcrumb / Navbar
 --------------------------- */
-.navbar{font-size:1em;background-color:#F0F0F0;border-bottom:1px solid #DDD;margin:0;padding:0 10px;}
-.navbar .breadcrumb{font-size:1em;font-weight:700;padding:6px;}
+.navbar .breadcrumb-nav{margin-bottom:0;}
+.navbar .breadcrumb{font-size:1em;padding-top:0.8em;white-space:nowrap;vertical-align:baseline;background-color:transparent;float:left;}
+.navbar .breadcrumb > li > .divider{padding-right:0;}
 .breadcrumb a,a:link,a:active{color:#1D8AC3;}
-.sep{background:url([[pix:theme|breadcrumb_arrow]]) no-repeat scroll 100% 50%;margin-right:5px;padding:0.98em 7px;}
-/* Calendar
---------------------------- */
-.minicalendar td,.minicalendar th{border-color:#EEE;border-width:0;}
-.calendartab th,.calendartable td{border-width:0;}
+.navbar .nav-collapse .nav{margin-left:20px;}
+.navbar .nav > li > a{text-shadow:none;color:#1D8AC3;padding-top:11px;}
+
 /* Tabs
 --------------------------- */
 .tabtree .tabrow0 li.here a{background:#fff url([[pix:theme|gradient-sb]]) repeat-x 0 0;}
 .tabtree .tabrow0 .tabrow1 li a{background:none !important;}
-/* User
---------------------------- */
-.userinfobox .content{background:url([[pix:theme|gradient-sb]]) repeat-x 0 0;border-width:2px;}
+
 /* Content
 --------------------------- */
-#page {top:25px;}
-#page-content-wrapper {float: none;margin:10px 50px; }
-#region-pre {background:transparent url([[pix:theme|main-divider]]) repeat-y scroll right center;}
-#region-post{background:transparent url([[pix:theme|main-divider]]) repeat-y scroll left center;}
-
 .headingblock, h2.headingblock { border-width:1px;margin:0;padding:5px;font-family:"Trebuchet MS", arial, helvetica, sans-serif;}
 /* YUI messes with IE unless we go overboard here */
-img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; border: 1px solid #808080; padding:1px; -webkit-border-radius:5px;-moz-border-radius: 5px;border-radius:5px; }
+img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; padding:1px;}
 img.iconlarge {width:16px;height:16px;margin:6px 4px 2px 4px;} /* Our icons are only 16x16, so we don't want to stretch them */
-ul.section .commands,
-.block_with_controls .commands {position:absolute; top:0px; right:0px;}
 .block .content .commands {position:relative;}
 ul.section li {clear:right;}
 ul.section li div {min-height:23px;}
@@ -104,24 +111,26 @@ ul.section li.label {padding-bottom:5px !important;}
 .sitetopic .section .activity .contentafterlink,
 .course-content .section .activity .availabilityinfo,
 .course-content .section .activity .contentafterlink {margin-left:26px;margin-top:0;}
+.coursebox {border:1px solid #cdcdcd;}
 ul.section .activity .contentafterlink p {margin:0 0 1em;}
-body.editing ul.section>li {border-bottom: 1px dashed #808080;}
+body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative;}
 input[type=submit] {background:-webkit-gradient(linear,0% 40%,0% 70%,from(#F9F9F9),to(#E3E3E3));margin: 0 8px 0 0;padding: 2px 8px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
 /* Make 2.3 activity chooser sit on top of modules in sections */
-div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;}
+div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:1500;}
 
 /* Blocks
 --------------------------- */
-.block {border-style:none;}
-.block .calendar-controls .current {width: 74%;}
+#block-region-side-pre, #block-region-side-post {padding:0 20px;}
+.block {border-style:none;background-color:transparent;box-shadow:none;padding-top:0;}
+/*.block .calendar-controls .current {width: 74%;}*/
 .block .calendar-controls .previous {background:transparent url([[pix:theme|previous]]) no-repeat left top; height:19px;}
 .block .calendar-controls .next {background:transparent url([[pix:theme|next]]) no-repeat right top;}
+.block .calendar-controls .previous:hover,.block .calendar-controls .next:hover {text-decoration:none;}
 .block .header{border-color:#EEE;border-width:0 1px;}
-.block .header h2{background:#EEE url([[pix:theme|bg-header]]) repeat-x scroll bottom center;color:#555;font-family:"Droid Sans",Helvetica,Arial,sans-serif;font-size:16px;letter-spacing:-0.5px;line-height:30px;text-shadow:0 1px 0 #DDD;text-transform:uppercase;padding:0;margin:4px;}
-.block .block_action {margin-right:4px;}
-.block .header .block_action{margin:4px 5px;}
+.block .header .title h2{color:#555;font-family:"Droid Sans",Helvetica,Arial,sans-serif;font-size:16px;letter-spacing:-0.5px;line-height:30px;text-shadow:0 1px 0 #DDD;text-transform:uppercase;padding:0;margin:0 4px;}
 .block_with_controls .header .title {position:relative;padding-bottom:20px;}
-.block .commands{clear:both;height:16px;padding:4px;top:auto;bottom:0px;}
+.block_with_controls .commands {position:absolute; top:0px; right:0px;}
+.block .commands{clear:both;padding:4px;top:auto;bottom:0px;}
 .block .content{padding:5px 10px;}
 .block .content .buttons{margin-top:2px;}
 .block_login label{font-size:0.85em;display:block;}
@@ -129,7 +138,10 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;}
 .block_login .btn{padding:4px 0;}
 .block_login .footer{font-size:0.9em;padding:5px 0 3px;}
 .block_calendar_month .content{padding:5px;}
+.minicalendar h2.eventtitle, .minicalendarblock h2.eventtitle {font-size:1.3em;}
+.minicalendar .calendar-event-panel .eventcontent, .minicalendarblock .calendar-event-panel .eventcontent {text-align:left;}
 .block_course_summary .content{padding:10px;}
+.block_settings li > hr {border-top-color:#cdcdcd;}
 
 /* Question bank faux-block
 --------------------------- */
@@ -137,72 +149,27 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;}
 #page-mod-quiz-edit .block.questionbankwindow div.header {background-color:transparent;}
 #page-mod-quiz-edit .block.questionbankwindow div.header a {color:#1D8AC3;font-size:0.9em;}
 
-/* "Edit" buttons to replace groups of icons with menus
+/* Hide button when Persistent Editing mode is on
 ------------------------ */
-.decaf_persistent_edit.path-course .navbar .navbutton {display:none;}
-.decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .activityinstance,
-.decaf_with_edit_buttons.jsenabled .course-content .section .activity .activityinstance {padding-right:1.5em;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap {position:relative;width:auto;display:inline;}
-.dockeditempanel_hd .decaf-editbutton-wrap {float:right;}
-.dockeditempanel_hd .decaf-editbutton-wrap .hidepanelicon {margin-right:4px;}
-.decaf_with_edit_buttons.jsenabled.editing ul.section>li {z-index:3;}
-.decaf_with_edit_buttons.jsenabled.editing ul.section>li.decaf-editbutton-active-module {z-index:4;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton {opacity:0.4;height:18px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton:hover,
-.decaf_with_edit_buttons.jsenabled .active .decaf-editbutton {opacity:1;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton:active {opacity:1; background-color:#B3FF99;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active {z-index:4;}
-.decaf_with_edit_buttons.jsenabled.ie8 .decaf-editbutton {background-color:#DFFFD6;color:#999;}
-.decaf_with_edit_buttons.jsenabled.ie8 .decaf-editbutton:hover,
-.decaf_with_edit_buttons.jsenabled.ie8 .active .decaf-editbutton {background-color:#C6FFB3;color:#000;}
-.decaf_with_edit_buttons.jsenabled.ie8 .decaf-editbutton:active {background-color:#B3FF99;}
-.decaf_with_edit_buttons.jsenabled .commands,
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands,
-.decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .commands,
-.decaf_with_edit_buttons.jsenabled .course-content .section .activity .commands {display:none;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd {padding-bottom:20px;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .decaf-editbutton {margin-right:7px;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands.dock-commands,
-.decaf_with_edit_buttons.jsenabled .commands.decaf-noeditbutton {display:block;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .commands.dock-commands a img,
-.decaf_with_edit_buttons.jsenabled .commands.decaf-noeditbutton a img {border:0px none;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;width:12px;height:12px;}
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .hidepanelicon,
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .moveto {margin:3px;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a,
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands span.editing_move {display:block; line-height:14px; font-size:12px; vertical-align:middle; text-align:left;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a img,
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands span.editing_move img {clear:left; float:left; margin:1px 4px;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands a span,
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands span.editing_move span {float:left; padding-top:5px; max-width:120px;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap .commands {float:none !important; left:100%; position:absolute; top:2px; margin-left:4px; background-color:#E1E1E1; border: 1px solid #D1D1D1; width:150px; z-index:600; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; box-shadow: 3px 3px 5px #999; padding:2px 0;}
-.decaf_with_edit_buttons.jsenabled .decaf-editbutton-wrap.active .commands,
-.decaf_with_edit_buttons.jsenabled #dockeditempanel .dockeditempanel_hd .decaf-editbutton-wrap.active .commands,
-.decaf_with_edit_buttons.jsenabled .sitetopic .section .activity .decaf-editbutton-wrap.active .commands,
-.decaf_with_edit_buttons.jsenabled .course-content .section .activity .decaf-editbutton-wrap.active .commands {display:block;}
-.decaf_with_edit_buttons.jsenabled .block_with_controls .decaf-editbutton {margin-left:4px;}
-.decaf_with_edit_buttons.jsenabled .block_with_controls .commands {height:auto; bottom:auto;}
-.decaf_with_edit_buttons.jsenabled .block_with_controls .commands a span {padding-top:3px;}
-.decaf_with_edit_buttons.jsenabled .block .header .commands .icon img {margin-left:0px; margin-right:4px;}
-.decaf_with_edit_buttons.jsenabled .block .header .decaf-editbutton-wrap {z-index:4;}
-.decaf_with_edit_buttons.jsenabled .block {min-height:125px;}
-.decaf_with_edit_buttons.jsenabled .block .commands {display:none;}
-.decaf_with_edit_buttons.jsenabled #page-content #region-main,
-.decaf_with_edit_buttons.jsenabled #page-content .region-content {overflow:visible;}
-.decaf_with_edit_buttons.jsenabled #page-content {padding-bottom:70px;}
-.decaf_with_edit_buttons.jsenabled.editing ul.section>li {border-bottom:none;}
-.decaf_with_edit_buttons.jsenabled .block_with_controls .header .title {padding-bottom:4px;}
-.decaf_with_edit_buttons.jsenabled .forumpost .commands {display:block;}
-.decaf_with_edit_buttons.jsenabled div.eventlist table.event div.commands {position:absolute; float:none; top:0;}
-.decaf_with_edit_buttons.jsenabled.path-mod-glossary .glossarypost .entrylowersection .icons {text-align:left;} /* Put the edit button back on the left for glossary items */
-#page-mod-assignment-submissions.decaf_with_edit_buttons.jsenabled .header .commands,
-#page-mod-lti-submissions.decaf_with_edit_buttons.jsenabled .header .commands,
-#page-mod-quiz-report.decaf_with_edit_buttons.jsenabled .header .commands {display:none;}
-#page-mod-assignment-submissions.decaf_with_edit_buttons.jsenabled th.header .commands,
-#page-mod-lti-submissions.decaf_with_edit_buttons.jsenabled th.header .commands,
-#page-mod-quiz-report.decaf_with_edit_buttons.jsenabled th.header .commands {display:inline;}
-.decaf_with_edit_buttons.jsenabled ul.section>li>.dimmed_text,
-.decaf_with_edit_buttons.jsenabled ul.section>li>.dimmed_text .commands a  {opacity:1;} /* Don't allow the entire div to be "dimmed" - only the link inside it */
-.decaf_with_edit_buttons.jsenabled .block .content .buttons {text-align:left; position:relative;}
+.decaf_persistent_edit.path-course .breadcrumb-button > .singlebutton {display:none;}
+
+/* "Action menu" - replaces Decaf's previous "edit buttons" setting
+------------------------ */
+.decaf_with_actionmenus.jsenabled.editing ul.section>li {border-bottom:none;}
+.decaf_with_actionmenus.jsenabled .section .activity .actions {right:auto;}
+.decaf_with_actionmenus.jsenabled .section .activity.modtype_label .actions {right:0;}
+.editing .section .activity .activityinstance {padding-right:5px;}
+.editing .section .activity .contentwithoutlink, .decaf_persistent_edit .section .activity .contentwithoutlink {padding-right:60px;}
+.decaf_with_actionmenus.jsenabled .section-cm-edit-actions {position:relative;}
+.section .editing_title .iconsmall {margin:0 0 2px 4px;}
+.jsenabled .moodle-actionmenu .menubar > li {line-height:14px;}
+.decaf_with_actionmenus.jsenabled .moodle-actionmenu .toggle-display {opacity:0.4;height:14px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 1px 4px 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+.jsenabled .moodle-actionmenu[data-enhanced] .toggle-display:hover,
+.jsenabled .moodle-actionmenu[data-enhanced].show .toggle-display {opacity:1;}
+.decaf_with_actionmenus.jsenabled .moodle-actionmenu .toggle-display.textmenu .caret {margin-top:6px;}
+.moodle-actionmenu.show[data-enhanced] .menu {background-color:#E1E1E1;}
+.moodle-actionmenu.show[data-enhanced] .menu a {color:#1D8AC3;}
+.activity .editing_move img {margin-top:5px;}
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}
@@ -245,8 +212,12 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;}
 #page-footer .performanceinfo .white{color:#FFF !important;}
 #page-footer .performanceinfo span{color:#fff;}
 
+/* Course list
+-------------------------- */
+.courses .coursebox.odd, .courses .coursebox.even:hover{background-color:#F6F6F6;}
+
 /* Course
----------------------------*/
+-------------------------- */
 .course-content ul.topics li.section .left{font-size:2em;}
 .course-content ul.topics li.section{background:transparent url([[pix:theme|topic-bg-bottom]]) repeat-x scroll bottom center;margin:0 0 30px;padding:0 0 30px;}
 .course-content ul.weeks li.section{background:transparent url([[pix:theme|topic-bg-bottom]]) repeat-x scroll bottom center;margin:0;padding:0 0 30px;}
@@ -295,6 +266,18 @@ body.pagelayout-report #page-content #region-main .region-content {
 	overflow-x:auto;
 }
 
+/* Grader report
+--------------------------*/
+#user-grades input[type="text"] {margin-bottom:0;padding:0;}
+.path-grade-report-grader .grade_icons {margin-bottom:0;}
+.path-grade-report-grader div.left_scroller th.header,
+.path-grade-report-grader div.right_scroller th {height: 2.5em;}
+.path-grade-report-grader div.right_scroller th.category {height: 4.5em;padding-top:7px;}
+.path-grade-report-grader div.right_scroller th.category.catlevel1 {padding-top:8px;}
+.path-grade-report-grader .filler,
+.path-grade-report-grader .fillerlast {border-top:0px none;}
+.path-grade-report-grader .fillerlast {border-right:1px solid #DDD;}
+
 /* Quiz ordering/paging tool
 --------------------------*/
 #page-mod-quiz-edit div.question div.content div.qorder {right:60px;}
@@ -319,5 +302,21 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
 .decaf_modchooser_tiles .moodle-dialogue-base .moodle-dialogue.chooserdialogue .moodle-dialogue-bd .option label {line-height:1;}
 
 
-/** Custom CSS **/
-[[setting:customcss]]
+/* Responsiveness
+--------------------------*/
+@media(max-width:979px){
+	.navbar-fixed-top{margin-bottom:0;}
+	#page-header > h1{margin-top:0;}
+	#topadminsearchquery{width:105px;}
+	#block-region-side-pre, #block-region-side-post {padding:0 4px;}
+	.block-region .block .content {padding:5px 0;}
+	#page-footer{margin-bottom:0;}
+	#page-footer .performanceinfo{position:relative;}
+	#page-footer .performanceinfo li{margin-top:10px;}
+	#page-footer .performanceinfo span{color:#000;}
+}
+@media(max-width:767px){
+	#page{margin:0 -20px;}
+	#page #region-main.pull-right{padding:0 20px;}
+	#block-region-side-pre, #block-region-side-post {padding:0 20px;}
+}

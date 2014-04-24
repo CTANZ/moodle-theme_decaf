@@ -1,7 +1,28 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Settings for the decaf theme
+ * Responsive Decaf theme for Moodle 2.6 and above.
+ *
+ * For full information about creating Moodle themes, see:
+ * http://docs.moodle.org/dev/Themes_2.0
+ *
+ * @package   theme_decaf
+ * @copyright 2014 Paul Nicholls
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
@@ -15,29 +36,33 @@ if ($ADMIN->fulltree) {
     $default = '#EEE';
     $previewconfig = array('selector'=>'html', 'style'=>'backgroundColor');
     $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, $previewconfig);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Foot note setting
-    $name = 'theme_decaf/footnote';
-    $title = get_string('footnote','theme_decaf');
-    $description = get_string('footnotedesc', 'theme_decaf');
-    $setting = new admin_setting_confightmleditor($name, $title, $description, '');
+    // Logo file setting.
+    $name = 'theme_decaf/logo';
+    $title = get_string('logo','theme_decaf');
+    $description = get_string('logodesc', 'theme_decaf');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'logo');
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Custom CSS file
+    // Custom CSS file.
     $name = 'theme_decaf/customcss';
-    $title = get_string('customcss','theme_decaf');
+    $title = get_string('customcss', 'theme_decaf');
     $description = get_string('customcssdesc', 'theme_decaf');
-    $setting = new admin_setting_configtextarea($name, $title, $description, '');
+    $default = '';
+    $setting = new admin_setting_configtextarea($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
-    
-    // Show user profile picture
-    $name = 'theme_decaf/showuserpicture';
-    $title = get_string('showuserpicture','theme_decaf');
-    $description = get_string('showuserpicturedesc', 'theme_decaf');
-    $default = 0;
-    $choices = array(1=>'Yes', 0=>'No');
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+
+    // Footnote setting.
+    $name = 'theme_decaf/footnote';
+    $title = get_string('footnote', 'theme_decaf');
+    $description = get_string('footnotedesc', 'theme_decaf');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
     // Editing Mode heading
@@ -49,15 +74,6 @@ if ($ADMIN->fulltree) {
     $description = get_string('usemodchoosertilesdesc', 'theme_decaf');
     $default = 0;
     $choices = array(0=>'No', 1=>'Yes');
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
-    $settings->add($setting);
-
-    // Enable edit buttons (replace rows of icons)
-    $name = 'theme_decaf/useeditbuttons';
-    $title = get_string('useeditbuttons','theme_decaf');
-    $description = get_string('useeditbuttonsdesc', 'theme_decaf');
-    $default = 1;
-    $choices = array(1=>'Yes', 0=>'No');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
 
@@ -135,6 +151,14 @@ if ($ADMIN->fulltree) {
     $choices = array(0=>'No', 1=>'Yes');
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
-   
 
+    // Expand site admin tree at cost of performance
+    $name = 'theme_decaf/alwaysexpandsiteadmin';
+    $title = get_string('alwaysexpandsiteadmin','theme_decaf');
+    $description = get_string('alwaysexpandsiteadmindesc', 'theme_decaf');
+    $default = 0;
+    $choices = array(0=>'No', 1=>'Yes');
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
 }

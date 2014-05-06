@@ -200,7 +200,9 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:1500;}
 #back-to-top a {text-decoration: none;border: 0;outline: none;}
 /* PerformanceInfo
 -------------------------- */
-/*#page-footer .performanceinfo{-moz-border-radius-topleft:15px;-moz-border-radius-topright:15px;-webkit-border-top-left-radius:15px 15px;-webkit-border-top-right-radius:15px 15px;border-radius:15px 15px 0 0;bottom:0;left:-290px !important;position:fixed;background-color:#222;width:100%;max-width:580px;border-width:12px 12px medium;margin:0 50% !important;z-index:400;}*/
+.decaf_perfdebug {padding-bottom:35px;}
+.decaf_pagedebug {padding-bottom:15px;}
+.decaf_perfdebug.decaf_pagedebug {padding-bottom:60px;}
 #page-footer .performanceinfo{border-radius:15px 15px 0 0;bottom:0;left:-290px;position:fixed;background-color:#222;width:580px;border-width:12px 12px medium;margin:0 50%;z-index:400;}
 #page-footer .performanceinfo ul {text-align: center; margin: 0 auto;}
 #page-footer .performanceinfo li{display:block;list-style-type:none;float:left;padding:5px 0;width:25%;}
@@ -212,6 +214,8 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:1500;}
 #page-footer .performanceinfo .red{color:#B72F09 !important;}
 #page-footer .performanceinfo .white{color:#FFF !important;}
 #page-footer .performanceinfo span{color:#fff;}
+#page-footer .performanceinfo.pageinfo {color:#fff;z-index:399;font-size:75%;padding:5px 15px;width:550px;}
+.decaf_perfdebug #page-footer .performanceinfo.pageinfo {padding-bottom:50px;}
 
 /* Course list
 -------------------------- */

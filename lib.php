@@ -81,6 +81,14 @@ function theme_decaf_init() {
         $decaf->bodyclasses[] = 'decaf_with_actionmenus';
         $PAGE->requires->yui_module('moodle-theme_decaf-actionmenu', 'M.theme_decaf.initActionMenu');
     }
+
+    // Add classes used to account for perf/page info fixed to bottom of screen.
+    if (!empty($CFG->perfdebug) && $CFG->perfdebug > 7) {
+        $decaf->bodyclasses[] = 'decaf_perfdebug';
+    }
+    if (!empty($CFG->debugpageinfo)) {
+        $decaf->bodyclasses[] = 'decaf_pagedebug';
+    }
     return $decaf;
 }
 

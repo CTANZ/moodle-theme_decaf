@@ -295,12 +295,6 @@ class theme_decaf_expand_navigation extends global_navigation {
     private $expandtocourses = true;
     private $expandedcourses = array();
 
-    // Added in 2.6, so we need to specify these here so that earlier versions don't complain.
-    /** @var int site admin branch node type, used only within settings nav 71 */
-    const TYPE_SITE_ADMIN = 71;
-    /** var int Category displayed in MyHome navigation node */
-    const TYPE_MY_CATEGORY = 11;
-
     /**
      * Constructs the navigation for use in AJAX request
      */
@@ -355,10 +349,11 @@ class theme_decaf_expand_navigation extends global_navigation {
         $PAGE->requires->data_for_js('siteadminexpansion', false);
         
         $this->expand($this->branchtype, $this->instanceid);
+        $this->expand(self::TYPE_ROOTNODE, 'mycourses'); // Force expansion of "My Courses" branch.
     }
 
     public function expand($branchtype, $id) {
-        global $CFG, $DB, $PAGE;
+        global $CFG, $DB, $PAGE, $USER;
         static $decaf_course_activities = array();
         // Branchtype will be one of navigation_node::TYPE_*
         switch ($branchtype) {
@@ -406,11 +401,13 @@ class theme_decaf_expand_navigation extends global_navigation {
                             $coursenode->isexpandable = false;
                             break;
                         }
-                        $this->page->set_context(context_course::instance($course->id));
+                        $coursecontext = context_course::instance($course->id);
+                        $this->page->set_context($coursecontext);
                         $this->add_course_essentials($coursenode, $course);
                         if ($PAGE->course->id == $course->id && (!method_exists($this, 'format_display_course_content') || $this->format_display_course_content($course->format))) {
-                            decaf_require_course_login($course);
-                            $this->expandedcourses[$course->id] = $this->expand_course($course, $coursenode);
+                            if (is_enrolled($coursecontext, $USER, '', true)) {
+                                $this->expandedcourses[$course->id] = $this->expand_course($course, $coursenode);
+                            }
                         }
                     }
                 } catch(require_login_exception $rle) {
@@ -549,7 +546,20 @@ class theme_decaf_expand_navigation extends global_navigation {
      */
     protected function load_courses_enrolled() {
         global $DB;
+
+        static $expandedmycourses = false;
+        if ($expandedmycourses) {
+            return;
+        } else {
+            $expandedmycourses = true;
+        }
+
         $courses = enrol_get_my_courses();
+        if (count($courses) == 0) {
+            // No enrolments, so don't try to populate.
+            return;
+        }
+
         if ($this->show_my_categories(true)) {
             // OK Actually we are loading categories. We only want to load categories that have a parent of 0.
             // In order to make sure we load everything required we must first find the categories that are not
@@ -575,11 +585,11 @@ class theme_decaf_expand_navigation extends global_navigation {
             list($sql, $params) = $DB->get_in_or_equal($categoryids);
             $categories = $DB->get_recordset_select('course_categories', 'id '.$sql.' AND parent = 0', $params, 'sortorder, id');
             foreach ($categories as $category) {
-                $this->add_category($category, $this->rootnodes['mycourses']);
+                $this->add_category($category, $this->rootnodes['mycourses'], self::TYPE_MY_CATEGORY);
             }
             $categories->close();
             foreach ($courses as $course) {
-                $cat = $this->rootnodes['mycourses']->find($toplevelcats[$course->category], self::TYPE_CATEGORY);
+                $cat = $this->rootnodes['mycourses']->find($toplevelcats[$course->category], self::TYPE_MY_CATEGORY);
                 $node = $this->add_course_to($course, false, self::COURSE_MY, $cat);
             }
         } else {
@@ -614,7 +624,9 @@ class theme_decaf_expand_navigation extends global_navigation {
                 $categorynode->display = false;
             }
         }
-        $this->addedcategories[$category->id] = $categorynode;
+        if ($nodetype !== self::TYPE_MY_CATEGORY) {
+            $this->addedcategories[$category->id] = $categorynode;
+        }
     }
 
     /**

@@ -315,9 +315,10 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
 	#block-region-side-pre, #block-region-side-post {padding:0 4px;}
 	.block-region .block .content {padding:5px 0;}
 	#page-footer{margin-bottom:0;}
-	#page-footer .performanceinfo{position:relative;width:100%;margin:0;left:0;}
+	#page-footer .performanceinfo{position:relative;width:100%;margin:0 auto;left:0;}
 	#page-footer .performanceinfo li{margin-top:10px;}
 	#page-footer .performanceinfo span{color:#000;}
+	#page-footer .performanceinfo.pageinfo {color:#000;background-color:transparent;width:auto;padding:10px 0;}
 }
 @media(max-width:767px){
 	#page{margin:0 -20px;}

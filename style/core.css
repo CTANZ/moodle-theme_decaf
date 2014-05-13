@@ -114,8 +114,6 @@ ul.section li.label {padding-bottom:5px !important;}
 .coursebox {border:1px solid #cdcdcd;}
 ul.section .activity .contentafterlink p {margin:0 0 1em;}
 body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative;}
-/* Make 2.3 activity chooser sit on top of modules in sections */
-div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;z-index:1500;}
 
 /* Blocks
 --------------------------- */

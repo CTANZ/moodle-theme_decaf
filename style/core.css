@@ -294,6 +294,13 @@ body.pagelayout-report #page-content #region-main .region-content {
 table#categoryquestions .iconcol {width:21px;}
 body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questioncategories .commands > img.iconsmall {display:none;}
 
+/* Question bank faux-block
+--------------------------- */
+#page-mod-quiz-edit .block.questionbankwindow div.header {background-color:transparent;padding:0;}
+#page-mod-quiz-edit .block.questionbankwindow div.header div.title h2 {color:#555;text-align:left;}
+#page-mod-quiz-edit .questionbankwindow a#showbankcmd, #page-mod-quiz-edit .questionbankwindow a#hidebankcmd {color:#1D8AC3;font-size:0.8em;}
+
+
 /* Mod chooser tiles
 --------------------------*/
 .decaf_modchooser_tiles .choosercontainer #chooseform .moduletypetitle {width:100%;font-size:120%;font-weight:bold;clear:both;padding:0.5em 0 0.3em 0;text-align:center;}

@@ -326,7 +326,11 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
 	#page-footer .performanceinfo.pageinfo {color:#000;background-color:transparent;width:auto;padding:10px 0;}
 }
 @media(max-width:767px){
+	.navbar-fixed-top {margin:0;position:fixed;}
 	.navbar-fixed-top .breadcrumb a {padding-top:10px;padding-bottom:10px;}
+	.navbar-fixed-top .breadcrumb {margin-right:50px;}
+	.navbar-fixed-top .btn-navbar {position:absolute;top:5px;right:5px;}
+	#page-header {margin-top:50px;}
 	#page{margin:0 -20px;}
 	#page #region-main.pull-right{padding:0 20px;}
 	#block-region-side-pre, #block-region-side-post {padding:0 20px;}

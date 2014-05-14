@@ -9,9 +9,15 @@ var AwesomeBar = function() {
 };
 AwesomeBar.prototype = {
     prev : [],
+    touchModeActive : false,
     initializer : function(config) {
         Y.all('.decaf-awesome-bar ul.dropdown li > span').each(this.enhanceAwesomeBar, this);
         Y.all('.decaf-awesome-bar ul.dropdown li.clickable-with-children > a').each(this.enhanceAwesomeBar, this);
+        Y.one('.btn-navbar').on('click', this.toggleTouchMode, this);
+    },
+    toggleTouchMode : function() {
+        Y.one('#awesomebar').toggleClass('touchmode-active');
+        this.touchModeActive = !this.touchModeActive;
     },
     enhanceAwesomeBar : function(menuitem) {
         var level = 0;
@@ -26,7 +32,17 @@ AwesomeBar.prototype = {
             }
         }
         menuitem = menuitem.ancestor('li');
+        menuitem.on('click', function(e, item) {
+            if (this.touchModeActive && (item.one('ul') !== null) && !item.hasClass('open')) {
+                e.halt();
+                e.stopPropagation();
+                item.addClass('open');
+            }
+        }, this, menuitem);
         menuitem.on('mouseover', function(e, item) {
+            if(this.touchModeActive) {
+                return;
+            }
             if(this.prev[level]) {
                 window.clearTimeout(this.prev[level].hovertimer);
                 this.prev[level].removeClass('extended-hover');
@@ -63,6 +79,9 @@ AwesomeBar.prototype = {
             }
         }, this, menuitem);
         menuitem.on('mouseout', function(e, item) {
+            if(this.touchModeActive) {
+                return;
+            }
             if (item.hovertimer) window.clearTimeout(item.hovertimer);
             item.hovertimer = window.setTimeout(function(){item.removeClass('extended-hover')}, 750);
         }, this, menuitem);

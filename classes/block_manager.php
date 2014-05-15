@@ -10,6 +10,7 @@ class theme_decaf_block_manager extends block_manager {
      * @param string $region The name of the region to get contents of.
      */
     public static function get_filtered_content($manager, $output, $region) {
+        global $USER;
         $manager->check_is_loaded();
         $manager->ensure_instances_exist($region);
 
@@ -17,8 +18,10 @@ class theme_decaf_block_manager extends block_manager {
         	$blockinstances = array();
         	foreach ($manager->blockinstances[$region] as $block) {
 	            // Skip settings and/or navigation blocks as per Decaf theme settings.
-	            $skipblock = $block->blockname == 'block_settings' && $output->page->theme->settings->hidesettingsblock;
-	            $skipblock = $skipblock || ($block->blockname == 'block_navigation' && $output->page->theme->settings->hidenavigationblock);
+                $skipsettings = $output->page->theme->settings->hidesettingsblock || !empty($USER->profile['decafSkipSettingsBlock']);
+                $skipnavigation = $output->page->theme->settings->hidenavigationblock || !empty($USER->profile['decafSkipNavigationBlock']);
+	            $skipblock = $block->blockname == 'block_settings' && $skipsettings;
+	            $skipblock = $skipblock || ($block->blockname == 'block_navigation' && $skipnavigation);
 	            if (!$skipblock) {
 	                $blockinstances[] = $block;
 	            }

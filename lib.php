@@ -36,7 +36,7 @@ function theme_decaf_init() {
     $decaf->awesome_nav = '';
     $decaf->awesome_settings = '';
 
-    if (!empty($decaf->alwaysexpandsiteadmin)) {
+    if (!empty($decaf->alwaysexpandsiteadmin) || !empty($USER->profile['decafFullAdminTree'])) {
         navigation_node::require_admin_tree();
     }
 
@@ -58,7 +58,7 @@ function theme_decaf_init() {
         $decaf->bodyclasses[] = 'decaf_no_awesomebar';
     }
 
-    if(!empty($decaf->persistentedit)) {
+    if(!empty($decaf->persistentedit) || !empty($USER->profile['decafPersistentEdit'])) {
         if(property_exists($USER, 'editing') && $USER->editing) {
             $OUTPUT->set_really_editing(true);
         }

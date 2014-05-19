@@ -36,9 +36,9 @@ $THEME->name = 'decaf';
 $THEME->doctype = 'html5';
 $THEME->parents = array('bootstrapbase');
 $THEME->sheets = array(
-	'core',
-	'awesomebar',
-	'custom'
+    'core',
+    'awesomebar',
+    'custom'
 );
 $THEME->supportscssoptimisation = false;
 $THEME->yuicssmodules = array();

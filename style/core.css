@@ -256,16 +256,16 @@ div.eventlist table.event div.commands {position:relative; float:right; top:auto
 /* Glossaries
 --------------------------*/
 table.glossarypost {
-	border-bottom: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
 }
 
 /* Reports
 --------------------------*/
 body.pagelayout-report #page-content {
-	overflow:hidden;
+    overflow:hidden;
 }
 body.pagelayout-report #page-content #region-main .region-content {
-	overflow-x:auto;
+    overflow-x:auto;
 }
 
 /* Grader report
@@ -314,25 +314,25 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
 /* Responsiveness
 --------------------------*/
 @media(max-width:979px){
-	.navbar-fixed-top{margin-bottom:0;}
-	#page-header > h1{margin-top:0;}
-	#topadminsearchquery{width:105px;}
-	#block-region-side-pre, #block-region-side-post {padding:0 4px;}
-	.block-region .block .content {padding:5px 0;}
-	#page-footer{margin-bottom:0;}
-	#page-footer .performanceinfo{position:relative;width:100%;margin:0 auto;left:0;}
-	#page-footer .performanceinfo li{margin-top:10px;}
-	#page-footer .performanceinfo span{color:#000;}
-	#page-footer .performanceinfo.pageinfo {color:#000;background-color:transparent;width:auto;padding:10px 0;}
+    .navbar-fixed-top{margin-bottom:0;}
+    #page-header > h1{margin-top:0;}
+    #topadminsearchquery{width:105px;}
+    #block-region-side-pre, #block-region-side-post {padding:0 4px;}
+    .block-region .block .content {padding:5px 0;}
+    #page-footer{margin-bottom:0;}
+    #page-footer .performanceinfo{position:relative;width:100%;margin:0 auto;left:0;}
+    #page-footer .performanceinfo li{margin-top:10px;}
+    #page-footer .performanceinfo span{color:#000;}
+    #page-footer .performanceinfo.pageinfo {color:#000;background-color:transparent;width:auto;padding:10px 0;}
 }
 @media(max-width:767px){
-	.navbar-fixed-top {margin:0;position:fixed;}
-	.navbar-fixed-top .breadcrumb a {padding-top:10px;padding-bottom:10px;}
-	.navbar-fixed-top .breadcrumb {margin-right:50px;}
-	.navbar-fixed-top .btn-navbar {position:absolute;top:5px;right:5px;}
-	#page-header {margin-top:50px;}
-	#page{margin:0 -20px;}
-	#page #region-main.pull-right{padding:0 20px;}
-	#block-region-side-pre, #block-region-side-post {padding:0 20px;}
-	#block-region-side-pre, #block-region-side-post, #block-region-side-pre:before, #block-region-side-post:before {border-width:0;}
+    .navbar-fixed-top {margin:0;position:fixed;}
+    .navbar-fixed-top .breadcrumb a {padding-top:10px;padding-bottom:10px;}
+    .navbar-fixed-top .breadcrumb {margin-right:50px;}
+    .navbar-fixed-top .btn-navbar {position:absolute;top:5px;right:5px;}
+    #page-header {margin-top:50px;}
+    #page{margin:0 -20px;}
+    #page #region-main.pull-right{padding:0 20px;}
+    #block-region-side-pre, #block-region-side-post {padding:0 20px;}
+    #block-region-side-pre, #block-region-side-post, #block-region-side-pre:before, #block-region-side-post:before {border-width:0;}
 }

@@ -15,17 +15,17 @@ class theme_decaf_block_manager extends block_manager {
         $manager->ensure_instances_exist($region);
 
         if (!array_key_exists($region, $manager->visibleblockcontent)) {
-        	$blockinstances = array();
-        	foreach ($manager->blockinstances[$region] as $block) {
-	            // Skip settings and/or navigation blocks as per Decaf theme settings.
+            $blockinstances = array();
+            foreach ($manager->blockinstances[$region] as $block) {
+                // Skip settings and/or navigation blocks as per Decaf theme settings.
                 $skipsettings = $output->page->theme->settings->hidesettingsblock || !empty($USER->profile['decafSkipSettingsBlock']);
                 $skipnavigation = $output->page->theme->settings->hidenavigationblock || !empty($USER->profile['decafSkipNavigationBlock']);
-	            $skipblock = $block->blockname == 'block_settings' && $skipsettings;
-	            $skipblock = $skipblock || ($block->blockname == 'block_navigation' && $skipnavigation);
-	            if (!$skipblock) {
-	                $blockinstances[] = $block;
-	            }
-        	}
+                $skipblock = $block->blockname == 'block_settings' && $skipsettings;
+                $skipblock = $skipblock || ($block->blockname == 'block_navigation' && $skipnavigation);
+                if (!$skipblock) {
+                    $blockinstances[] = $block;
+                }
+            }
             $contents = array();
             if (array_key_exists($region, $manager->extracontent)) {
                 $contents = $manager->extracontent[$region];

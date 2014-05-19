@@ -1,12 +1,12 @@
 /**
  * Customized Horizontal CSS Drop-Down Menu for Moodle settings
  *
- * @file		awesomebar.css
- * @version		2.0
- * @browsers	Windows: IE7+, Opera7+, Firefox1+
- *				Mac OS: Safari2+, Firefox2+
+ * @file        awesomebar.css
+ * @version     2.0
+ * @browsers    Windows: IE7+, Opera7+, Firefox1+
+ *              Mac OS: Safari2+, Firefox2+
  *
- * @author		Paul Nicholls
+ * @author      Paul Nicholls
  * @Copyright   GNU GENERAL PUBLIC LICENSE Version 3.0
  */
 /* Awesomebar - workings and structure */
@@ -65,14 +65,14 @@ body #dock {top:26px; height:auto; bottom:0px;} /* Start dock at bottom of Aweso
 
 /* Touch-/Mobile-Friendly Awesomebar replacement */
 @media(max-width:767px){
-	#awesomebar {display:none;}
-	#awesomebar.touchmode-active {display:block;top:110px;width:90%;left:5%;bottom:30px;height:auto;overflow-y:auto;border-radius:8px;padding:10px 0;}
-	#awesomebar.touchmode-active > * {margin:0 10px;}
-	#awesomebar.touchmode-active > ul > li {float:none;}
-	#awesomebar.touchmode-active li {padding:4px 5%;}
-	#awesomebar.touchmode-active ul#awesomeHomeMenu > li {padding-bottom:4px;}
-	#awesomebar.touchmode-active ul.dropdown ul {width:100%;margin:0;}
-	#awesomebar.touchmode-active ul.dropdown li:hover > ul {display:block;position:relative;left:0;margin-top:4px;}
-	#awesomebar.touchmode-active .topadminsearchform {width:90%;float:none;margin:0 auto;text-align:center;}
-	#awesomebar.touchmode-active .search-box input {width:80%; height:24px;background-position:2px 4px;}
+    #awesomebar {display:none;}
+    #awesomebar.touchmode-active {display:block;top:110px;width:90%;left:5%;bottom:30px;height:auto;overflow-y:auto;border-radius:8px;padding:10px 0;}
+    #awesomebar.touchmode-active > * {margin:0 10px;}
+    #awesomebar.touchmode-active > ul > li {float:none;}
+    #awesomebar.touchmode-active li {padding:4px 5%;}
+    #awesomebar.touchmode-active ul#awesomeHomeMenu > li {padding-bottom:4px;}
+    #awesomebar.touchmode-active ul.dropdown ul {width:100%;margin:0;}
+    #awesomebar.touchmode-active ul.dropdown li:hover > ul {display:block;position:relative;left:0;margin-top:4px;}
+    #awesomebar.touchmode-active .topadminsearchform {width:90%;float:none;margin:0 auto;text-align:center;}
+    #awesomebar.touchmode-active .search-box input {width:80%; height:24px;background-position:2px 4px;}
 }

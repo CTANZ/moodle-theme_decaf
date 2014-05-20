@@ -200,7 +200,8 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .decaf_perfdebug {padding-bottom:35px;}
 .decaf_pagedebug {padding-bottom:15px;}
 .decaf_perfdebug.decaf_pagedebug {padding-bottom:60px;}
-#page-footer .performanceinfo{border-radius:15px 15px 0 0;bottom:0;left:-290px;position:fixed;background-color:#222;width:580px;border-width:12px 12px medium;margin:0 50%;z-index:400;}
+.decaf_perfdebug #page-footer .performanceinfo,
+.decaf_pagedebug #page-footer .performanceinfo {border-radius:15px 15px 0 0;bottom:0;left:-290px;position:fixed;background-color:#222;width:580px;border-width:12px 12px medium;margin:0 50%;z-index:400;}
 #page-footer .performanceinfo ul {text-align: center; margin: 0 auto;}
 #page-footer .performanceinfo li{display:block;list-style-type:none;float:left;padding:5px 0;width:25%;}
 #page-footer .performanceinfo li var{font-size:1.3em;font-weight:700;}
@@ -210,8 +211,9 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 #page-footer .performanceinfo .orange{color:#D28C00 !important;}
 #page-footer .performanceinfo .red{color:#B72F09 !important;}
 #page-footer .performanceinfo .white{color:#FFF !important;}
-#page-footer .performanceinfo span{color:#fff;}
-#page-footer .performanceinfo.pageinfo {color:#fff;z-index:399;font-size:75%;padding:5px 15px;width:550px;}
+.decaf_perfdebug #page-footer .performanceinfo span,
+.decaf_pagedebug #page-footer .performanceinfo span{color:#fff;}
+.decaf_pagedebug #page-footer .performanceinfo.pageinfo {color:#fff;z-index:399;font-size:75%;padding:5px 15px;width:550px;}
 .decaf_perfdebug #page-footer .performanceinfo.pageinfo {padding-bottom:50px;}
 
 /* Course list

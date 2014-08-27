@@ -267,7 +267,7 @@ function decaf_set_customcss() {
  * @return string
  */
 function theme_decaf_performance_output($param) {
-    
+
     $html = '<div class="performanceinfo"><ul>';
     if (isset($param['realtime'])) $html .= '<li><a class="red" href="#"><var>'.$param['realtime'].' secs</var><span>Load Time</span></a></li>';
     if (isset($param['memory_total'])) $html .= '<li><a class="orange" href="#"><var>'.display_size($param['memory_total']).'</var><span>Memory Used</span></a></li>';
@@ -338,7 +338,7 @@ class theme_decaf_expand_navigation extends global_navigation {
         if (!empty($PAGE->theme->settings->coursesleafonly) || (!empty($PAGE->theme->settings->coursesloggedinonly) && !isloggedin())) {
             $this->expandtocourses = false;
         }
-        
+
         if(function_exists('enrol_user_sees_own_courses')) {
             // Determine if the user is enrolled in any course.
             $enrolledinanycourse = enrol_user_sees_own_courses();
@@ -355,7 +355,7 @@ class theme_decaf_expand_navigation extends global_navigation {
         }
 
         $PAGE->requires->data_for_js('siteadminexpansion', false);
-        
+
         $this->expand($this->branchtype, $this->instanceid);
         $this->expand(self::TYPE_ROOTNODE, 'mycourses'); // Force expansion of "My Courses" branch.
     }

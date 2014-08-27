@@ -167,6 +167,8 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .moodle-actionmenu.show[data-enhanced] .menu {background-color:#E1E1E1;}
 .moodle-actionmenu.show[data-enhanced] .menu a {color:#1D8AC3;}
 .activity .editing_move img {margin-top:5px;}
+#course-category-listings .moodle-actionmenu li {line-height:14px;}
+#course-category-listings .moodle-actionmenu[data-enhance] .toggle-display.textmenu .caret {margin-top: 6px;}
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}

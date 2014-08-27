@@ -42,6 +42,36 @@ class theme_decaf_core_renderer extends theme_bootstrapbase_core_renderer {
         return parent::standard_head_html();
     }
 
+    /**
+     * Returns the CSS classes to apply to the body tag.
+     *
+     * @since Moodle 2.5.1 2.6
+     * @param array $additionalclasses Any additional classes to apply.
+     * @return string
+     */
+    public function body_css_classes(array $additionalclasses = array()) {
+        // Add a class for each block region on the page.
+        // We use the block manager here because the theme object makes get_string calls.
+        foreach ($this->page->blocks->get_regions() as $region) {
+            $additionalclasses[] = 'has-region-'.$region;
+            if (theme_decaf_block_manager::region_has_visible_content($this->page->blocks, $region, $this)) {
+                $additionalclasses[] = 'used-region-'.$region;
+            } else {
+                $additionalclasses[] = 'empty-region-'.$region;
+            }
+            if ($this->page->blocks->region_completely_docked($region, $this)) {
+                $additionalclasses[] = 'docked-region-'.$region;
+            }
+        }
+        foreach ($this->page->layout_options as $option => $value) {
+            if ($value) {
+                $additionalclasses[] = 'layout-option-'.$option;
+            }
+        }
+        $css = $this->page->bodyclasses .' '. join(' ', $additionalclasses);
+        return $css;
+    }
+
     /*
      * This renders the navbar.
      * Uses bootstrap compatible html.

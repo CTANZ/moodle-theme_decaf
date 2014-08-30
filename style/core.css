@@ -220,7 +220,6 @@ div.moodle-dialogue-base {position:absolute;top:0;left:0;right:0;}
 .mform fieldset{border-color:#ddd;}
 .mform legend{border:1px solid #ddd;background:url([[pix:theme|gradient-sb]]) repeat-x 0 -25%;padding:2px 7px;}
 .mform .fitem .felement { margin-left: 31%; margin-right: 0px; width: 68%;}
-.mform .fitem fieldset.felement{float:left;}
 .mform .fitem .fitemtitle{width:30%;}
 /* Footer
 -------------------------- */

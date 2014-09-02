@@ -48,7 +48,7 @@ a:active {outline: none;}
 /* Page header
 ------------------------- */
 #page-header-wrapper{margin:0 0 0 50px;}
-#page-header{float:none;background:#E1E1E1;/* url([[pix:theme|bg-header]]) repeat-x scroll center bottom;*/margin-right:0;position:relative;min-height:100px;}
+#page-header{float:none;background:#E1E1E1;margin-right:0;position:relative;min-height:100px;}
 #page-header .sitelogo {float:left;margin:0.75em 0;}
 #page-header .headermain{color:#000;font-size:2.5em;font-weight:700;letter-spacing:-1px;text-decoration:none;text-transform:none;text-shadow:1px 1px 0 #FFF;margin:0.9em 20px 0.9em 0px;}
 #page-header .headermenu {width:235px;}
@@ -92,7 +92,7 @@ a:active {outline: none;}
 
 /* Tabs
 --------------------------- */
-.tabtree .tabrow0 li.here a{background:#fff url([[pix:theme|gradient-sb]]) repeat-x 0 0;}
+.tabtree .tabrow0 li.here a{background:#fff;}
 .tabtree .tabrow0 .tabrow1 li a{background:none !important;}
 
 /* Content
@@ -184,7 +184,7 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 /* Forms
 ------------------------ */
 .mform fieldset{border-color:#ddd;}
-.mform legend{border:1px solid #ddd;background:url([[pix:theme|gradient-sb]]) repeat-x 0 -25%;padding:2px 7px;}
+.mform legend{border:1px solid #ddd;padding:2px 7px;}
 .mform .fitem .felement { margin-left: 31%; margin-right: 0px; width: 68%;}
 .mform .fitem fieldset.felement{float:left;}
 .mform .fitem .fitemtitle{width:30%;}
@@ -225,8 +225,8 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 /* Course
 -------------------------- */
 .course-content ul.topics li.section .left{font-size:2em;}
-.course-content ul.topics li.section{background:transparent url([[pix:theme|topic-bg-bottom]]) repeat-x scroll bottom center;margin:0 0 30px;padding:0 0 30px;}
-.course-content ul.weeks li.section{background:transparent url([[pix:theme|topic-bg-bottom]]) repeat-x scroll bottom center;margin:0;padding:0 0 30px;}
+.course-content ul.topics li.section{margin:0 0 30px;padding:0 0 30px;}
+.course-content ul.weeks li.section{margin:0;padding:0 0 30px;}
 .section-navigation.headingblock span.mdl-left, .section-navigation.headingblock span.mdl-right {font-size:0.7em;margin-top:0.3em;}
 .dir-ltr .section-navigation span.mdl-left a:before {content:'◄ ';font-size:0.8em;}
 .dir-rtl .section-navigation span.mdl-left a:after {content:' ◄';font-size:0.8em;}
@@ -237,7 +237,6 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 
 /* Forum
 ---------------------------*/
-.path-mod-forum .forumheaderlist th {background: url([[pix:theme|gradient-sb]]) repeat-x 0 0}
 .path-mod-forum .forumheaderlist .r1 td { background:#f5f5f5; }
 .forumpost .topic { background:#eee;border-color:#aaa;border-width:0 0 2px 0;padding-left:7px; }
 .forumpost .topic .subject { font-size:1.25em; }

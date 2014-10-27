@@ -305,8 +305,8 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
 /* Mod chooser tiles
 --------------------------*/
 .decaf_modchooser_tiles .choosercontainer #chooseform .moduletypetitle {width:100%;font-size:120%;font-weight:bold;clear:both;padding:0.5em 0 0.3em 0;text-align:center;}
-.decaf_modchooser_tiles .choosercontainer #chooseform .options .option {float:left;width:70px;margin:0 2px;padding:0;text-align:center;}
-.decaf_modchooser_tiles .choosercontainer #chooseform .options .option label {height:55px;}
+.decaf_modchooser_tiles .choosercontainer #chooseform .options .option {float:left;width:70px;margin:0 2px;padding:0 2px;text-align:center;}
+.decaf_modchooser_tiles .choosercontainer #chooseform .options .option label {height:55px;margin-bottom:0;padding:8px 2px 4px;}
 .decaf_modchooser_tiles .choosercontainer #chooseform .options .option input {position:absolute;left:-10000px;}
 .decaf_modchooser_tiles .choosercontainer #chooseform .options .option .modicon {display:block;width:24px;height:24px;margin: 0 auto;}
 .decaf_modchooser_tiles .choosercontainer #chooseform .options .option .modicon img.icon {padding:0;}

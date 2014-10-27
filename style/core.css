@@ -157,6 +157,7 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .decaf_with_actionmenus.jsenabled .section .activity.modtype_label .actions {right:0;}
 .editing .section .activity .activityinstance {padding-right:5px;}
 .editing .section .activity .contentwithoutlink, .decaf_persistent_edit .section .activity .contentwithoutlink {padding-right:60px;}
+.decaf_with_actionmenus.jsenabled .section .activity.modtype_folder .contentwithoutlink {display:inline-block;}
 .decaf_with_actionmenus.jsenabled .section-cm-edit-actions {position:relative;}
 .section .editing_title .iconsmall {margin:0 0 2px 4px;}
 .jsenabled .moodle-actionmenu .menubar > li {line-height:14px;}

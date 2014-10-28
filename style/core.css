@@ -30,7 +30,7 @@ a:active {outline: none;}
 /* Fixed header
 ------------------------- */
 .navbar-fixed-top{margin-top:25px;} /* Offset for Awesomebar */
-.navbar-fixed-top .navbar-inner{background:none #CCC;}
+.navbar-fixed-top .navbar-inner{background:none #CCC;filter:none;} /* Bootstrapbase uses filter for gradient BG in IE8 */
 .navbar-fixed-top .breadcrumb-nav .brand,
 .navbar-fixed-top .breadcrumb > li{text-shadow:none;}
 .navbar-fixed-top .breadcrumb .divider,

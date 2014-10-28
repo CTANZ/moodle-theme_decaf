@@ -27,9 +27,9 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2014010607;
-$plugin->release   = "2.0 RC2";
-$plugin->maturity  = MATURITY_RC;
+$plugin->version   = 2014010608;
+$plugin->release   = "2.0";
+$plugin->maturity  = MATURITY_STABLE;
 $plugin->requires  = 2013110500;
 $plugin->component = 'theme_decaf';
 $plugin->dependencies = array(

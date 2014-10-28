@@ -69,5 +69,9 @@ echo $OUTPUT->doctype() ?>
     <?php echo $OUTPUT->standard_end_of_body_html() ?>
 
 </div>
+<div id="back-to-top">
+    <a class="arrow" href="#">▲</a>
+    <a class="text" href="#">Back to Top</a>
+</div>
 </body>
 </html>

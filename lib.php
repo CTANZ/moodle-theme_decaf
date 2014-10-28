@@ -89,6 +89,10 @@ function theme_decaf_init() {
     if (!empty($CFG->debugpageinfo)) {
         $decaf->bodyclasses[] = 'decaf_pagedebug';
     }
+
+    // Initialise "Back to Top" button JS.
+    $PAGE->requires->yui_module('moodle-theme_decaf-backtotop', 'M.theme_decaf.initBackToTop');
+
     return $decaf;
 }
 

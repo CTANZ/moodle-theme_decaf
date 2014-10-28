@@ -26,15 +26,17 @@ class theme_decaf_core_course_renderer extends core_course_renderer {
         global $PAGE, $USER;
 
         // Enable editing if we're in persistent editing mode and not "really editing".
-        $wasediting = $USER->editing;
-        if (!empty($this->page->theme->settings->persistentedit) && !$USER->editing) {
+        $wasediting = (empty($USER->editing) ? false : $USER->editing);
+        if (!empty($this->page->theme->settings->persistentedit) && $this->page->user_allowed_editing() && !$wasediting) {
             $USER->editing = 1;
         }
 
         $output = parent::course_section_cm_list_item($course, $completioninfo, $mod, $sectionreturn, $displayoptions);
 
         // Set editing flag back to what it was before we did this.
-        $USER->editing = $wasediting;
+        if ($this->page->user_allowed_editing()) {
+            $USER->editing = $wasediting;
+        }
 
         return $output;
     }

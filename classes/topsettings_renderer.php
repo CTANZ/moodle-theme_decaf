@@ -132,16 +132,10 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
     public function search_form(moodle_url $formtarget, $searchvalue) {
         global $CFG;
 
-        if (empty($searchvalue)) {
-            $searchvalue = 'Search Settings..';
-        }
-
         $content = html_writer::start_tag('form', array('class' => 'topadminsearchform', 'method' => 'get', 'action' => $formtarget));
         $content .= html_writer::start_tag('div', array('class' => 'search-box'));
         $content .= html_writer::tag('label', s(get_string('searchinsettings', 'admin')), array('for' => 'adminsearchquery', 'class' => 'accesshide'));
-        $content .= html_writer::empty_tag('input', array('id' => 'topadminsearchquery', 'type' => 'text', 'name' => 'query', 'value' => s($searchvalue),
-                    'onfocus' => "if(this.value == 'Search Settings..') {this.value = '';}",
-                    'onblur' => "if (this.value == '') {this.value = 'Search Settings..';}"));
+        $content .= html_writer::empty_tag('input', array('id' => 'topadminsearchquery', 'type' => 'text', 'name' => 'query', 'value' => s($searchvalue), 'placeholder' => 'Search Settings...'));
         //$content .= html_writer::empty_tag('input', array('class'=>'search-go','type'=>'submit', 'value'=>''));
         $content .= html_writer::end_tag('div');
         $content .= html_writer::end_tag('form');

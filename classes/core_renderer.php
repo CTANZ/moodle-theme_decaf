@@ -180,6 +180,11 @@ class theme_decaf_core_renderer extends theme_bootstrapbase_core_renderer {
      * @return string HTML
      */
     public function render_action_menu(action_menu $menu) {
+        if (!empty($menu->attributessecondary['data-constraint']) && $menu->attributessecondary['data-constraint'] == '.block-region') {
+            // This is a block - don't mess with the primary vs secondary actions.
+            return parent::render_action_menu($menu);
+        }
+
         $actions = $menu->get_primary_actions();
         $actions = array_merge($actions, $menu->get_secondary_actions());
 

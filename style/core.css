@@ -340,3 +340,7 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
     #block-region-side-pre, #block-region-side-post {padding:0 20px;}
     #block-region-side-pre, #block-region-side-post, #block-region-side-pre:before, #block-region-side-post:before {border-width:0;}
 }
+@media (max-width: 480px) {
+	/* Tiny width - mod chooser tiles' help text gets mangled. Just hide it. Rotate to landscape if you really need the help. */
+	.decaf_modchooser_tiles .choosercontainer #chooseform .options .option.selected .typesummary {display:none;}
+}

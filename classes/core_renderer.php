@@ -78,7 +78,7 @@ class theme_decaf_core_renderer extends theme_bootstrapbase_core_renderer {
      */
     public function navbar() {
         $items = $this->page->navbar->get_items();
-        if ($items[0]->key == 'home') {
+        if (!empty($items[0]) && $items[0]->key == 'home') {
             array_shift($items);
         }
         if (count($items) === 0) {

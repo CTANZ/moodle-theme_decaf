@@ -277,7 +277,8 @@ body.pagelayout-report #page-content #region-main .region-content {
 #user-grades input[type="text"] {margin-bottom:0;padding:0;}
 .path-grade-report-grader .grade_icons {margin-bottom:0;}
 .path-grade-report-grader div.left_scroller th.header,
-.path-grade-report-grader div.right_scroller th {height: 2.5em;}
+.path-grade-report-grader div.right_scroller th,
+.path-grade-report-grader table#fixed_column tr.heading th {height: 2.5em;}
 .path-grade-report-grader div.right_scroller th.category {height: 4.5em;padding-top:7px;}
 .path-grade-report-grader div.right_scroller th.category.catlevel1 {padding-top:8px;}
 .path-grade-report-grader .filler,

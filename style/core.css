@@ -274,6 +274,9 @@ body.pagelayout-report #page-content #region-main .region-content {
 
 /* Grader report
 --------------------------*/
+body.pagelayout-report.path-grade-report-grader #page-content {overflow:visible;}
+body.pagelayout-report.path-grade-report-grader #page-content #region-main .region-content {overflow-x:visible;}
+.gradeparent > .floater.heading {margin-top:26px;} /* Account for AwesomeBar. */
 #user-grades input[type="text"] {margin-bottom:0;padding:0;}
 .path-grade-report-grader .grade_icons {margin-bottom:0;}
 .path-grade-report-grader div.left_scroller th.header,

@@ -170,6 +170,7 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .activity .editing_move img {margin-top:5px;}
 #course-category-listings .moodle-actionmenu li {line-height:14px;}
 #course-category-listings .moodle-actionmenu[data-enhance] .toggle-display.textmenu .caret {margin-top: 6px;}
+.dir-rtl .section .activity .actions {left:auto;}
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}
@@ -233,6 +234,8 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .dir-rtl .section-navigation span.mdl-left a:after {content:' ◄';font-size:0.8em;}
 .dir-ltr .section-navigation span.mdl-right a:after {content:'►';font-size:0.8em;}
 .dir-rtl .section-navigation span.mdl-right a:before {content:'► ';font-size:0.8em;}
+
+.dir-rtl .section .activity .editing_move {left:auto;right:0;}
 
 #intro, #pageintro { background:#f7f7f7; }
 

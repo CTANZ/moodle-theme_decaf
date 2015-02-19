@@ -153,7 +153,7 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 /* "Action menu" - replaces Decaf's previous "edit buttons" setting
 ------------------------ */
 .decaf_with_actionmenus.jsenabled.editing ul.section>li {border-bottom:none;}
-.decaf_with_actionmenus.jsenabled .section .activity .actions {right:auto;}
+.decaf_with_actionmenus.jsenabled .section .activity .actions {right:auto;top:3px;}
 .decaf_with_actionmenus.jsenabled .section .activity.modtype_label .actions {right:0;}
 .editing .section .activity .activityinstance {padding-right:5px;}
 .editing .section .activity .contentwithoutlink, .decaf_persistent_edit .section .activity .contentwithoutlink {padding-right:60px;}

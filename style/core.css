@@ -236,6 +236,30 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 
 #intro, #pageintro { background:#f7f7f7; }
 
+/* Move completion tracking interface to the left-hand side
+---------------------------*/
+.course-content #completionprogressid {float:left;margin-left:5px;}
+.course-content .section .activity .filler,
+.course-content .section .activity .autocompletion,
+.course-content .section .activity .togglecompletion {position:absolute;left:0px;top:3px;}
+body.editing .course-content .section .activity .filler,
+body.editing .course-content .section .activity .autocompletion,
+body.editing .course-content .section .activity .togglecompletion
+body.decaf_persistent_edit .course-content .section .activity .filler,
+body.decaf_persistent_edit .course-content .section .activity .autocompletion,
+body.decaf_persistent_edit .course-content .section .activity .togglecompletion {left:-24px;}
+
+.dir-rtl .course-content #completionprogressid {float:right;margin-right:5px;}
+.dir-rtl .course-content .section .activity .filler,
+.dir-rtl .course-content .section .activity .autocompletion,
+.dir-rtl .course-content .section .activity .togglecompletion {right:0px;left:auto;}
+body.dir-rtl.editing .course-content .section .activity .filler,
+body.dir-rtl.editing .course-content .section .activity .autocompletion,
+body.dir-rtl.editing .course-content .section .activity .togglecompletion
+body.dir-rtl.decaf_persistent_edit .course-content .section .activity .filler,
+body.dir-rtl.decaf_persistent_edit .course-content .section .activity .autocompletion,
+body.dir-rtl.decaf_persistent_edit .course-content .section .activity .togglecompletion {right:-24px;left:auto;}
+
 /* Forum
 ---------------------------*/
 .path-mod-forum .forumheaderlist .r1 td { background:#f5f5f5; }

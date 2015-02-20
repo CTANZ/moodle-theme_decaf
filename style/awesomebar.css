@@ -43,6 +43,16 @@ body #dock {top:26px; height:auto; bottom:0px;} /* Start dock at bottom of Aweso
 .decaf-awesome-bar li {border-color:#404040 #1a1a1a #1a1a1a #505050; border-style:solid; border-width:1px;}
 .decaf-awesome-bar > ul > li.clickable-with-children > a, .decaf-awesome-bar > ul > li.clickable-with-children:hover > a {padding:2px 8px; background-image:none;}
 
+/* RTL support */
+.dir-rtl .decaf-awesome-bar > ul > li {float:right;}
+.dir-rtl .decaf-awesome-bar .topadminsearchform {float:left;margin-left:3px;}
+.dir-rtl .decaf-awesome-bar .topadminsearchform input[type="text"] {background-position:right 1px; padding:1px 17px 0 0;}
+.dir-rtl .decaf-awesome-bar ul.dropdown li:hover > ul, .dir-rtl .decaf-awesome-bar ul.dropdown li.extended-hover > ul {left:auto;right:100%;}
+.dir-rtl .decaf-awesome-bar ul.dropdown > li:hover > ul, .dir-rtl .decaf-awesome-bar ul.dropdown > li.extended-hover > ul {right:0;}
+.dir-rtl .decaf-awesome-bar ul ul li span, .dir-rtl .decaf-awesome-bar li.clickable-with-children > a {background-image:url([[pix:theme|nav-arrow-left]]);background-position:0 50%;}
+.dir-rtl .decaf-awesome-bar ul ul li:hover > span, .dir-rtl .decaf-awesome-bar li.clickable-with-children:hover > a {background-image:url([[pix:theme|ab-arrowover-rtl]]);}
+.dir-rtl .decaf-awesome-bar ul ul a {margin:0 24px 0 0;}
+
 /* Custom menu */
 #awesomebar > .nav {margin-right:0;}
 #awesomebar > .nav > li > a {color:#fff;padding:2px 8px;}

@@ -183,6 +183,9 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-content,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label-active,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menuitem-active .yui3-menuitem-content,.yui3-skin-sam #page .yui3-menu-horizontal .yui3-menu-label-menuvisible{background-position:-10000px -10000px;}
 .yui3-skin-sam #page .yui3-menu-label,.yui3-skin-sam #page .yui3-menu .yui3-menu .yui3-menu-label,.yui3-skin-sam #page .yui3-menubuttonnav .yui3-menu-label em{background-position:right center;}
 
+/* Bootstrap Overrides */
+sup{top:auto;}
+
 /* Forms
 ------------------------ */
 .mform fieldset{border-color:#ddd;}

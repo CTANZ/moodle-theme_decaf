@@ -325,6 +325,10 @@ body.pagelayout-report.path-grade-report-grader #page-content #region-main .regi
 #page-mod-quiz-edit .editq div.question div.content .randomquestioncategory {margin-right:12.5em;}
 #page-mod-quiz-edit .editq div.question div.content .randomquestioncategory > a {white-space:normal;max-width:100%;display:inline;float:none;}
 
+/* Quiz report
+--------------------------*/
+#page-mod-quiz-report #tablecontainer {overflow-x:auto;}
+
 /* Question bank
 --------------------------*/
 table#categoryquestions .iconcol {width:21px;}

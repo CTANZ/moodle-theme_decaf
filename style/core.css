@@ -245,13 +245,12 @@ sup{top:auto;}
 /* Move completion tracking interface to the left-hand side
 ---------------------------*/
 .course-content #completionprogressid {float:left;margin-left:5px;}
-.course-content .section .activity .filler,
+.course-content .section .activity .filler {display:none;}
 .course-content .section .activity .autocompletion,
 .course-content .section .activity .togglecompletion {position:absolute;left:0px;top:3px;}
 body.editing .course-content .section .activity .filler,
 body.editing .course-content .section .activity .autocompletion,
-body.editing .course-content .section .activity .togglecompletion
-body.decaf_persistent_edit .course-content .section .activity .filler,
+body.editing .course-content .section .activity .togglecompletion,
 body.decaf_persistent_edit .course-content .section .activity .autocompletion,
 body.decaf_persistent_edit .course-content .section .activity .togglecompletion {left:-24px;}
 

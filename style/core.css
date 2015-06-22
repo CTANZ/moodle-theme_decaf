@@ -103,8 +103,8 @@ img.iconsmall, .commands a img {height:15px; margin:2px; width:15px; padding:1px
 img.iconlarge {width:16px;height:16px;margin:6px 4px 2px 4px;} /* Our icons are only 16x16, so we don't want to stretch them */
 .block .content .commands {position:relative;}
 ul.section li {clear:right;}
-ul.section li div {min-height:23px;}
-ul.section li.label div {height: auto;}
+ul.section li > div {min-height:23px;}
+ul.section li.label > div {height: auto;}
 ul.section li.label .commands {margin-bottom:2px;}
 ul.section li.label {padding-bottom:5px !important;}
 .sitetopic .section .activity .availabilityinfo,

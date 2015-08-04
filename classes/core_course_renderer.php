@@ -9,6 +9,14 @@
 
 class theme_decaf_core_course_renderer extends core_course_renderer {
 
+    public function __construct(moodle_page $page, $target) {
+        global $PAGE, $USER;
+        if (!empty($PAGE->theme->settings->alwaysexpandsiteadmin) || !empty($USER->profile['decafFullAdminTree'])) {
+            navigation_node::require_admin_tree();
+        }
+        parent::__construct($page, $target);
+    }
+
     /**
      * Renders HTML to display one course module for display within a section.
      *

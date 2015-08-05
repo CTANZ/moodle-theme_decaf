@@ -450,15 +450,14 @@ class theme_decaf_expand_navigation extends global_navigation {
                         $sections = $this->expandedcourses[$course->id];
                         $activities = $decaf_course_activities[$course->id];
 
-                        if (!array_key_exists($course->sectionnumber, $sections)) break;
-                        $section = $sections[$course->sectionnumber];
-                        if (is_null($section) || is_null($section->sectionnode)) break;
-                        $activitynodes = $this->load_section_activities($section->sectionnode, $course->sectionnumber, $activities);
-                        foreach ($activitynodes as $id=>$node) {
-                            // load all section activities now
-                            $cm_stub = new stdClass();
-                            $cm_stub->id = $id;
-                            $this->load_activity($cm_stub, $course, $node);
+                        foreach ($sections as $sectionnumber=>$section) {
+                            $activitynodes = $this->load_section_activities($section->sectionnode, $sectionnumber, $activities);
+                            foreach ($activitynodes as $id=>$node) {
+                                // load all section activities now
+                                $cm_stub = new stdClass();
+                                $cm_stub->id = $id;
+                                $this->load_activity($cm_stub, $course, $node);
+                            }
                         }
                     }
                 } catch(require_login_exception $rle) {

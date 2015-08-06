@@ -297,7 +297,7 @@ table.glossarypost {
 body.pagelayout-report #page-content {
     overflow:hidden;
 }
-body.pagelayout-report #page-content #region-main .region-content {
+body.pagelayout-report #page-content #region-main {
     overflow-x:auto;
 }
 

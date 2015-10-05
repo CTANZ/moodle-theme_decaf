@@ -45,9 +45,12 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
                 <?php if ($hascustommenu && empty($decaf->custommenuinawesomebar)) {
                     echo $OUTPUT->custom_menu();
                 } ?>
+                <?php if (method_exists($OUTPUT, 'user_menu')) {echo $OUTPUT->user_menu();} ?>
                 <ul class="nav pull-right">
                     <li><?php echo $OUTPUT->page_heading_menu(); ?></li>
-                    <li class="navbar-text"><?php echo $OUTPUT->login_info() ?></li>
+                    <?php if (!method_exists($OUTPUT, 'user_menu')) {?>
+                        <li class="navbar-text"><?php echo $OUTPUT->login_info() ?></li>
+                    <?php }?>
                 </ul>
             </div>
         </div>

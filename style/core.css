@@ -55,6 +55,7 @@ a:active {outline: none;}
 #page-header .headermenu a:hover{color:#C30;}
 #page-header .breadcrumb-button{margin-top:14px;}
 #page-site-index .headermain{font-size:2.5em;margin:0.85em 0;}
+.usermenu .moodle-actionmenu {padding-top:3px;}
 
 /* Menu Navigation
 -------------------------- */
@@ -160,13 +161,13 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .decaf_with_actionmenus.jsenabled .section .activity.modtype_folder .contentwithoutlink {display:inline-block;}
 .decaf_with_actionmenus.jsenabled .section-cm-edit-actions {position:relative;}
 .section .editing_title .iconsmall {margin:0 0 2px 4px;}
-.jsenabled .moodle-actionmenu .menubar > li {line-height:14px;}
-.decaf_with_actionmenus.jsenabled .moodle-actionmenu .toggle-display {opacity:0.4;height:14px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 1px 4px 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
-.jsenabled .moodle-actionmenu[data-enhanced] .toggle-display:hover,
-.jsenabled .moodle-actionmenu[data-enhanced].show .toggle-display {opacity:1;}
-.decaf_with_actionmenus.jsenabled .moodle-actionmenu .toggle-display.textmenu .caret {margin-top:6px;}
-.moodle-actionmenu.show[data-enhanced] .menu {background-color:#E1E1E1;}
-.moodle-actionmenu.show[data-enhanced] .menu a {color:#1D8AC3;}
+.jsenabled #page .moodle-actionmenu .menubar > li {line-height:14px;}
+.decaf_with_actionmenus.jsenabled #page .moodle-actionmenu .toggle-display {opacity:0.4;height:14px;font-size:10px;font-weight:bold;background-color:#C6FFB3;margin: 0;padding: 1px 4px 2px 4px;text-align: center;vertical-align: middle;white-space: nowrap;cursor: default;outline: none;font-family: arial,sans-serif;color: black;border: 1px solid #BBB;border-radius: 3px;border-top-color: #CCC;border-bottom-color: #A0A0A0;}
+.jsenabled #page .moodle-actionmenu[data-enhanced] .toggle-display:hover,
+.jsenabled #page .moodle-actionmenu[data-enhanced].show .toggle-display {opacity:1;}
+.decaf_with_actionmenus.jsenabled #page .moodle-actionmenu .toggle-display.textmenu .caret {margin-top:6px;}
+#page .moodle-actionmenu.show[data-enhanced] .menu {background-color:#E1E1E1;}
+#page .moodle-actionmenu.show[data-enhanced] .menu a {color:#1D8AC3;}
 .activity .editing_move img {margin-top:5px;}
 #course-category-listings .moodle-actionmenu li {line-height:14px;}
 #course-category-listings .moodle-actionmenu[data-enhance] .toggle-display.textmenu .caret {margin-top: 6px;}

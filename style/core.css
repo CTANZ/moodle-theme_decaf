@@ -306,7 +306,9 @@ body.pagelayout-report #page-content #region-main {
 --------------------------*/
 body.pagelayout-report.path-grade-report-grader #page-content {overflow:visible;}
 body.pagelayout-report.path-grade-report-grader #page-content #region-main .region-content {overflow-x:visible;}
-.gradeparent > .floater.heading {margin-top:26px;} /* Account for AwesomeBar. */
+.gradeparent > .floater.heading,
+.gradeparent > .floater.heading.floating + .floater.heading.sideonly {margin-top:25px;} /* Account for AwesomeBar. */
+.gradeparent > .floater.heading.sideonly {margin-top:0;} /* Remove awesomebar when it's only the side column floating. */
 #user-grades input[type="text"] {margin-bottom:0;padding:0;}
 .path-grade-report-grader .grade_icons {margin-bottom:0;}
 .path-grade-report-grader div.left_scroller th.header,

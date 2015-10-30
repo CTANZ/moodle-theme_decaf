@@ -201,24 +201,69 @@ class theme_decaf_core_renderer extends theme_bootstrapbase_core_renderer {
         $output .= html_writer::end_tag('ul');
         $output .= html_writer::start_tag('ul', $menu->attributessecondary);
         foreach ($actions as $action) {
-            if ($action instanceof action_menu_link_primary) {
-                // Make it secondary so that the text label will be rendered.
-                $action->primary = false;
-            } else if ($action instanceof action_menu_filler) {
-                // Skip fillers; we don't want gaps in the dropdown menu.
-                continue;
-            }
-            if ($action instanceof renderable) {
+            // Skip "filler" elements - we don't want gaps in the menu - and "edit" link.
+            if ($action instanceof action_menu_link) {
                 $content = $this->render($action);
-            } else {
-                // "Edit" link - don't put it in the menu too.
-                continue;
+                $output .= html_writer::tag('li', $content, array('role' => 'presentation'));
             }
-            $output .= html_writer::tag('li', $content, array('role' => 'presentation'));
         }
         $output .= html_writer::end_tag('ul');
         $output .= html_writer::end_tag('div');
         return $output;
+    }
+
+    /**
+     * Renders an action_menu_link item.
+     *
+     * @param action_menu_link $action
+     * @return string HTML fragment
+     */
+    protected function render_action_menu_link(action_menu_link $action) {
+        static $actioncount = 0;
+        $actioncount++;
+
+        $comparetoalt = '';
+        // Add text caption for all items, not just secondary.
+        $text = html_writer::start_tag('span', array('class'=>'menu-action-text', 'id' => 'actionmenuaction-'.$actioncount));
+        if ($action->text instanceof renderable) {
+            $text .= $this->render($action->text);
+        } else {
+            $text .= $action->text;
+            $comparetoalt = (string)$action->text;
+        }
+        $text .= html_writer::end_tag('span');
+
+        $icon = '';
+        if ($action->icon) {
+            $icon = $action->icon;
+            if ($action->primary || !$action->actionmenu->will_be_enhanced()) {
+                $action->attributes['title'] = $action->text;
+            }
+            if (!$action->primary && $action->actionmenu->will_be_enhanced()) {
+                if ((string)$icon->attributes['alt'] === $comparetoalt) {
+                    $icon->attributes['alt'] = '';
+                }
+                if (isset($icon->attributes['title']) && (string)$icon->attributes['title'] === $comparetoalt) {
+                    unset($icon->attributes['title']);
+                }
+            }
+            $icon = $this->render($icon);
+        }
+
+        // A disabled link is rendered as formatted text.
+        if (!empty($action->attributes['disabled'])) {
+            // Do not use div here due to nesting restriction in xhtml strict.
+            return html_writer::tag('span', $icon.$text, array('class'=>'currentlink', 'role' => 'menuitem'));
+        }
+
+        $attributes = $action->attributes;
+        unset($action->attributes['disabled']);
+        $attributes['href'] = $action->url;
+        if ($text !== '') {
+            $attributes['aria-labelledby'] = 'actionmenuaction-'.$actioncount;
+        }
+
+        return html_writer::tag('a', $icon.$text, $attributes);
     }
 
     /**

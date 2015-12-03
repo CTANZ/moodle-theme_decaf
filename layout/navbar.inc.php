@@ -33,7 +33,7 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
     <nav role="navigation" class="navbar-inner">
         <div class="container-fluid">
             <div class="breadcrumb-nav">
-                <a class="brand" href="<?php echo $CFG->wwwroot;?>"><?php echo $SITE->shortname; ?></a>
+                <a class="brand" href="<?php echo $CFG->wwwroot;?>/"><?php echo $SITE->shortname; ?></a>
                 <?php echo $OUTPUT->navbar(); ?>
             </div>
             <a class="btn btn-navbar" data-toggle="workaround-collapse" data-target=".nav-collapse">

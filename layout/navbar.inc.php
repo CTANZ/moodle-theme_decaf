@@ -15,7 +15,7 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
         <div id="awesomebar" class="decaf-awesome-bar">
             <?php
                 if( $this->page->pagelayout != 'maintenance' // Don't show awesomebar if site is being upgraded
-                    && !(get_user_preferences('auth_forcepasswordchange') && !session_is_loggedinas()) // Don't show it when forcibly changing password either
+                    && !(get_user_preferences('auth_forcepasswordchange') && !\core\session\manager::is_loggedinas()) // Don't show it when forcibly changing password either
                   ) {
                     echo $decaf->awesome_nav;
                     if ($hascustommenu && !empty($decaf->custommenuinawesomebar) && empty($decaf->custommenuafterawesomebar)) {

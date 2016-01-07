@@ -54,6 +54,9 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
             if ($item->key === 'courses' && $hidecourses) {
                 continue;
             }
+            if ($item->type === navigation_node::TYPE_COURSE && empty($item->key)) {
+                continue;
+            }
 
             // Skip pointless "Current course" node, go straight to its last (sole) child
             if ($item->key === 'currentcourse') {

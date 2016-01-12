@@ -172,6 +172,7 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 #course-category-listings .moodle-actionmenu li {line-height:14px;}
 #course-category-listings .moodle-actionmenu[data-enhance] .toggle-display.textmenu .caret {margin-top: 6px;}
 .dir-rtl .section .activity .actions {left:auto;}
+.course-content ul li.section.hidden:hover .side {opacity:1;} /* Remove stacking context on .side in hidden sections, so action menu is usable. */
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}

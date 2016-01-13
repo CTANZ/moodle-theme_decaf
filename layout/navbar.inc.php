@@ -41,11 +41,11 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
+            <?php if (method_exists($OUTPUT, 'user_menu')) {echo $OUTPUT->user_menu();} ?>
             <div class="nav-collapse collapse">
                 <?php if ($hascustommenu && empty($decaf->custommenuinawesomebar)) {
                     echo $OUTPUT->custom_menu();
                 } ?>
-                <?php if (method_exists($OUTPUT, 'user_menu')) {echo $OUTPUT->user_menu();} ?>
                 <ul class="nav pull-right">
                     <li><?php echo $OUTPUT->page_heading_menu(); ?></li>
                     <?php if (!method_exists($OUTPUT, 'user_menu')) {?>

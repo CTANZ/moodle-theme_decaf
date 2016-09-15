@@ -238,10 +238,8 @@ sup{top:auto;}
 .course-content ul.topics li.section{margin:0 0 30px;padding:0 0 30px;}
 .course-content ul.weeks li.section{margin:0;padding:0 0 30px;}
 .section-navigation.headingblock span.mdl-left, .section-navigation.headingblock span.mdl-right {font-size:0.7em;margin-top:0.3em;}
-.dir-ltr .section-navigation span.mdl-left a:before {content:'◄ ';font-size:0.8em;}
-.dir-rtl .section-navigation span.mdl-left a:after {content:' ◄';font-size:0.8em;}
-.dir-ltr .section-navigation span.mdl-right a:after {content:'►';font-size:0.8em;}
-.dir-rtl .section-navigation span.mdl-right a:before {content:'► ';font-size:0.8em;}
+.dir-ltr .section-navigation span.mdl-left a span,
+.dir-ltr .section-navigation span.mdl-right a span {font-size:0.8em;}
 
 .dir-rtl .section .activity .editing_move {left:auto;right:0;}
 

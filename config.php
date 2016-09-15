@@ -53,11 +53,6 @@ $THEME->blockrtlmanipulations = array(
     'side-post' => 'side-pre'
 );
 
-// Blank out arrows as we use CSS to do this.
-$THEME->larrow = "&nbsp;";
-$THEME->rarrow = "&nbsp;";
-
-
 
 $THEME->layouts = array(
     // The pagelayout used for reports.

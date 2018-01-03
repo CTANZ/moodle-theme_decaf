@@ -77,10 +77,10 @@ function theme_decaf_init() {
     }
 
     // Initialise group mode fix for action menu if applicable.
-    if (!empty($CFG->modeditingmenu)) {
-        $decaf->bodyclasses[] = 'decaf_with_actionmenus';
-        $PAGE->requires->yui_module('moodle-theme_decaf-actionmenu', 'M.theme_decaf.initActionMenu');
-    }
+    // From moodle 3.3, $CFG->modeditingmenu no longer exists (MDL-55904), so we can't check any more.
+    // Instead, action menus are always enabled, so we should assume that they're there.
+    $decaf->bodyclasses[] = 'decaf_with_actionmenus';
+    $PAGE->requires->yui_module('moodle-theme_decaf-actionmenu', 'M.theme_decaf.initActionMenu');
 
     // Add classes used to account for perf/page info fixed to bottom of screen.
     if (!empty($CFG->perfdebug) && $CFG->perfdebug > 7) {

@@ -98,3 +98,5 @@ $string['pluginname'] = 'Decaf';
 $string['region-side-post'] = 'Right';
 $string['region-side-pre'] = 'Left';
 
+$string['menu'] = 'Menu';
+

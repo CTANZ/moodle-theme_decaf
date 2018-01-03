@@ -17,7 +17,7 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
     }
 
     public function navigation_tree(global_navigation $navigation) {
-        global $CFG;
+        global $CFG, $OUTPUT;
         $node = $this->navigation_node($navigation, array());
         if (!strlen(trim($node))) {
             return '';
@@ -25,7 +25,11 @@ class theme_decaf_topsettings_renderer extends plugin_renderer_base {
         $content = html_writer::start_tag('ul', array('id' => 'awesomeHomeMenu', 'class' => 'dropdown  dropdown-horizontal'));
         $content .= html_writer::start_tag('li');
         $content .= html_writer::start_tag('span', array('id' =>'awesomeNavMenu'));
-        $content .= html_writer::empty_tag('img', array('alt' => '', 'src' =>$this->pix_url('user_silhouette', 'theme')));
+        if (method_exists($OUTPUT, 'image_icon')) {
+            $content .= $OUTPUT->image_icon('user_silhouette', get_string('menu', 'theme_decaf'), 'theme');
+        } else {
+            $content .= html_writer::empty_tag('img', array('alt' => '', 'src' => $this->pix_url('user_silhouette', 'theme')));
+        }
         $content .= html_writer::end_tag('span');
         $content .= $this->navigation_node($navigation, array());
         $content .= html_writer::end_tag('li');

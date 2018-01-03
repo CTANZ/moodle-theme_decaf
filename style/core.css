@@ -176,6 +176,8 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 /* Recent Moodle reuses some of these classes in the quiz editing interface, so we need to reset some of these overrides */
 #page-mod-quiz-edit.decaf_with_actionmenus.jsenabled .section .activity .actions {right:0;top:0;}
 #page-mod-quiz-edit .section .activity .editing_move {left:0;top:-2px;}
+/* Moodle 3.3 changes the padding in action menu items, so we need to override them */
+.decaf_with_actionmenus .moodle-actionmenu[data-enhanced].show .menu a {padding:2px 1em 2px 28px;}
 
 /*YUI Reset */
 .yui3-skin-sam #page .yui3-splitbuttonnav .yui3-menu-label .yui3-menu-toggle{background-position:3px center;}

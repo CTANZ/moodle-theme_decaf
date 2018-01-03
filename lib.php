@@ -334,10 +334,10 @@ class theme_decaf_expand_navigation extends global_navigation {
         $this->initialised = true;
 
         $this->rootnodes = array();
-        $this->rootnodes['site']      = $this->add_course($SITE);
         $this->rootnodes['currentcourse'] = $this->add(get_string('currentcourse'), null, self::TYPE_ROOTNODE, null, 'currentcourse');
         $this->rootnodes['mycourses'] = $this->add(get_string('mycourses'), new moodle_url('/my'), self::TYPE_ROOTNODE, null, 'mycourses');
         $this->rootnodes['courses'] = $this->add(get_string('courses'), null, self::TYPE_ROOTNODE, null, 'courses');
+        $this->rootnodes['site']      = $this->add_course($SITE);
 
         if (!empty($PAGE->theme->settings->coursesleafonly) || (!empty($PAGE->theme->settings->coursesloggedinonly) && !isloggedin())) {
             $this->expandtocourses = false;

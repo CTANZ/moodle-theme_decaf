@@ -27,10 +27,10 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2015103001;
-$plugin->release   = "2.1.1";
+$plugin->version   = 2018010401;
+$plugin->release   = "2.2.0";
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->requires  = 2013110500;
+$plugin->requires  = 2016052300;
 $plugin->component = 'theme_decaf';
 $plugin->dependencies = array(
     'theme_bootstrapbase'  => 2013110500,

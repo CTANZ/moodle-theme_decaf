@@ -129,6 +129,8 @@ body.editing ul.section>li {border-bottom: 1px dashed #808080; position:relative
 .block_with_controls .header .title {position:relative;padding-bottom:20px;}
 .block_with_controls .commands {position:absolute; top:0px; right:0px;}
 .block .commands{clear:both;padding:4px;top:auto;bottom:0px;}
+.decaf_with_actionmenus.jsenabled #page .block .commands .toggle-display{display:inline-block;height:16px;}
+.block .commands .toggle-display > img{margin:0;width:22px;}
 .block .content{padding:5px 10px;}
 .block .content .buttons{margin-top:2px;}
 .block_login label{font-size:0.85em;display:block;}

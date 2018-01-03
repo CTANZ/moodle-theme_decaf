@@ -25,18 +25,19 @@ ActionMenu.prototype = {
                     // Figure out current mode.
                     var groupmode = parseInt(tag.getData('nextgroupmode'), 10),
                         newtitle = '',
-                        newtitlestr;
+                        newtitlestr = '';
 
-                    if (groupmode === M.course.resource_toolbox.GROUPS_NONE) {
+                    if (groupmode === 0) { // M.course.resource_toolbox.GROUPS_NONE
                         newtitle = 'groupsnone';
-                    } else if (groupmode === M.course.resource_toolbox.GROUPS_SEPARATE) {
+                    } else if (groupmode === 1) { // M.course.resource_toolbox.GROUPS_SEPARATE
                         newtitle = 'groupsseparate';
-                    } else if (groupmode === M.course.resource_toolbox.GROUPS_VISIBLE) {
+                    } else if (groupmode === 2) { // M.course.resource_toolbox.GROUPS_VISIBLE
                         newtitle = 'groupsvisible';
                     }
-                    newtitlestr = M.util.get_string(newtitle, 'moodle'),
-                    newtitlestr = M.util.get_string('clicktochangeinbrackets', 'moodle', newtitlestr);
-
+                    if (newtitle) {
+                        newtitlestr = M.util.get_string(newtitle, 'moodle');
+                        newtitlestr = M.util.get_string('clicktochangeinbrackets', 'moodle', newtitlestr);
+                    }
                     // Change the UI.
                     tag.one('span').setHTML(newtitlestr);
 

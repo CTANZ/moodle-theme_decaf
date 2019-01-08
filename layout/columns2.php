@@ -64,6 +64,8 @@ echo $OUTPUT->doctype() ?>
         ?>
     </div>
 
+    <?php if (method_exists($OUTPUT, 'standard_after_main_region_html')) {echo $OUTPUT->standard_after_main_region_html();} ?>
+
     <footer id="page-footer">
         <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
         <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>

@@ -36,6 +36,12 @@ a:active {outline: none;}
 .navbar-fixed-top .breadcrumb .divider,
 .navbar-fixed-top .breadcrumb span{color:#777;}
 .navbar .brand{padding-right:0;}
+
+/* Moodle 3.6 messaging UI
+------------------------- */
+.message-drawer {margin-top:26px;} /* Offset for Awesomebar */
+.messagemenu {padding-top:3px;} /* Nudge navbar icons down a bit */
+
 /* Page
 ------------------------- */
 #page{padding:0;top:25px;}
@@ -383,6 +389,7 @@ body#page-question-category.decaf_with_edit_buttons.jsenabled div.box.questionca
     .navbar-fixed-top .breadcrumb {margin-right:50px;}
     .navbar-fixed-top .btn-navbar {position:absolute;top:5px;right:5px;}
     .navbar-fixed-top .usermenu {top:4px;right:60px;}
+    .navbar-fixed-top .messagemenu {position:absolute;top:4px;right:120px;}
     .notloggedin .navbar-fixed-top .usermenu {top:7px;right:70px;}
     .usermenu .moodle-actionmenu .toggle-display .userbutton .usertext {display:none;}
     .navbar-fixed-top .usermenu .login {font-size:0;}

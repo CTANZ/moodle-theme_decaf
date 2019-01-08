@@ -41,7 +41,15 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
+
             <?php if (method_exists($OUTPUT, 'user_menu')) {echo $OUTPUT->user_menu();} ?>
+
+            <?php if (method_exists($OUTPUT, 'navbar_plugin_output')) { ?>
+                <div class="messagemenu">
+                    <?php echo $OUTPUT->navbar_plugin_output(); ?>
+                </div>
+            <?php } ?>
+
             <div class="nav-collapse collapse">
                 <?php if ($hascustommenu && empty($decaf->custommenuinawesomebar)) {
                     echo $OUTPUT->custom_menu();

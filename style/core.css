@@ -39,7 +39,7 @@ a:active {outline: none;}
 
 /* Moodle 3.6 messaging UI
 ------------------------- */
-.message-drawer {margin-top:26px;} /* Offset for Awesomebar */
+.message-drawer {margin-top:26px;height:calc(100% - 42px - 26px);} /* Account for Awesomebar */
 .messagemenu {padding-top:3px;} /* Nudge navbar icons down a bit */
 
 /* Page

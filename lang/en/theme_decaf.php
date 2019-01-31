@@ -99,4 +99,4 @@ $string['region-side-post'] = 'Right';
 $string['region-side-pre'] = 'Left';
 
 $string['menu'] = 'Menu';
-
+$string['privacy:metadata'] = 'The Decaf theme does not store any personal data about any user.';
